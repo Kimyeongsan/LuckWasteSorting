@@ -1,12 +1,19 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-import { Button } from 'react-native';
+import { Button, ImageBackground } from 'react-native';
 
 const Container = styled.View`
   width: 100%;
   height: 100%;
   background-color: #CFDEF3;
+`;
+
+const Background = styled(ImageBackground)`
+  width: 100%;
+  height: 100%;
+  resizeMode: cover;
+  position: absolute;
 `;
 
 const Title = styled.Text`
@@ -22,10 +29,11 @@ const Title = styled.Text`
 // 구현사항 :
 // Grid item 출력 View Pager 구축 예정
 
-const SearchDetail = ({navigation}) => {
+const SearchDetail = ({ navigation }) => {
 
   return (
     <Container>
+      <Background source={require("../../assets/img/search_background.png")} />
       <Title>SearchDetail Screen</Title>
 
       <Button

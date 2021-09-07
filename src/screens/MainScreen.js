@@ -31,10 +31,6 @@ const MainScreen = ({navigation}) => {
       <Title>Main Screen</Title>
 
       <Button
-        title='Camera Screen'
-        onPress={() => navigation.navigate('camera')} />
-
-      <Button
         title='Search Screen'
         onPress={() => navigation.navigate('search')} />
 

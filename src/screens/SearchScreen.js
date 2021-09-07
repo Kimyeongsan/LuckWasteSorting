@@ -1,12 +1,19 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-import { Button } from 'react-native';
+import { Button, ImageBackground } from 'react-native';
 
 const Container = styled.View`
   width: 100%;
   height: 100%;
   background-color: #CFDEF3;
+`;
+
+const Background = styled(ImageBackground)`
+  width: 100%;
+  height: 100%;
+  resizeMode: cover;
+  position: absolute;
 `;
 
 const Title = styled.Text`
@@ -24,15 +31,21 @@ const Title = styled.Text`
 // View Pager 를 통한 Grid Item 전환 Compornent 필요
 // 카메라 Screen으로 이동하기 위한 button 필요
 
-const SearchScreen = ({navigation}) => {
+const SearchScreen = ({ navigation }) => {
 
   return (
     <Container>
+
+      <Background source={require("../../assets/img/search_background.png")} />
       <Title>Search Screen</Title>
 
       <Button
         title='SearchDetail Screen'
         onPress={() => navigation.navigate('searchDetail')} />
+
+      <Button
+        title='Camera Screen'
+        onPress={() => navigation.navigate('camera')} />
     </Container>
   );
 
