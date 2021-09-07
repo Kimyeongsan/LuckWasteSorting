@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
+import { Button } from 'react-native';
+
 const Container = styled.View`
   width: 100%;
   height: 100%;
@@ -20,11 +22,15 @@ const Title = styled.Text`
 // 구현 사항 :
 // Start Luck 버튼 제작 필요 : 클릭 시 Main화면으로 전환
 
-const SearchComplete = () => {
+const SearchComplete = ({navigation}) => {
 
   return (
     <Container>
       <Title>SearchComplete Screen</Title>
+
+      <Button
+        title='main Screen'
+        onPress={() => navigation.navigate('main')} />
     </Container>
   );
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
+import { Button } from 'react-native';
+
 const Container = styled.View`
   width: 100%;
   height: 100%;
@@ -20,11 +22,15 @@ const Title = styled.Text`
 // 구현사항 :
 // Grid item 출력 View Pager 구축 예정
 
-const SearchDetail = () => {
+const SearchDetail = ({navigation}) => {
 
   return (
     <Container>
       <Title>SearchDetail Screen</Title>
+
+      <Button
+        title='SearchComplete Screen'
+        onPress={() => navigation.navigate('searchComplete')} />
     </Container>
   );
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import SplashScreen from 'react-native-splash-screen';
-import LoginBeforeScreen from './screens/LoginBeforeScreen';
+import StackNavigator from './StackNavigator';
 
 function App() {
 
@@ -14,7 +14,7 @@ function App() {
   });
 
   return (    
-    <LoginBeforeScreen />    
+    <StackNavigator/>
   )
 }
 

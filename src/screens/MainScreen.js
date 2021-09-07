@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
+import { Button } from 'react-native';
+
 const Container = styled.View`
   width: 100%;
   height: 100%;
@@ -22,11 +24,24 @@ const Title = styled.Text`
 // 오늘의 운세, 애정운세, 직장운세, 금전운세에 대한 데이터 를 출력한 Component 제작 필요
 // 재활용을 한 횟수를 출력 하기 위한 Component 제작 필요
 
-const MainScreen = () => {
+const MainScreen = ({navigation}) => {
 
   return (
     <Container>
       <Title>Main Screen</Title>
+
+      <Button
+        title='Camera Screen'
+        onPress={() => navigation.navigate('camera')} />
+
+      <Button
+        title='Search Screen'
+        onPress={() => navigation.navigate('search')} />
+
+      <Button
+        title='LogOut Screen'
+        onPress={() => navigation.navigate('login')} />
+
     </Container>
   );
 

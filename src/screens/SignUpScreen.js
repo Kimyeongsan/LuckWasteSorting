@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
+import { Button } from 'react-native';
+
 const Container = styled.View`
   width: 100%;
   height: 100%;
@@ -21,11 +23,15 @@ const Title = styled.Text`
 // User ID, PassWord 등등 -> 추후 추가될 수 있음
 // 입력 완료 버튼 클릭시 Complete화면으로 전환
 
-const SignUpScreen = () => {
+const SignUpScreen = ({navigation}) => {
 
   return (
     <Container>
       <Title>SignUp Screen</Title>
+
+      <Button
+        title='SignUp Complete Screen'
+        onPress={() => navigation.navigate('signUpComplete')} />
     </Container>
   );
 

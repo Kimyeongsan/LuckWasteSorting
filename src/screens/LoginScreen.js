@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
+import { Button } from 'react-native';
+
 const Container = styled.View`
   width: 100%;
   height: 100%;
@@ -21,11 +23,19 @@ const Title = styled.Text`
 // User Id , User Password 입력 받을 창 제작 예정
 // Login Button 클릭 시 Main 화면으로 전환
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
 
   return (
     <Container>
       <Title>Login Screen</Title>
+
+      <Button
+        title='Main Screen'
+        onPress={() => navigation.navigate('main')} />
+
+      <Button
+        title='SignUp Screen'
+        onPress={() => navigation.navigate('signUp')} />
     </Container>
   );
 

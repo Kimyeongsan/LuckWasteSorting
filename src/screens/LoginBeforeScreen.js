@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
+import { Button } from 'react-native';
+
+
 const Container = styled.View`
   width: 100%;
   height: 100%;
@@ -20,11 +23,17 @@ const Title = styled.Text`
 
 // 구현 사항 :
 // Login으로 넘어갈 Button 제작 필요
-const LoginBeforeScreen = () => {
 
+
+const LoginBeforeScreen = ({navigation}) => {
   return (
     <Container>
       <Title>LoginBefore Screen</Title>
+
+      <Button
+        title='Login Screen'
+        onPress={() => navigation.navigate('login')} />
+
     </Container>
   );
 

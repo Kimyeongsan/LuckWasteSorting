@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
+import { Button } from 'react-native';
+
 const Container = styled.View`
   width: 100%;
   height: 100%;
@@ -20,11 +22,15 @@ const Title = styled.Text`
 // 구현사항 :
 // 회원가입을 성공했을 경우 main으로 넘어갈 수 있는 버튼 출력 예정
 
-const SignUpComplete = () => {
+const SignUpComplete = ({navigation}) => {
 
   return (
     <Container>
       <Title>SignUpComplete Screen</Title>
+
+      <Button
+        title='Main Screen'
+        onPress={() => navigation.navigate('main')} />
     </Container>
   );
 
