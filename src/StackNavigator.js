@@ -9,7 +9,6 @@ import SignUpScreen from './screens/SignUpScreen';
 import MainScreen from './screens/MainScreen';
 import CameraScreen from './screens/CameraScreen';
 import SearchScreen from './screens/SearchScreen';
-import SearchComplete from './screens/SearchComplete';
 import SearchDetail from './screens/SearchDetail';
 
 const Stack = createStackNavigator();
@@ -60,11 +59,6 @@ function StackNavigator() {
         <Stack.Screen
           name="search"
           component={SearchScreen}
-        />
-
-        <Stack.Screen
-          name="searchComplete"
-          component={SearchComplete}
         />
 
         <Stack.Screen

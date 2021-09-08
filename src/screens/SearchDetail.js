@@ -17,11 +17,11 @@ const Background = styled(ImageBackground)`
 `;
 
 const Title = styled.Text`
-  flex: 1;
 	align-self: center;
-  marginTop: 50px;
-	fontSize: 20px;
-  font-weight: bold;
+  marginTop: 24px;
+  color: white;
+	fontSize: 50px;
+  font-family: Kameron-Bold;
 `;
 
 // 검색 상세 화면 : 검색 화면을 통해 검색된 Item에 대한 세부 내역 출력
@@ -34,11 +34,12 @@ const SearchDetail = ({ navigation }) => {
   return (
     <Container>
       <Background source={require("../../assets/img/search_background.png")} />
-      <Title>SearchDetail Screen</Title>
+
+      <Title>recycle</Title>
 
       <Button
-        title='SearchComplete Screen'
-        onPress={() => navigation.navigate('searchComplete')} />
+        title='Search'
+        onPress={() => navigation.navigate('search')} />
     </Container>
   );
 

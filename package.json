@@ -14,16 +14,20 @@
     "@react-navigation/stack": "^6.0.7",
     "react": "17.0.2",
     "react-native": "0.65.1",
+    "react-native-animated-pagination-dots": "^0.1.72",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-paper": "^4.9.2",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.6.0",
     "react-native-splash-screen": "^3.2.0",
+    "react-native-vector-icons": "^8.1.0",
     "styled-components": "^5.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/runtime": "^7.15.4",
     "@react-native-community/eslint-config": "^3.0.1",
+    "@types/react-native-vector-icons": "^6.4.8",
     "babel-jest": "^27.1.0",
     "eslint": "^7.32.0",
     "jest": "^27.1.0",
@@ -33,5 +37,10 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
   }
 }
