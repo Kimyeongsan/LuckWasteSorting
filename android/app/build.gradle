@@ -125,12 +125,6 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    // 텐서플러우 임시 추가
-    aaptOptions {
-        noCompress "tflite"
-        noCompress "lite"
-    }
-
     defaultConfig {
         applicationId "com.luckwastesoriting"
         minSdkVersion rootProject.ext.minSdkVersion
