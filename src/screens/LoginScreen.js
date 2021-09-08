@@ -1,21 +1,79 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-import { Button } from 'react-native';
+import { ImageBackground } from 'react-native';
 
 const Container = styled.View`
   width: 100%;
   height: 100%;
-  background-color: #CFDEF3;
+  backgroundColor: rgba(0,0,0,0.4);
+`;
+
+const Background = styled(ImageBackground)`
+  width: 100%;
+  height: 100%;
+  resizeMode: cover;
+  position: absolute;
+`;
+
+const TitleContainer = styled.View`
+  width: 100%;
+  height: 150px;
+  marginTop: 47px;
 `;
 
 const Title = styled.Text`
-  flex: 1;
 	align-self: center;
-  marginTop: 50px;
-	fontSize: 20px;
-  font-weight: bold;
+  color: white;
+	fontSize: 50px;
+  font-family: Kameron-Bold;
 `;
+
+const ContentContainer = styled.View`
+  width: 100%;
+  height: 150px;
+  marginTop: 108px;
+`;
+
+const UserSignUpButton = styled.TouchableOpacity`
+  width: 120px;
+  height: 36px;
+	align-self: center;
+  justifyContent: center;
+  marginTop: 122px;
+`;
+
+const LoginButton = styled.TouchableOpacity`
+  width: 175px;
+  height: 60px;
+	align-self: center;
+  justifyContent: center;
+  marginTop: 118px;
+  borderWidth: 2px;
+  borderColor: white;
+  border-radius: 30px;
+`;
+
+const LoginText = styled.Text`
+	align-self: center;
+  color: white;
+	fontSize: 22px;
+  font-family: Kadwa-Bold;
+  borderColor: white;
+`;
+
+const UserSignUpText = styled.Text`
+	align-self: center;
+  color: white;
+	fontSize: 16px;
+  borderColor: white;
+  font-family: serif;
+`;
+
+// const Input = styled.Input`
+//   width: 267px;
+//   height: 48px;
+// `;
 
 // Login을 위한 화면
 
@@ -26,17 +84,30 @@ const Title = styled.Text`
 const LoginScreen = ({navigation}) => {
 
   return (
-    <Container>
-      <Title>Login Screen</Title>
+    <Background
+      source={require("../../assets/img/login_background.png")} >
 
-      <Button
-        title='Main Screen'
-        onPress={() => navigation.navigate('main')} />
+      <Container>
+        <TitleContainer>
+          <Title>gather</Title>
+          <Title>tomorrow</Title>
+        </TitleContainer>
 
-      <Button
-        title='SignUp Screen'
-        onPress={() => navigation.navigate('signUp')} />
-    </Container>
+          {/* <Input {}/> */}
+
+          <LoginButton
+            onPress={() => navigation.navigate('main')}>
+            <LoginText>Log in</LoginText>
+          </LoginButton>
+
+          <UserSignUpButton
+            onPress={() => navigation.navigate('signUp')}>
+            <UserSignUpText>User Sign up</UserSignUpText>
+          </UserSignUpButton>
+        </Container>
+
+    </Background>
+    
   );
 
 }
