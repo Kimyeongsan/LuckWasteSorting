@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const Container = styled.View`
   width: 100%;
   height: 100%;
-  background-color: #CFDEF3;
+  backgroundColor: rgba(0,0,0,0.3);
 `;
 
 const Background = styled(ImageBackground)`
@@ -44,6 +44,28 @@ const TextInputs = styled(TextInput)`
   paddingLeft: 0px;
 `;
 
+const StartButton = styled.TouchableOpacity`
+  width: 57px;
+  height: 60px;
+	align-self: center;
+  marginTop: 115px;
+  flexDirection: row;
+  justify-Content: center;
+`;
+
+  {/* 가이드 Text */}
+const ContentContainer = styled.View`
+  width: 100%;
+  height: 150px;
+  marginTop: 25px;
+`;
+
+const NomalContent = styled.Text`
+	align-self: center;
+  color: white;
+	fontSize: 12px;
+`;
+
 // 구현사항 :
 // View Pager 를 통한 Grid Item 전환 Compornent 필요
 // 카메라 Screen으로 이동하기 위한 button 필요
@@ -57,38 +79,43 @@ const SearchScreen = ({ navigation }) => {
     )
   }
   return (
-    <Container>
+    <Background
+      source={require("../../assets/img/search_background.png")}>
 
-      <Background source={require("../../assets/img/search_background.png")} />
+      <Container>
+        <SearchView>
+          <Icons
+            name="search"
+            size={20}
+            color="#7F8080"
+            onPress={() => Submit()} />
 
-      <SearchView>
-        <Icons
-          name="search"
-          size={20}
-          color="#7F8080"
-          onPress={() => Submit()} />
+          <TextInputs
+            onChangeText={Xm => handleX(Xm)}
+            value={Xm} />
+        </SearchView>
 
-        <TextInputs
-          onChangeText={Xm => handleX(Xm)}
-          value={Xm} />
-      </SearchView>
-
-      <Button
-        title='SearchDetail Screen'
-        onPress={() => navigation.navigate('searchDetail')} />
+        <Button
+          title='SearchDetail Screen'
+          onPress={() => navigation.navigate('searchDetail')} />
 
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate('camera')}>
-        <Image
-          source={require('../../assets/img/camera_icon.png')}
-        />
-      </TouchableOpacity>
+        <StartButton
+          onPress={() => navigation.navigate('camera')}>
+          <Image
+            resizeMode='contain'
+            source={require('../../assets/img/camera_icon.png')}
+          />
+        </StartButton>
 
-      <Text>AI 탐색기능을 사용하여</Text>
-      <Text>보다 빠른 분리수거를 실천해 보세요</Text>
+        {/* 가이드 Text */}
+        <ContentContainer>
+          <NomalContent>AI 탐색기능을 사용하여</NomalContent>
+          <NomalContent>보다 빠른 분리수거를 실천해 보세요</NomalContent>
+        </ContentContainer>
 
-    </Container>
+      </Container>
+    </Background >
   );
 
 }
