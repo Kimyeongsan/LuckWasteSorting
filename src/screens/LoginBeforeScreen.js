@@ -70,13 +70,10 @@ const StartText = styled.Text`
   borderColor: white;
 `;
 
-
 // Login 되기 전 화면 
 // 혹은 Login 이 안됬을 경우 출력 될 화면
 
-// 구현 사항 :
-// Login으로 넘어갈 Button 제작 필요
-
+// 추후 : 로그인이 될 경우 해당 화면은 Skip 되게 기능추가 할 예정
 
 const LoginBeforeScreen = ({ navigation }) => {
   return (
@@ -106,7 +103,6 @@ const LoginBeforeScreen = ({ navigation }) => {
       </Container>
     </Background>
   );
-
 }
 
 export default LoginBeforeScreen;
