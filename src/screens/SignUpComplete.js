@@ -39,6 +39,7 @@ const NomalContent = styled.Text`
 	align-self: center;
   color: white;
 	fontSize: 18px;
+  font-family: Kadwa-Regular;
 `;
 
 const StartButton = styled.TouchableOpacity`
@@ -86,7 +87,7 @@ const SignUpComplete = ({navigation}) => {
         </ContentContainer>
 
         <StartButton
-          onPress={() => navigation.navigate('login')}>
+          onPress={() => navigation.navigate('main')}>
           <StartText>Let'gather tomorrow</StartText>
         </StartButton>
 
