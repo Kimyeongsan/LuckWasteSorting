@@ -50,6 +50,7 @@ const NomalContent = styled.Text`
 	align-self: flex-start;
   color: white;
 	fontSize: 18px;
+  font-family: Kadwa-Regular;
 `;
 
 const StartButton = styled.TouchableOpacity`

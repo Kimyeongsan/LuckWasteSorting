@@ -39,6 +39,7 @@ const NomalContent = styled.Text`
 	align-self: center;
   color: white;
 	fontSize: 18px;
+  font-family: Kadwa-Regular;
 `;
 
 const StartButton = styled.TouchableOpacity`

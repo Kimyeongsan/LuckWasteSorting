@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import SearchDetail_item from '../components/SearchDetail_item';
 
 import { Button, ImageBackground } from 'react-native';
 
@@ -36,6 +37,8 @@ const SearchDetail = ({ navigation }) => {
       <Background source={require("../../assets/img/search_background.png")} />
 
       <Title>recycle</Title>
+
+      <SearchDetail_item/>
 
       <Button
         title='Search'
