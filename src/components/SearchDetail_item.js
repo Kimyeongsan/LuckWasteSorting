@@ -1,58 +1,118 @@
-import * as React from 'react';
-import { Text, View, SafeAreaView } from 'react-native';
+import React, { useRef, useState, useEffect } from 'react';
+import {
+    Text,
+    Dimensions,
+    TouchableOpacity
+} from 'react-native';
+
+import styled from 'styled-components/native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 
-class SearchDetail_item extends React.Component {
+import { useNavigation } from '@react-navigation/native';
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            activeIndex: 0,
-            carouselItems: [
-                {
-                    title: "Item 1",
-                    text: "Text 1",
-                },
-                {
-                    title: "Item 2",
-                    text: "Text 2",
-                },
-                {
-                    title: "Item 3",
-                    text: "Text 3",
-                },
-                {
-                    title: "Item 4",
-                    text: "Text 4",
-                },
-                {
-                    title: "Item 5",
-                    text: "Text 5",
-                },
-            ]
+const { width: screenWidth } = Dimensions.get('window');
+
+const Container = styled.View`
+    flex: 1px; 
+    paddingTop: 27px;
+`;
+
+const ItemContainer = styled.View`
+    backgroundColor: rgba(255, 255, 255, 0.9);
+    borderRadius: 5px;
+    flex: 1;
+    padding: 40px;
+`;
+
+const CarouselContainer = styled.View`
+    height: 80%; 
+    justifyContent: center;
+`;
+
+// 임시 데이터
+const carouselItems = [
+    {
+        title: "Item 1",
+        text: "Text 1",
+    },
+    {
+        title: "Item 2",
+        text: "Text 2",
+    },
+    {
+        title: "Item 3",
+        text: "Text 3",
+    },
+    {
+        title: "Item 4",
+        text: "Text 4",
+    },
+    {
+        title: "Item 5",
+        text: "Text 5",
+    },
+]
+
+
+const SearchDetail_item = () => {
+
+    const [entries, setEntries] = useState([]);
+    const carouselRef = useRef("null");
+
+    useEffect(() => {
+        setEntries(carouselItems);
+    }, []);
+
+    // Current page를 index에 저장
+    const [index, setIndex] = React.useState(0)
+
+    // components에서 navigation 가져올 때 방법 : hook으로 가져온다.
+    const navigation = useNavigation(); 
+
+    // 다음 item으로 이동하는 버튼 부분
+    const goForward = () => {
+        carouselRef.current.snapToNext();
+
+        if(index == 4) {
+            navigation.navigate('main')
         }
-    }
+    };
 
-    _renderItem({ item }) {
+
+    // Item 부분
+    const renderItem = ({ item }) => {
+
         return (
-            <View style={{
-                backgroundColor: "rgba(255, 255, 255, 0.7)",
-                borderRadius: 5,
-                flex: 1,
-                padding: 50,
-            }}>
+            <ItemContainer>
+                <TouchableOpacity onPress={goForward}>
+                    <Text style={{ color: 'black' }}>go to next slide</Text>
+                </TouchableOpacity>
                 <Text style={{ fontSize: 30 }}>{item.title}</Text>
                 <Text>{item.text}</Text>
-            </View>
-
+            </ItemContainer>
         )
-    }
+    };
 
-    get pagination() {
-        return (
+    // 출력 부분
+    return (
+        <Container>
+            {/* Animation 부분 */}
+            <CarouselContainer>
+                <Carousel
+                    layout={"default"}
+                    ref={carouselRef}
+                    data={entries}
+                    sliderWidth={screenWidth}
+                    sliderHeight={screenWidth}
+                    itemWidth={screenWidth - 60}
+                    renderItem={renderItem}
+                    onSnapToItem={(index) => setIndex(index)} />
+            </CarouselContainer>
+
+            {/* Pagination 부분 */}
             <Pagination
-                dotsLength={this.state.carouselItems.length}
-                activeDotIndex={this.state.activeIndex}
+                dotsLength={entries.length}
+                activeDotIndex={index}
                 containerStyle={{ flexDirection: 'row', justifyContent: 'center', }}
                 dotStyle={{
                     width: 15,
@@ -63,28 +123,9 @@ class SearchDetail_item extends React.Component {
                 inactiveDotOpacity={0.4}
                 inactiveDotScale={0.8}
             />
-        );
-    }
+        </Container>
+    );
 
-
-    render() {
-        return (
-            <SafeAreaView style={{ flex: 1, paddingTop: 27, marginLeft: 20, marginRight: 20 }}>
-                <View style={{ height: "80%", flexDirection: 'row', justifyContent: 'center', }}>
-                    <Carousel
-                        layout={"default"}
-                        ref={ref => this.carousel = ref}
-                        data={this.state.carouselItems}
-                        sliderWidth={300}
-                        itemWidth={300}
-                        renderItem={this._renderItem}
-                        onSnapToItem={index => this.setState({ activeIndex: index })} />
-                </View>
-
-                <View></View>{this.pagination}
-            </SafeAreaView>
-        );
-    }
 }
 
 export default SearchDetail_item;

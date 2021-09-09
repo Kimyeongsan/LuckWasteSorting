@@ -30,7 +30,7 @@ const Title = styled.Text`
 // 구현사항 :
 // Grid item 출력 View Pager 구축 예정
 
-const SearchDetail = ({ navigation }) => {
+const SearchDetail = () => {
 
   return (
     <Container>
@@ -40,9 +40,6 @@ const SearchDetail = ({ navigation }) => {
 
       <SearchDetail_item/>
 
-      <Button
-        title='Search'
-        onPress={() => navigation.navigate('search')} />
     </Container>
   );
 
