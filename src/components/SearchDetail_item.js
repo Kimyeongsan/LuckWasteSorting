@@ -2,7 +2,8 @@ import React, { useRef, useState, useEffect } from 'react';
 import {
     Text,
     Dimensions,
-    TouchableOpacity
+    TouchableOpacity,
+    Image
 } from 'react-native';
 
 import styled from 'styled-components/native';
@@ -21,6 +22,7 @@ const ItemContainer = styled.View`
     backgroundColor: rgba(255, 255, 255, 0.9);
     borderRadius: 5px;
     flex: 1;
+    align-items: center;
     padding: 40px;
 `;
 
@@ -34,22 +36,27 @@ const carouselItems = [
     {
         title: "Item 1",
         text: "Text 1",
+        image: require("../../assets/img/1.png")
     },
     {
         title: "Item 2",
         text: "Text 2",
+        image:require("../../assets/img/2.png")
     },
     {
         title: "Item 3",
         text: "Text 3",
+        image:require("../../assets/img/3.png")
     },
     {
         title: "Item 4",
         text: "Text 4",
+        image:require("../../assets/img/4.png")
     },
     {
         title: "Item 5",
         text: "Text 5",
+        image: require("../../assets/img/1.png")
     },
 ]
 
@@ -67,13 +74,13 @@ const SearchDetail_item = () => {
     const [index, setIndex] = React.useState(0)
 
     // components에서 navigation 가져올 때 방법 : hook으로 가져온다.
-    const navigation = useNavigation(); 
+    const navigation = useNavigation();
 
     // 다음 item으로 이동하는 버튼 부분
     const goForward = () => {
         carouselRef.current.snapToNext();
 
-        if(index == 4) {
+        if (index == 4) {
             navigation.navigate('main')
         }
     };
@@ -85,10 +92,15 @@ const SearchDetail_item = () => {
         return (
             <ItemContainer>
                 <TouchableOpacity onPress={goForward}>
-                    <Text style={{ color: 'black' }}>go to next slide</Text>
+                    <Text style={{ color: 'blue',  fontSize: 20, marginBottom: 20 }}>go to next slide</Text>
                 </TouchableOpacity>
+                <Image
+                    style={{height:250, width:250}}
+                    source={item.image}
+                    />
                 <Text style={{ fontSize: 30 }}>{item.title}</Text>
                 <Text>{item.text}</Text>
+
             </ItemContainer>
         )
     };
