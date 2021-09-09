@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 
 import { ImageBackground } from 'react-native';
+import { TextInput } from 'react-native';
 
 const Container = styled.View`
   width: 100%;
@@ -19,7 +20,7 @@ const Background = styled(ImageBackground)`
 const TitleContainer = styled.View`
   width: 100%;
   height: 150px;
-  marginTop: 47px;
+  marginTop: 65px;
 `;
 
 const Title = styled.Text`
@@ -32,8 +33,16 @@ const Title = styled.Text`
 const ContentContainer = styled.View`
   width: 100%;
   height: 150px;
-  marginTop: 108px;
-  marginLeft: 36px;
+  marginTop: 41px;
+  marginLeft: 40px;
+`;
+
+const TextContainer = styled.View`
+  width: 320px;
+  height: 48px;
+  marginBottom: 20px;
+  borderColor: white;
+  border-bottom-width: 2px;
 `;
 
 const BoldContent = styled.Text`
@@ -47,7 +56,7 @@ const SignUpButton = styled.TouchableOpacity`
   height: 60px;
 	align-self: center;
   justifyContent: center;
-  marginTop: 118px;
+  marginTop: 277px;
   borderWidth: 2px;
   borderColor: white;
   border-radius: 30px;
@@ -83,9 +92,36 @@ const SignUpScreen = ({navigation}) => {
 
           <ContentContainer>
             <BoldContent>User ID</BoldContent>
+            <TextContainer>
+              <TextInput
+                style={styled.textFormTop}
+                placeholder={'Enter ID'}
+              />
+            </TextContainer>
+            
             <BoldContent>PASSWORD</BoldContent>
+            <TextContainer>
+              <TextInput
+                style={styled.textFormTop}
+                placeholder={'Enter password'}
+              />
+            </TextContainer>
+
             <BoldContent>CONFIRM PASSWORD</BoldContent>
+            <TextContainer>
+              <TextInput
+                style={styled.textFormTop}
+                placeholder={'Re-enter password'}
+              />
+            </TextContainer>
+
             <BoldContent>Name</BoldContent>
+            <TextContainer>
+              <TextInput
+                style={styled.textFormTop}
+                placeholder={'Enter name'}
+              />
+            </TextContainer>
           </ContentContainer>
 
           <SignUpButton

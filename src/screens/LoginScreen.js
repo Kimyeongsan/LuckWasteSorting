@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { ImageBackground } from 'react-native';
+import { TextInput } from 'react-native';
 
 const Container = styled.View`
   width: 100%;
@@ -19,7 +21,7 @@ const Background = styled(ImageBackground)`
 const TitleContainer = styled.View`
   width: 100%;
   height: 150px;
-  marginTop: 47px;
+  marginTop: 80px;
 `;
 
 const Title = styled.Text`
@@ -29,10 +31,22 @@ const Title = styled.Text`
   font-family: Kameron-Bold;
 `;
 
-const ContentContainer = styled.View`
+const LoginContainer = styled.View`
   width: 100%;
   height: 150px;
   marginTop: 108px;
+`;
+
+const TextContainer = styled.View`
+  flexDirection: row;
+  width: 310px;
+  height: 48px;
+  backgroundColor: rgba(255, 255, 255, 0.7);
+  marginLeft: 46px;
+  marginBottom: 35px;
+  paddingLeft: 12px;
+  paddingTop: 6px;
+  border-radius: 10px;
 `;
 
 const UserSignUpButton = styled.TouchableOpacity`
@@ -40,7 +54,7 @@ const UserSignUpButton = styled.TouchableOpacity`
   height: 36px;
 	align-self: center;
   justifyContent: center;
-  marginTop: 122px;
+  marginTop: 80px;
 `;
 
 const LoginButton = styled.TouchableOpacity`
@@ -70,10 +84,15 @@ const UserSignUpText = styled.Text`
   font-family: serif;
 `;
 
-// const Input = styled.Input`
+// constructor(){
+//   super();
+//   this.state = { hidePassword: true }
+
+// const InputUserID = styled.input`
 //   width: 267px;
 //   height: 48px;
 // `;
+
 
 // Login을 위한 화면
 
@@ -93,7 +112,29 @@ const LoginScreen = ({navigation}) => {
           <Title>tomorrow</Title>
         </TitleContainer>
 
-          {/* <Input {}/> */}
+        <LoginContainer>
+
+          <TextContainer>
+            <Icon name="user" color="#727272" size={30}/>
+            <TextInput placeholderTextColor={"#727272"}
+              style={{ marginLeft: 25, paddingTop: 0}}
+              placeholder={'User ID'}
+              onChangeText={(userID) => setUserID(userID)}
+            />
+          </TextContainer>
+          
+          <TextContainer>
+            <Icon name="lock" color="#727272" size={35}/>
+            <TextInput placeholderTextColor={"#727272"}
+              style={{ marginLeft: 25, paddingTop: 0 }}
+              placeholder={'Pass Word'}
+              // secureTextEntry = { this.state.hidePassword }
+              // onChangeText={(userPW) => setUserPassword(userPW)}
+            />
+          </TextContainer>
+          
+
+        </LoginContainer>
 
           <LoginButton
             onPress={() => navigation.navigate('main')}>
