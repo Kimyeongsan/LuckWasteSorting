@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components/native';
 
 import { ImageBackground } from 'react-native';
 import { TextInput } from 'react-native';
+
+import {Auth} from '../action/auth'
 
 const Container = styled.View`
   width: 100%;
@@ -78,9 +80,12 @@ const SignUpText = styled.Text`
 
 const SignUpScreen = ({navigation}) => {
 
-  return (
-    
+    const [ name, setUserName ] = useState()
+    const [ email, setEmail ] = useState()
+    const [ password, setPassword ]= useState()
 
+  return (
+  
     <Background
       source={require("../../assets/img/login_background.png")} >
 
@@ -96,6 +101,8 @@ const SignUpScreen = ({navigation}) => {
               <TextInput
                 style={styled.textFormTop}
                 placeholder={'Enter ID'}
+                value={email}
+                onChangeText={e => setEmail(e)}
               />
             </TextContainer>
             
@@ -104,6 +111,8 @@ const SignUpScreen = ({navigation}) => {
               <TextInput
                 style={styled.textFormTop}
                 placeholder={'Enter password'}
+                value={password}
+                onChangeText={e => setPassword(e)}
               />
             </TextContainer>
 
@@ -120,12 +129,15 @@ const SignUpScreen = ({navigation}) => {
               <TextInput
                 style={styled.textFormTop}
                 placeholder={'Enter name'}
+                value={name}
+                onChangeText={e => setUserName(e)}
               />
             </TextContainer>
           </ContentContainer>
 
           <SignUpButton
             onPress={() => navigation.navigate('signUpComplete')}>
+            {/* // onPress={() => Auth.signUp(email, password)}> */}
             <SignUpText>Sign Up</SignUpText>
           </SignUpButton>
         </Container>
