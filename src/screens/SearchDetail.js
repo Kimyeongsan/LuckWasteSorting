@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import SearchDetail_item from '../components/SearchDetail_item';
 
-import { Button, ImageBackground } from 'react-native';
+import { ImageBackground } from 'react-native';
 
 const Container = styled.View`
   width: 100%;
@@ -26,10 +26,6 @@ const Title = styled.Text`
 `;
 
 // 검색 상세 화면 : 검색 화면을 통해 검색된 Item에 대한 세부 내역 출력
-
-// 구현사항 :
-// Grid item 출력 View Pager 구축 예정
-
 const SearchDetail = () => {
 
   return (
@@ -37,7 +33,6 @@ const SearchDetail = () => {
       <Background source={require("../../assets/img/search_background.png")} />
 
       <Title>recycle</Title>
-
       <SearchDetail_item/>
 
     </Container>
