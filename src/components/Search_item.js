@@ -9,7 +9,7 @@ const Search_item = () => {
         <View style={styles.container}>
             <SwiperFlatList
                 autoplay
-                autoplayDelay={4}
+                autoplayDelay={10}
                 autoplayLoop
                 index={0}
                 showPagination>
@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     child: {
-        height: 300,
-        width,
+        height: 350,
+        width: 350,
         justifyContent: 'center',
     }
 });

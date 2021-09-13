@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { ImageBackground, Text, View } from 'react-native';
-import { Image } from 'react-native';
+import { ImageBackground, View, Image } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Container = styled.View`
   width: 100%;
@@ -19,13 +19,6 @@ const Background = styled(ImageBackground)`
 const Ellipse = styled(Image)`
   align-self: center;
   marginTop: 31px;
-`;
-
-// Love, Job, Money : 한줄로 바꿈 = 영산
-const BottomImg = styled(Image)`
-  height: 85px; 
-  width: 85px;
-  margin: 10px;
 `;
 
 const User = styled.Text`
@@ -96,16 +89,27 @@ const Content = styled.Text`
   marginTop: 15px;
 `;
 
-// Test Button : 영산 => 로그아웃, 검색
-const TestButton = styled.TouchableOpacity`
-  width: 80px;
-  height: 35px;
-  margin: 5px;
-	align-self: flex-end;
-  justifyContent: center;
-  backgroundColor: rgba(0,0,0,0.3);
+// 로그아웃 버튼 추가
+const LogOutButton = styled.TouchableOpacity`
+  height: 25px; 
+  width: 25px;
+  margin : 10px
+  position: absolute;
+  alignItems: flex-start;
 `;
 
+// 하단 이미지 3개 Style
+const ImgButton = styled.TouchableOpacity`
+  height: 85px; 
+  width: 85px;
+  margin: 10px;
+`;
+
+// 하단 이미지 크기
+const BottomImg = styled(Image)`
+  height: 85px; 
+  width: 85px;
+`;
 
 // 전반적인 운세 출력을 위한 화면
 
@@ -121,6 +125,16 @@ const MainScreen = ({ navigation }) => {
     <Background
       source={require("../../assets/img/main_background.png")} >
       <Container>
+
+        {/* 로그아웃 버튼 추가 */}
+        <LogOutButton>
+          <Icon
+            name="log-out"
+            size={25}
+            color="white"
+            onPress={() => navigation.navigate('login')}
+          />
+        </LogOutButton>
 
         <Ellipse source={require("../../assets/img/magic_ellipse.png")} />
         <User>김재정 1997.10.23</User>
@@ -139,21 +153,23 @@ const MainScreen = ({ navigation }) => {
 
         {/* Love, Job, Money : 컨테이너로 가운데 정렬  */}
         <View style={{ flexDirection: 'row', justifyContent: 'center', height: 50, width: "100%" }}>
-          <BottomImg source={require("../../assets/img/Blur_love.png")} />
-          <BottomImg source={require("../../assets/img/Blur_work.png")} />
-          <BottomImg source={require("../../assets/img/Blur_money.png")} />
+
+          <ImgButton
+            onPress={() => navigation.navigate('search')} >
+            <BottomImg source={require("../../assets/img/Blur_love.png")} />
+          </ImgButton>
+
+          <ImgButton
+            onPress={() => navigation.navigate('search')} >
+            <BottomImg source={require("../../assets/img/Blur_work.png")} />
+          </ImgButton>
+
+          <ImgButton
+            onPress={() => navigation.navigate('search')} >
+            <BottomImg source={require("../../assets/img/Blur_money.png")} />
+          </ImgButton>
         </View>
 
-        {/* 이거 없으면 제 화면에 못들갑니다 ㅎㅎ */}
-        <TestButton
-          onPress={() => navigation.navigate('search')} >
-          <Text>Search Move</Text>
-        </TestButton>
-
-        <TestButton
-          onPress={() => navigation.navigate('login')} >
-          <Text>Logout Move</Text>
-        </TestButton>
       </Container>
     </Background>
 

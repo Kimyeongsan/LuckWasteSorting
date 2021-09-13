@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 
-import { Button, ImageBackground, Image, TextInput, TouchableOpacity, Text, View } from 'react-native';
+import { ImageBackground, Image, TextInput, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Search_item from '../components/Search_item';
 
@@ -26,7 +26,7 @@ const SearchView = styled.View`
   align-self: center;
   background-color: #D9DADA;
   marginTop: 46px;
-  marginBottom: 55px;
+  marginBottom: 40px;
   borderRadius: 8px;
   elevation: 5;
 `;
@@ -49,7 +49,7 @@ const StartButton = styled.TouchableOpacity`
   width: 57px;
   height: 60px;
 	align-self: center;
-  marginTop: 10px;
+  marginTop: 5px;
   flexDirection: row;
   justify-Content: center;
 `;
@@ -65,6 +65,15 @@ const NomalContent = styled.Text`
 	align-self: center;
   color: white;
 	fontSize: 12px;
+`;
+
+// Test Button
+const TestButton = styled.TouchableOpacity`
+  width: 80px;
+  height: 35px;
+	align-self: flex-end;
+  justifyContent: center;
+  position: absolute;
 `;
 
 // 구현사항 :
@@ -97,7 +106,7 @@ const SearchScreen = ({ navigation }) => {
         </SearchView>
 
         {/* Grid 호출 */}
-        <View style={{ width: 300, height: 350, alignSelf: 'center' }}>
+        <View style={{ width: 340, height: 400, alignSelf: 'center' }}>
           <Search_item />
         </View>
 
@@ -109,19 +118,19 @@ const SearchScreen = ({ navigation }) => {
           />
         </StartButton>
 
-        <Button
-          title='SearchDetail Screen'
-          onPress={() => navigation.navigate('searchDetail')} />
         {/* 가이드 Text */}
         <ContentContainer>
           <NomalContent>AI 탐색기능을 사용하여</NomalContent>
           <NomalContent>보다 빠른 분리수거를 실천해 보세요</NomalContent>
         </ContentContainer>
 
-        
+        <TestButton
+          onPress={() => navigation.navigate('searchDetail')} >
+          <Text>Search Detail Move</Text>
+        </TestButton>
 
       </Container>
-      
+
     </Background >
   );
 

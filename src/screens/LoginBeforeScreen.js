@@ -20,7 +20,7 @@ const Background = styled(ImageBackground)`
 const TitleContainer = styled.View`
   width: 100%;
   height: 150px;
-  marginTop: 132px;
+  marginTop: 100px;
   marginLeft: 23px;
 `;
 
@@ -58,7 +58,7 @@ const StartButton = styled.TouchableOpacity`
   height: 60px;
 	align-self: center;
   justifyContent: center;
-  marginTop: 115px;
+  marginTop: 120px;
   borderWidth: 2px;
   borderColor: white;
 `;

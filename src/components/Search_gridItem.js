@@ -5,20 +5,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
+
   item: {
-    backgroundColor: '#4D243D',
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 1,
-    height: 150, // approximate a square
-    width: 150
+    borderRadius: 10,
+    elevation: 5,
+    margin: 5,
+    height: 160, 
+    width: 160
   },
+  
   itemInvisible: {
     backgroundColor: 'transparent',
   },
+
   itemText: {
     color: '#fff',
-  },
+  }
 });
 
 const data = [
