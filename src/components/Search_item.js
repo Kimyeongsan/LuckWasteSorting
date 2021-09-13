@@ -1,12 +1,24 @@
 import React from 'react';
-import { Dimensions,  StyleSheet, View } from 'react-native';
+
+import styled from 'styled-components/native';
+import SwiperFlatList from 'react-native-swiper-flatlist';
 
 import Search_gridItem from './Search_gridItem';
-import SwiperFlatList from 'react-native-swiper-flatlist';
+
+const Container = styled.View`
+    flex: 1;
+`;
+
+const Child = styled.View`
+    height: 350px;
+    width: 350px;
+    justifyContent: center;
+`;
+
 
 const Search_item = () => {
     return (
-        <View style={styles.container}>
+        <Container>
             <SwiperFlatList
                 autoplay
                 autoplayDelay={10}
@@ -14,35 +26,23 @@ const Search_item = () => {
                 index={0}
                 showPagination>
 
-                <View style={[styles.child]}>
+                {/* 반복문으로 바꿀 예정 */}
+                <Child>
                     <Search_gridItem />
-                </View>
-                <View style={[styles.child]}>
+                </Child>
+
+                <Child>
                     <Search_gridItem />
-                </View>
-                <View style={[styles.child]}>
+                </Child>
+                
+                <Child>
                     <Search_gridItem />
-                </View>
-                <View style={[styles.child]}>
-                    <Search_gridItem/>                
-                </View>
+                </Child>
 
             </SwiperFlatList>
-        </View>
+        </Container>
     );
 }
 
 export default Search_item;
 
-export const { width, height } = Dimensions.get('window');
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    child: {
-        height: 350,
-        width: 350,
-        justifyContent: 'center',
-    }
-});

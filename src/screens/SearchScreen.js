@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 
-import { ImageBackground, Image, TextInput, Text, View } from 'react-native';
+import { ImageBackground, Image, TextInput, View, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Search_item from '../components/Search_item';
 
@@ -67,27 +67,29 @@ const NomalContent = styled.Text`
 	fontSize: 12px;
 `;
 
-// Test Button
-const TestButton = styled.TouchableOpacity`
-  width: 80px;
-  height: 35px;
-	align-self: flex-end;
-  justifyContent: center;
-  position: absolute;
-`;
-
 // 구현사항 :
 // View Pager 를 통한 Grid Item 전환 Compornent 필요
 // 카메라 Screen으로 이동하기 위한 button 필요
 
 const SearchScreen = ({ navigation }) => {
-  const [Xm, handleX] = useState('');
+  const [Xm, handleX] = useState("");
 
   const Submit = () => {
     console.log(
       'Search OutPut : ' + Xm
     )
+
+    // 예외처리문 수정 예정
+    if (Xm == null) {
+      Alert.alert("검색어를 입력해주세요."
+      [ { text: "Ok" } ],
+        { cancelable: false }
+      );
+    }
+
+    navigation.navigate('searchDetail')
   }
+
   return (
     <Background
       source={require("../../assets/img/search_background.png")}>
@@ -123,11 +125,6 @@ const SearchScreen = ({ navigation }) => {
           <NomalContent>AI 탐색기능을 사용하여</NomalContent>
           <NomalContent>보다 빠른 분리수거를 실천해 보세요</NomalContent>
         </ContentContainer>
-
-        <TestButton
-          onPress={() => navigation.navigate('searchDetail')} >
-          <Text>Search Detail Move</Text>
-        </TestButton>
 
       </Container>
 
