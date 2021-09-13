@@ -34,7 +34,8 @@ const Title = styled.Text`
 const LoginContainer = styled.View`
   width: 100%;
   height: 150px;
-  marginTop: 108px;
+  marginTop: 60px;
+  alignItems: center;
 `;
 
 const TextContainer = styled.View`
@@ -42,19 +43,10 @@ const TextContainer = styled.View`
   width: 310px;
   height: 48px;
   backgroundColor: rgba(255, 255, 255, 0.7);
-  marginLeft: 46px;
   marginBottom: 35px;
   paddingLeft: 12px;
   paddingTop: 6px;
   border-radius: 10px;
-`;
-
-const UserSignUpButton = styled.TouchableOpacity`
-  width: 120px;
-  height: 36px;
-	align-self: center;
-  justifyContent: center;
-  marginTop: 80px;
 `;
 
 const LoginButton = styled.TouchableOpacity`
@@ -62,7 +54,7 @@ const LoginButton = styled.TouchableOpacity`
   height: 60px;
 	align-self: center;
   justifyContent: center;
-  marginTop: 118px;
+  marginTop: 80px;
   borderWidth: 2px;
   borderColor: white;
   border-radius: 30px;
@@ -74,6 +66,14 @@ const LoginText = styled.Text`
 	fontSize: 22px;
   font-family: Kadwa-Bold;
   borderColor: white;
+`;
+
+const UserSignUpButton = styled.TouchableOpacity`
+  width: 120px;
+  height: 36px;
+	align-self: center;
+  justifyContent: center;
+  marginTop: 20px;
 `;
 
 const UserSignUpText = styled.Text`

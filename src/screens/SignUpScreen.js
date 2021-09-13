@@ -34,14 +34,13 @@ const Title = styled.Text`
 
 const ContentContainer = styled.View`
   width: 100%;
-  height: 150px;
-  marginTop: 41px;
-  marginLeft: 40px;
+  height: 130px;
+  alignItems: center;
 `;
 
 const TextContainer = styled.View`
-  width: 320px;
-  height: 48px;
+  width: 300px;
+  height: 70px;
   marginBottom: 20px;
   borderColor: white;
   border-bottom-width: 2px;
@@ -50,6 +49,7 @@ const TextContainer = styled.View`
 const BoldContent = styled.Text`
   color: white;
 	fontSize: 20px;
+  alignSelf: flex-start;
   font-family: Kameron-Bold;
 `;
 
@@ -58,7 +58,7 @@ const SignUpButton = styled.TouchableOpacity`
   height: 60px;
 	align-self: center;
   justifyContent: center;
-  marginTop: 277px;
+  marginTop: 270px;
   borderWidth: 2px;
   borderColor: white;
   border-radius: 30px;
@@ -96,8 +96,9 @@ const SignUpScreen = ({navigation}) => {
           </TitleContainer>
 
           <ContentContainer>
-            <BoldContent>User ID</BoldContent>
+            
             <TextContainer>
+            <BoldContent>User ID</BoldContent>
               <TextInput
                 style={styled.textFormTop}
                 placeholder={'Enter ID'}
@@ -106,8 +107,9 @@ const SignUpScreen = ({navigation}) => {
               />
             </TextContainer>
             
-            <BoldContent>PASSWORD</BoldContent>
+            
             <TextContainer>
+            <BoldContent>PASSWORD</BoldContent>
               <TextInput
                 style={styled.textFormTop}
                 placeholder={'Enter password'}
@@ -116,16 +118,18 @@ const SignUpScreen = ({navigation}) => {
               />
             </TextContainer>
 
-            <BoldContent>CONFIRM PASSWORD</BoldContent>
+            
             <TextContainer>
+            <BoldContent>CONFIRM PASSWORD</BoldContent>
               <TextInput
                 style={styled.textFormTop}
                 placeholder={'Re-enter password'}
               />
             </TextContainer>
 
-            <BoldContent>Name</BoldContent>
+            
             <TextContainer>
+              <BoldContent>Name</BoldContent>
               <TextInput
                 style={styled.textFormTop}
                 placeholder={'Enter name'}
