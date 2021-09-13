@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { ImageBackground, View, Image } from 'react-native';
+import { ImageBackground, View, Image, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const Container = styled.View`
@@ -120,6 +120,13 @@ const ImgContent = styled.Text`
   color: white;
 `;
 
+const Buttombox = styled.View`
+  flexDirection: row;
+  justifyContent: center;
+  height: 50px;
+  width: 100%; 
+`;
+
 // 전반적인 운세 출력을 위한 화면
 
 // 구현사항 :
@@ -127,7 +134,51 @@ const ImgContent = styled.Text`
 // 오늘의 운세, 애정운세, 직장운세, 금전운세에 대한 데이터 를 출력한 Component 제작 필요
 // 재활용을 한 횟수를 출력 하기 위한 Component 제작 필요
 
+
 const MainScreen = ({ navigation }) => {
+
+  let num = 0;
+  //검색횟수를 담아두는 전역변수
+
+  const clickBtn = () => {
+    if(num>0){
+      Alert.alert('검색 횟수를 채워주세요')
+    }
+    else{
+      Alert.alert('검색 횟수를 다 못채웠습니다.')
+    }
+    
+    //사용자의 검색 횟수를 채우지 못하면 얼럿버튼
+
+    //횟수가 충족되면 버튼 액션에 맞게 검색 결과가 달라져야함
+  }
+
+
+  const array_love= [
+    {
+      id: 0,
+      mytegory: "Blur_love",
+      src: require("../../assets/img/main/love.png"),
+      text: "블러",
+    },
+    {
+      id: 1,
+      mytegory: "Blur_love",
+      src: require("../../assets/img/main/love.png"),
+      text: "블러",
+    },
+    {
+      id: 2,
+      mytegory: "Blur_love",
+      src: require("../../assets/img/main/love.png"),
+      text: "블러",
+    }
+
+    
+  ];
+
+
+
 
   return (
 
@@ -152,8 +203,9 @@ const MainScreen = ({ navigation }) => {
         <Luckbox>
           <Title>오늘의 운세</Title>
           <Mtitle>전반적으로 숲속의 기운이 가득한날</Mtitle>
-          <Content>이것은 운세 착한사람만 보이는 데이터라고 봐두 무방합니다{"\n"}자 이게보이시나요 여러분은 그럼 착한사람이에요
-            {"\n"}축하해요 언제나 드렇게 착한일만 하시고
+          <Content>이것은 운세 착한사람만 보이는 데이터라고 봐두 무방합니다
+            {"\n"}자 이게보이시나요 여러분은 그럼 착한사람이에요
+            {"\n"}축하해요 언제나 그렇게 착한일만 하시고
             {"\n"}하는일 모두 잘 되시길 바랍니다.
             {"\n"}호호 노래를 들으면서 하고있는데 즐겁네요 여러분도 디자인 하십쇼</Content>
         </Luckbox>
@@ -161,26 +213,30 @@ const MainScreen = ({ navigation }) => {
         <Script_2>열람을 위해선{"\n"} 선행 분리수거를 진행해 주세요</Script_2>
 
         {/* Love, Job, Money : 컨테이너로 가운데 정렬  */}
-        <View style={{ flexDirection: 'row', justifyContent: 'center', height: 50, width: "100%" }}>
+        <Buttombox>
 
           <ImgButton
-            onPress={() => navigation.navigate('search')} >
-            <BottomImg source={require("../../assets/img/main/Blur_love.png")} />
+            onPress={() => { clickBtn();}}>
+            <BottomImg source={array_love[num].src} />
+            {/* 횟수에 따라 이미지가 달라져야함 0은 블러 2는 안블러*/}
             <ImgContent>연애운</ImgContent>
+            <ImgContent>2회</ImgContent>
           </ImgButton>
 
           <ImgButton
             onPress={() => navigation.navigate('search')} >
             <BottomImg source={require("../../assets/img/main/Blur_work.png")} />
             <ImgContent>직장운</ImgContent>
+            <ImgContent>3회</ImgContent>
           </ImgButton>
 
           <ImgButton
             onPress={() => navigation.navigate('search')} >
             <BottomImg source={require("../../assets/img/main/Blur_money.png")} />
             <ImgContent>금전운</ImgContent>
+            <ImgContent>4회</ImgContent>
           </ImgButton>
-        </View>
+        </Buttombox>
 
       </Container>
     </Background>
