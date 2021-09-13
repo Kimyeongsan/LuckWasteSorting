@@ -17,6 +17,8 @@ const Background = styled(ImageBackground)`
 `;
 
 const Ellipse = styled(Image)`
+  width: 150px;
+  height: 150px;
   align-self: center;
   marginTop: 31px;
 `;
@@ -100,15 +102,22 @@ const LogOutButton = styled.TouchableOpacity`
 
 // 하단 이미지 3개 Style
 const ImgButton = styled.TouchableOpacity`
-  height: 85px; 
-  width: 85px;
-  margin: 10px;
+  height: 70px; 
+  width: 70px;
+  margin: 12px;
 `;
 
 // 하단 이미지 크기
 const BottomImg = styled(Image)`
-  height: 85px; 
-  width: 85px;
+  height: 70px; 
+  width: 70px;
+`;
+
+const ImgContent = styled.Text`
+  font-family: Kadwa-Regular;
+  font-size: 12px;
+  alignSelf: center;
+  color: white;
 `;
 
 // 전반적인 운세 출력을 위한 화면
@@ -157,16 +166,19 @@ const MainScreen = ({ navigation }) => {
           <ImgButton
             onPress={() => navigation.navigate('search')} >
             <BottomImg source={require("../../assets/img/Blur_love.png")} />
+            <ImgContent>연애운</ImgContent>
           </ImgButton>
 
           <ImgButton
             onPress={() => navigation.navigate('search')} >
             <BottomImg source={require("../../assets/img/Blur_work.png")} />
+            <ImgContent>직장운</ImgContent>
           </ImgButton>
 
           <ImgButton
             onPress={() => navigation.navigate('search')} >
             <BottomImg source={require("../../assets/img/Blur_money.png")} />
+            <ImgContent>금전운</ImgContent>
           </ImgButton>
         </View>
 
