@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { ImageBackground } from 'react-native';
+import { ImageBackground, StyleSheet } from 'react-native';
 
 const Container = styled.View`
   width: 100%;
@@ -32,7 +33,17 @@ const Title = styled.Text`
 const ContentContainer = styled.View`
   width: 100%;
   height: 150px;
-  marginTop: 108px;
+  marginTop: 90px;
+`;
+
+const IconContainer1 = styled.View`
+  marginLeft: 40px;
+  flexDirection: row;
+`;
+
+const IconContainer2 = styled.View`
+  marginTop: 15px;
+  marginLeft: 345px;
 `;
 
 const NomalContent = styled.Text`
@@ -47,7 +58,7 @@ const StartButton = styled.TouchableOpacity`
   height: 58px;
 	align-self: center;
   justifyContent: center;
-  marginTop: 118px;
+  marginTop: 120px;
   borderWidth: 2px;
   borderColor: white;
 `;
@@ -61,8 +72,6 @@ const StartText = styled.Text`
 `;
 
 // 회원가입 성공 화면
-
-// 구현사항 : 중앙 Text를 감싸는 따옴표 이미지 추가할 것
 
 const SignUpComplete = ({navigation}) => {
 
@@ -78,11 +87,12 @@ const SignUpComplete = ({navigation}) => {
         </TitleContainer>
 
         <ContentContainer>
-
+          <IconContainer1><Icon name="quote-left" color="rgba(255, 255, 255, 0.5)" size={40}/></IconContainer1>
           <NomalContent>환영합니다!</NomalContent>
           <NomalContent>깨끗한 지구를 위한 환경실천</NomalContent>
           <NomalContent>"내일을 모으다"</NomalContent>
           <NomalContent>회원님의 기분좋은 환경실천을 응원합니다.</NomalContent>
+          <IconContainer2><Icon name="quote-right" color="rgba(255, 255, 255, 0.5)" size={40}/></IconContainer2>
 
         </ContentContainer>
 
