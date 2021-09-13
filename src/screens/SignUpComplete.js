@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { ImageBackground, StyleSheet } from 'react-native';
+import { ImageBackground } from 'react-native';
 
 const Container = styled.View`
   width: 100%;
