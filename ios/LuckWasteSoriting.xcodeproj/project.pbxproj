@@ -32,6 +32,22 @@
 		DCF8B3059CC54F84922F6035 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED0DE78C5842464697E45443 /* Zocial.ttf */; };
 		34B0EDE2232443FC9EB4FCF8 /* Kadwa-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B56F51A92694EA4B385CD92 /* Kadwa-Bold.ttf */; };
 		204140349140406E9CD9C20D /* Kadwa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1CD13DA4FE11442FBF6C0C65 /* Kadwa-Regular.ttf */; };
+		80E1872EE5E54221B398C313 /* JosefinSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 846B0F08DF6D4620B974D7F1 /* JosefinSans-Bold.ttf */; };
+		67C65F3D5DDB4ED8A0D78C59 /* JosefinSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FBD379B3B2C94948A322C348 /* JosefinSans-BoldItalic.ttf */; };
+		3484695AFB444C78B6597C52 /* JosefinSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 372C6B6F24794D45B96D9735 /* JosefinSans-ExtraLight.ttf */; };
+		EAEE27FDD63B40D1BFBB1997 /* JosefinSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30719F0A21BF476F8BF52E65 /* JosefinSans-ExtraLightItalic.ttf */; };
+		4EE2B95793274EC78863B1A6 /* JosefinSans-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A1A7467185043408BDEBFEA /* JosefinSans-Italic-VariableFont_wght.ttf */; };
+		2B5689962F474FFA8267A300 /* JosefinSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2FFE86ABD50C44B1B9DC1170 /* JosefinSans-Italic.ttf */; };
+		327F75A41D7A42E79B5F2B22 /* JosefinSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C4398A6AA35343438328711A /* JosefinSans-Light.ttf */; };
+		DC8AF6D12DF944E3BD428B3F /* JosefinSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7E3858ED2924769B94B09A3 /* JosefinSans-LightItalic.ttf */; };
+		627B120929D845128F3169F1 /* JosefinSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB85711B4CAD483895860DB2 /* JosefinSans-Medium.ttf */; };
+		47B6C07CD62E42DDB10386AB /* JosefinSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52EB796E6CFD43F3BFF2E8E3 /* JosefinSans-MediumItalic.ttf */; };
+		94BD68F52DF346A189BBA1C9 /* JosefinSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5C16F4FDD354DC68979F952 /* JosefinSans-Regular.ttf */; };
+		BAA8057790B5414F90DDFC56 /* JosefinSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28D903A088E8437CA2EAE72C /* JosefinSans-SemiBold.ttf */; };
+		B8F8BDAF53634582AF098ACB /* JosefinSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67DAA28801E34EF3A9072EA5 /* JosefinSans-SemiBoldItalic.ttf */; };
+		C893B4D9E2CD4CE3B0FF50C5 /* JosefinSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35A71A582FC646DC8E5831B6 /* JosefinSans-Thin.ttf */; };
+		D841751C20BF4F44A3C00D37 /* JosefinSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1A4D4A8F81C4134B0A9B472 /* JosefinSans-ThinItalic.ttf */; };
+		953A430241E24BA98A4A73E6 /* JosefinSans-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 057BADE5BB4047F6B394766C /* JosefinSans-VariableFont_wght.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +92,22 @@
 		ED0DE78C5842464697E45443 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		6B56F51A92694EA4B385CD92 /* Kadwa-Bold.ttf */ = {isa = PBXFileReference; name = "Kadwa-Bold.ttf"; path = "../assets/fonts/Kadwa-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		1CD13DA4FE11442FBF6C0C65 /* Kadwa-Regular.ttf */ = {isa = PBXFileReference; name = "Kadwa-Regular.ttf"; path = "../assets/fonts/Kadwa-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		846B0F08DF6D4620B974D7F1 /* JosefinSans-Bold.ttf */ = {isa = PBXFileReference; name = "JosefinSans-Bold.ttf"; path = "../assets/fonts/JosefinSans-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FBD379B3B2C94948A322C348 /* JosefinSans-BoldItalic.ttf */ = {isa = PBXFileReference; name = "JosefinSans-BoldItalic.ttf"; path = "../assets/fonts/JosefinSans-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		372C6B6F24794D45B96D9735 /* JosefinSans-ExtraLight.ttf */ = {isa = PBXFileReference; name = "JosefinSans-ExtraLight.ttf"; path = "../assets/fonts/JosefinSans-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		30719F0A21BF476F8BF52E65 /* JosefinSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; name = "JosefinSans-ExtraLightItalic.ttf"; path = "../assets/fonts/JosefinSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9A1A7467185043408BDEBFEA /* JosefinSans-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; name = "JosefinSans-Italic-VariableFont_wght.ttf"; path = "../assets/fonts/JosefinSans-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2FFE86ABD50C44B1B9DC1170 /* JosefinSans-Italic.ttf */ = {isa = PBXFileReference; name = "JosefinSans-Italic.ttf"; path = "../assets/fonts/JosefinSans-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C4398A6AA35343438328711A /* JosefinSans-Light.ttf */ = {isa = PBXFileReference; name = "JosefinSans-Light.ttf"; path = "../assets/fonts/JosefinSans-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E7E3858ED2924769B94B09A3 /* JosefinSans-LightItalic.ttf */ = {isa = PBXFileReference; name = "JosefinSans-LightItalic.ttf"; path = "../assets/fonts/JosefinSans-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DB85711B4CAD483895860DB2 /* JosefinSans-Medium.ttf */ = {isa = PBXFileReference; name = "JosefinSans-Medium.ttf"; path = "../assets/fonts/JosefinSans-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		52EB796E6CFD43F3BFF2E8E3 /* JosefinSans-MediumItalic.ttf */ = {isa = PBXFileReference; name = "JosefinSans-MediumItalic.ttf"; path = "../assets/fonts/JosefinSans-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E5C16F4FDD354DC68979F952 /* JosefinSans-Regular.ttf */ = {isa = PBXFileReference; name = "JosefinSans-Regular.ttf"; path = "../assets/fonts/JosefinSans-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		28D903A088E8437CA2EAE72C /* JosefinSans-SemiBold.ttf */ = {isa = PBXFileReference; name = "JosefinSans-SemiBold.ttf"; path = "../assets/fonts/JosefinSans-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		67DAA28801E34EF3A9072EA5 /* JosefinSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "JosefinSans-SemiBoldItalic.ttf"; path = "../assets/fonts/JosefinSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		35A71A582FC646DC8E5831B6 /* JosefinSans-Thin.ttf */ = {isa = PBXFileReference; name = "JosefinSans-Thin.ttf"; path = "../assets/fonts/JosefinSans-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C1A4D4A8F81C4134B0A9B472 /* JosefinSans-ThinItalic.ttf */ = {isa = PBXFileReference; name = "JosefinSans-ThinItalic.ttf"; path = "../assets/fonts/JosefinSans-ThinItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		057BADE5BB4047F6B394766C /* JosefinSans-VariableFont_wght.ttf */ = {isa = PBXFileReference; name = "JosefinSans-VariableFont_wght.ttf"; path = "../assets/fonts/JosefinSans-VariableFont_wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +220,22 @@
 				ED0DE78C5842464697E45443 /* Zocial.ttf */,
 				6B56F51A92694EA4B385CD92 /* Kadwa-Bold.ttf */,
 				1CD13DA4FE11442FBF6C0C65 /* Kadwa-Regular.ttf */,
+				846B0F08DF6D4620B974D7F1 /* JosefinSans-Bold.ttf */,
+				FBD379B3B2C94948A322C348 /* JosefinSans-BoldItalic.ttf */,
+				372C6B6F24794D45B96D9735 /* JosefinSans-ExtraLight.ttf */,
+				30719F0A21BF476F8BF52E65 /* JosefinSans-ExtraLightItalic.ttf */,
+				9A1A7467185043408BDEBFEA /* JosefinSans-Italic-VariableFont_wght.ttf */,
+				2FFE86ABD50C44B1B9DC1170 /* JosefinSans-Italic.ttf */,
+				C4398A6AA35343438328711A /* JosefinSans-Light.ttf */,
+				E7E3858ED2924769B94B09A3 /* JosefinSans-LightItalic.ttf */,
+				DB85711B4CAD483895860DB2 /* JosefinSans-Medium.ttf */,
+				52EB796E6CFD43F3BFF2E8E3 /* JosefinSans-MediumItalic.ttf */,
+				E5C16F4FDD354DC68979F952 /* JosefinSans-Regular.ttf */,
+				28D903A088E8437CA2EAE72C /* JosefinSans-SemiBold.ttf */,
+				67DAA28801E34EF3A9072EA5 /* JosefinSans-SemiBoldItalic.ttf */,
+				35A71A582FC646DC8E5831B6 /* JosefinSans-Thin.ttf */,
+				C1A4D4A8F81C4134B0A9B472 /* JosefinSans-ThinItalic.ttf */,
+				057BADE5BB4047F6B394766C /* JosefinSans-VariableFont_wght.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -303,6 +351,22 @@
 				DCF8B3059CC54F84922F6035 /* Zocial.ttf in Resources */,
 				34B0EDE2232443FC9EB4FCF8 /* Kadwa-Bold.ttf in Resources */,
 				204140349140406E9CD9C20D /* Kadwa-Regular.ttf in Resources */,
+				80E1872EE5E54221B398C313 /* JosefinSans-Bold.ttf in Resources */,
+				67C65F3D5DDB4ED8A0D78C59 /* JosefinSans-BoldItalic.ttf in Resources */,
+				3484695AFB444C78B6597C52 /* JosefinSans-ExtraLight.ttf in Resources */,
+				EAEE27FDD63B40D1BFBB1997 /* JosefinSans-ExtraLightItalic.ttf in Resources */,
+				4EE2B95793274EC78863B1A6 /* JosefinSans-Italic-VariableFont_wght.ttf in Resources */,
+				2B5689962F474FFA8267A300 /* JosefinSans-Italic.ttf in Resources */,
+				327F75A41D7A42E79B5F2B22 /* JosefinSans-Light.ttf in Resources */,
+				DC8AF6D12DF944E3BD428B3F /* JosefinSans-LightItalic.ttf in Resources */,
+				627B120929D845128F3169F1 /* JosefinSans-Medium.ttf in Resources */,
+				47B6C07CD62E42DDB10386AB /* JosefinSans-MediumItalic.ttf in Resources */,
+				94BD68F52DF346A189BBA1C9 /* JosefinSans-Regular.ttf in Resources */,
+				BAA8057790B5414F90DDFC56 /* JosefinSans-SemiBold.ttf in Resources */,
+				B8F8BDAF53634582AF098ACB /* JosefinSans-SemiBoldItalic.ttf in Resources */,
+				C893B4D9E2CD4CE3B0FF50C5 /* JosefinSans-Thin.ttf in Resources */,
+				D841751C20BF4F44A3C00D37 /* JosefinSans-ThinItalic.ttf in Resources */,
+				953A430241E24BA98A4A73E6 /* JosefinSans-VariableFont_wght.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
