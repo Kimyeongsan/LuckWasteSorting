@@ -145,7 +145,7 @@ const MainScreen = ({ navigation }) => {
           />
         </LogOutButton>
 
-        <Ellipse source={require("../../assets/img/magic_ellipse.png")} />
+        <Ellipse source={require("../../assets/img/main/magic_ellipse.png")} />
         <User>김재정 1997.10.23</User>
         <Script>오늘도 환경실천을 한 당신,{"\n"}상쾌한 숲속의 구슬로{"\n"}오늘의 운세를 점쳐보세요</Script>
 
@@ -165,19 +165,19 @@ const MainScreen = ({ navigation }) => {
 
           <ImgButton
             onPress={() => navigation.navigate('search')} >
-            <BottomImg source={require("../../assets/img/Blur_love.png")} />
+            <BottomImg source={require("../../assets/img/main/Blur_love.png")} />
             <ImgContent>연애운</ImgContent>
           </ImgButton>
 
           <ImgButton
             onPress={() => navigation.navigate('search')} >
-            <BottomImg source={require("../../assets/img/Blur_work.png")} />
+            <BottomImg source={require("../../assets/img/main/Blur_work.png")} />
             <ImgContent>직장운</ImgContent>
           </ImgButton>
 
           <ImgButton
             onPress={() => navigation.navigate('search')} >
-            <BottomImg source={require("../../assets/img/Blur_money.png")} />
+            <BottomImg source={require("../../assets/img/main/Blur_money.png")} />
             <ImgContent>금전운</ImgContent>
           </ImgButton>
         </View>

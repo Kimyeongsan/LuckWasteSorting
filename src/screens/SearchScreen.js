@@ -116,7 +116,7 @@ const SearchScreen = ({ navigation }) => {
           onPress={() => navigation.navigate('camera')}>
           <Image
             resizeMode='contain'
-            source={require('../../assets/img/camera_icon.png')}
+            source={require('../../assets/img/search/camera_icon.png')}
           />
         </StartButton>
 
