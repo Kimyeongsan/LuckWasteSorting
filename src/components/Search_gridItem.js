@@ -33,7 +33,8 @@ const data = [
   {
     key: 'B',
     image: require("../../assets/img/search/grid2.png"),
-    mark: require("../../assets/img/search/mark/mark_paper.png")
+    mark: require("../../assets/img/search/mark/mark_paper.png"),
+    sub_mark: require("../../assets/img/search/mark/mark_pp.png")
   },
   {
     key: 'C',
@@ -73,11 +74,17 @@ const renderItem = ({ item, index }) => {
         source={item.image}>
       </Image>
 
-      <Image
-        style={{ height: 30, width: 30 }}
-        source={item.mark}>
-      </Image>
+      <View style={{ flexDirection: 'column' }}>
+        <Image
+          style={{ height: 30, width: 30, marginLeft: 20 }}
+          source={item.mark}>
+        </Image>
 
+        <Image
+          style={{ height: 30, width: 30, marginLeft: 20 }}
+          source={item.sub_mark}>
+        </Image>
+      </View>
     </View>
   );
 };
