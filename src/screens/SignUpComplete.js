@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { ImageBackground, StyleSheet } from 'react-native';
+import { ImageBackground } from 'react-native';
 
 const Container = styled.View`
   width: 100%;
@@ -43,7 +43,8 @@ const IconContainer1 = styled.View`
 
 const IconContainer2 = styled.View`
   marginTop: 15px;
-  marginLeft: 345px;
+  marginRight : 40px;
+  alignSelf: flex-end;
 `;
 
 const NomalContent = styled.Text`
