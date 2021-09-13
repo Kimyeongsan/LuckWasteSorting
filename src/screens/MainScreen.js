@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { ImageBackground, Button } from 'react-native';
+import { ImageBackground, Text, View } from 'react-native';
 import { Image } from 'react-native';
 
 const Container = styled.View`
@@ -21,20 +21,11 @@ const Ellipse = styled(Image)`
   marginTop: 31px;
 `;
 
-const Love = styled(Image)`
-  marginLeft: 43px;
-`;
-
-const Work = styled(Image)`
-  position: absolute;
-  top: 560px;
-  left: 160px;
-`;
-
-const Money = styled(Image)`
-  position: absolute;
-  left: 275px;
-  top: 560px;
+// Love, Job, Money : 한줄로 바꿈 = 영산
+const BottomImg = styled(Image)`
+  height: 85px; 
+  width: 85px;
+  margin: 10px;
 `;
 
 const User = styled.Text`
@@ -57,7 +48,6 @@ const Script = styled.Text`
 `;
 
 const Script_2 = styled.Text`
-  
   align-self: center;
   color: white;
   fontSize: 13px;
@@ -94,8 +84,6 @@ const Mtitle = styled.Text`
   font-size: 18px;
   marginLeft: 14px;
   line-height: 20px;
-
-
 `;
 
 const Content = styled.Text`
@@ -106,6 +94,16 @@ const Content = styled.Text`
   line-height: 12px;
   marginLeft: 14px;
   marginTop: 15px;
+`;
+
+// Test Button : 영산 => 로그아웃, 검색
+const TestButton = styled.TouchableOpacity`
+  width: 80px;
+  height: 35px;
+  margin: 5px;
+	align-self: flex-end;
+  justifyContent: center;
+  backgroundColor: rgba(0,0,0,0.3);
 `;
 
 
@@ -138,19 +136,24 @@ const MainScreen = ({ navigation }) => {
         </Luckbox>
 
         <Script_2>열람을 위해선{"\n"} 선행 분리수거를 진행해 주세요</Script_2>
-        <Love source={require("../../assets/img/Blur_love.png")} />
-        <Work source={require("../../assets/img/Blur_work.png")} />
-        <Money source={require("../../assets/img/Blur_money.png")} />
 
+        {/* Love, Job, Money : 컨테이너로 가운데 정렬  */}
+        <View style={{ flexDirection: 'row', justifyContent: 'center', height: 50, width: "100%" }}>
+          <BottomImg source={require("../../assets/img/Blur_love.png")} />
+          <BottomImg source={require("../../assets/img/Blur_work.png")} />
+          <BottomImg source={require("../../assets/img/Blur_money.png")} />
+        </View>
 
         {/* 이거 없으면 제 화면에 못들갑니다 ㅎㅎ */}
-        <Button
-          title='Search Screen'
-          onPress={() => navigation.navigate('search')} />
+        <TestButton
+          onPress={() => navigation.navigate('search')} >
+          <Text>Search Move</Text>
+        </TestButton>
 
-        <Button
-          title='LogOut Screen'
-          onPress={() => navigation.navigate('login')} />
+        <TestButton
+          onPress={() => navigation.navigate('login')} >
+          <Text>Logout Move</Text>
+        </TestButton>
       </Container>
     </Background>
 

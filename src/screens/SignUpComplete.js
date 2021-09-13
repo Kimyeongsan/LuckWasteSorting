@@ -74,7 +74,7 @@ const StartText = styled.Text`
 
 // 회원가입 성공 화면
 
-const SignUpComplete = ({navigation}) => {
+const SignUpComplete = ({ navigation }) => {
 
   return (
     <Background
@@ -88,12 +88,12 @@ const SignUpComplete = ({navigation}) => {
         </TitleContainer>
 
         <ContentContainer>
-          <IconContainer1><Icon name="quote-left" color="rgba(255, 255, 255, 0.5)" size={40}/></IconContainer1>
+          <IconContainer1><Icon name="quote-left" color="rgba(255, 255, 255, 0.5)" size={40} /></IconContainer1>
           <NomalContent>환영합니다!</NomalContent>
           <NomalContent>깨끗한 지구를 위한 환경실천</NomalContent>
           <NomalContent>"내일을 모으다"</NomalContent>
           <NomalContent>회원님의 기분좋은 환경실천을 응원합니다.</NomalContent>
-          <IconContainer2><Icon name="quote-right" color="rgba(255, 255, 255, 0.5)" size={40}/></IconContainer2>
+          <IconContainer2><Icon name="quote-right" color="rgba(255, 255, 255, 0.5)" size={40} /></IconContainer2>
 
         </ContentContainer>
 
