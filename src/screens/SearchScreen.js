@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 
-import { Button, ImageBackground, Image, TextInput, TouchableOpacity, Text } from 'react-native';
+import { Button, ImageBackground, Image, TextInput, TouchableOpacity, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Search_item from '../components/Search_item';
 
 const Container = styled.View`
   width: 100%;
@@ -48,12 +49,12 @@ const StartButton = styled.TouchableOpacity`
   width: 57px;
   height: 60px;
 	align-self: center;
-  marginTop: 115px;
+  marginTop: 10px;
   flexDirection: row;
   justify-Content: center;
 `;
 
-  {/* 가이드 Text */}
+{/* 가이드 Text */ }
 const ContentContainer = styled.View`
   width: 100%;
   height: 150px;
@@ -95,10 +96,10 @@ const SearchScreen = ({ navigation }) => {
             value={Xm} />
         </SearchView>
 
-        <Button
-          title='SearchDetail Screen'
-          onPress={() => navigation.navigate('searchDetail')} />
-
+        {/* Grid 호출 */}
+        <View style={{ width: 300, height: 350, alignSelf: 'center' }}>
+          <Search_item />
+        </View>
 
         <StartButton
           onPress={() => navigation.navigate('camera')}>
@@ -108,13 +109,19 @@ const SearchScreen = ({ navigation }) => {
           />
         </StartButton>
 
+        <Button
+          title='SearchDetail Screen'
+          onPress={() => navigation.navigate('searchDetail')} />
         {/* 가이드 Text */}
         <ContentContainer>
           <NomalContent>AI 탐색기능을 사용하여</NomalContent>
           <NomalContent>보다 빠른 분리수거를 실천해 보세요</NomalContent>
         </ContentContainer>
 
+        
+
       </Container>
+      
     </Background >
   );
 
