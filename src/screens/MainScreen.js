@@ -20,7 +20,7 @@ const Ellipse = styled(Image)`
   width: 150px;
   height: 150px;
   align-self: center;
-  marginTop: 31px;
+  marginTop: 55px;
 `;
 
 const User = styled.Text`
@@ -28,7 +28,7 @@ const User = styled.Text`
 	align-self: center;
   color: white;
 	fontSize: 13px;
-  font-family: Josefin-Sans;
+  font-family: JosefinSans-Medium;
 `;
 
 const Script = styled.Text`
@@ -37,7 +37,7 @@ const Script = styled.Text`
   text-align: center;
   color: white;
   fontSize: 13px;
-  font-family: Josefin-Sans;
+  font-family: JosefinSans-Medium;
   width: 150px;
   height: 60px;
 `;
@@ -46,7 +46,7 @@ const Script_2 = styled.Text`
   align-self: center;
   color: white;
   fontSize: 13px;
-  font-family: Josefin-Sans;
+  font-family: JosefinSans-Medium;
   text-align: center;
   width: 241px;
   height: 50px;
@@ -54,7 +54,7 @@ const Script_2 = styled.Text`
 `;
 
 const Luckbox = styled.View`
-  width: 336px;
+  width: 88%;
   height: 184px;
   align-self: center;
   background: rgba(255, 255, 255, 0.6);
@@ -69,33 +69,31 @@ const Title = styled.Text`
   marginTop: 15px;
   color: black;
 	fontSize: 12px;
-  font-family: Josefin-Sans;
+  font-family: JosefinSans-Bold;
 `;
 
 const Mtitle = styled.Text`
-  font-family: Josefin Sans;
-  font-style: normal;
-  font-weight: bold;
+  font-family: JosefinSans-Bold;
   font-size: 18px;
   marginLeft: 14px;
   line-height: 20px;
 `;
 
 const Content = styled.Text`
-  font-family: Josefin Sans;
-  font-style: normal;
-  font-weight: normal;
+  font-family: JosefinSans-Light;
+  height: 100px;
   font-size: 11px;
   line-height: 12px;
   marginLeft: 14px;
+  marginRight: 10px;
   marginTop: 15px;
 `;
 
 // 로그아웃 버튼 추가
 const LogOutButton = styled.TouchableOpacity`
-  height: 25px; 
-  width: 25px;
-  margin : 10px
+  height: 30px; 
+  width: 30px;
+  margin : 20px
   position: absolute;
   alignItems: flex-start;
 `;
@@ -173,12 +171,7 @@ const MainScreen = ({ navigation }) => {
       src: require("../../assets/img/main/love.png"),
       text: "블러",
     }
-
-    
   ];
-
-
-
 
   return (
 
@@ -190,7 +183,7 @@ const MainScreen = ({ navigation }) => {
         <LogOutButton>
           <Icon
             name="log-out"
-            size={25}
+            size={32}
             color="white"
             onPress={() => navigation.navigate('login')}
           />
