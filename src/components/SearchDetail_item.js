@@ -1,15 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
-import {
-    Text,
-    Dimensions,
-    TouchableOpacity,
-    Image
-} from 'react-native';
+import { Text, Dimensions, TouchableOpacity, Image } from 'react-native';
 
 import styled from 'styled-components/native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
-
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -75,12 +69,13 @@ const SearchDetail_item = () => {
 
     // components에서 navigation 가져올 때 방법 : hook으로 가져온다.
     const navigation = useNavigation();
+    const route = useRoute();
 
     // 다음 item으로 이동하는 버튼 부분
     const goForward = () => {
         carouselRef.current.snapToNext();
 
-        if (index == 4) {
+        if (index == carouselItems.length - 1) {
             navigation.navigate('main')
         }
     };
@@ -120,6 +115,8 @@ const SearchDetail_item = () => {
                     renderItem={renderItem}
                     onSnapToItem={(index) => setIndex(index)} />
             </CarouselContainer>
+
+            <Text>{route.params.searchValue}</Text>
 
             {/* Pagination 부분 */}
             <Pagination

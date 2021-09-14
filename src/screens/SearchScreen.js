@@ -20,8 +20,8 @@ const Background = styled(ImageBackground)`
 `;
 
 const GridContainer = styled.View`
-  width: 340;
-  height: 400;
+  width: 340px;
+  height: 400px;
   alignSelf: center; 
 `;
 

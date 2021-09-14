@@ -35,18 +35,19 @@ const TextInputs = styled(TextInput)`
 
 const Search_Input = () => {
     const navigation = useNavigation();
-    const [Xm, handleX] = useState("");
+    const [Xm, handleX] = useState();
 
     const Submit = () => {
-        console.log(
-            'Search OutPut : ' + Xm
-        )
+        // Test값 출력
+        console.log( 'Search OutPut : ' + Xm )
 
-        // 예외처리문 수정 예정
         if (Xm == null) {
             Alert.alert("검색어를 입력해주세요.");
+
+        } else{
+            // 결과값 넘겨주기
+            navigation.navigate('searchDetail', { searchValue: Xm });
         }
-        navigation.navigate('searchDetail')
     }
 
     return (
@@ -59,7 +60,16 @@ const Search_Input = () => {
 
             <TextInputs
                 onChangeText={Xm => handleX(Xm)}
-                value={Xm} />
+                value={Xm}
+                placeholder={Xm}
+                // 검색어 길이 11개로 고정
+                maxLength = {11}
+                //검색어 두줄 불가
+                multiline={false}
+                // Enter 누르면 Keypad 닫힘
+                blurOnSubmit={true}
+                //Enter 기능 추가
+                onSubmitEditing={() => Submit()} /> 
         </SearchView>
     );
 }
