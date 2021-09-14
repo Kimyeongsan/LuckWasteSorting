@@ -54,14 +54,15 @@ const Search_Input = () => {
         <SearchView>
             <Icons
                 name="search"
-                size={20}
+                size={17}
                 color="#7F8080"
                 onPress={() => Submit()} />
 
             <TextInputs
                 onChangeText={Xm => handleX(Xm)}
                 value={Xm}
-                placeholder={Xm}
+                //Hint
+                placeholder={"검색"}
                 // 검색어 길이 11개로 고정
                 maxLength = {11}
                 //검색어 두줄 불가
