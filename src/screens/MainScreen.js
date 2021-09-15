@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { ImageBackground, View, Image, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -125,56 +125,131 @@ const Buttombox = styled.View`
   width: 100%; 
 `;
 
+
 // 전반적인 운세 출력을 위한 화면
-
-// 구현사항 :
-// 사용자가 회원가입 때 입력한 생년월일 출력 Component 제작 필요
-// 오늘의 운세, 애정운세, 직장운세, 금전운세에 대한 데이터 를 출력한 Component 제작 필요
-// 재활용을 한 횟수를 출력 하기 위한 Component 제작 필요
-
-
 const MainScreen = ({ navigation }) => {
 
-  let num = 0;
-  //검색횟수를 담아두는 전역변수
+  // 연애운, 직장운, 금전운 count
+  const [loveCnt, setLoveCnt] = useState(2);
+  const [jobCnt, setJobCnt] = useState(3);
+  const [moneyCnt, setMoneyCnt] = useState(4);
 
-  const clickBtn = () => {
-    if(num>0){
-      Alert.alert('검색 횟수를 채워주세요')
-    }
-    else{
-      Alert.alert('검색 횟수를 다 못채웠습니다.')
-    }
-    
-    //사용자의 검색 횟수를 채우지 못하면 얼럿버튼
+  const imgData = [
+    {
+      img: require("../../assets/img/main/Blur_love.png"),
+      complete_img: require("../../assets/img/main/love.png")
+    },
+    {
+      img: require("../../assets/img/main/Blur_work.png"),
+      complete_img: require("../../assets/img/main/work.png")
+    },
+    {
+      img: require("../../assets/img/main/Blur_money.png"),
+      complete_img: require("../../assets/img/main/money.png")
+    },
+  ]
 
-    //횟수가 충족되면 버튼 액션에 맞게 검색 결과가 달라져야함
+
+  //사용자의 검색 횟수를 채우지 못하면 얼럿버튼
+  //횟수가 충족되면 버튼 액션에 맞게 검색 결과가 달라져야함
+  ///// 이거 3개를 합칠 방법
+
+  // love 버튼
+  const love_clickBtn = (count) => {
+
+    if (count > 0) {
+      setLoveCnt(count - 1);
+
+      Alert.alert('검색 횟수를 채워주세요');
+      navigation.navigate('search');
+
+    }
+    else if (count != 0 && count > 0) {
+      setLoveCnt(count - 1);
+
+      Alert.alert('검색 횟수를 다 못채웠습니다.');
+      navigation.navigate('search');
+    }
+
+    else if (count == 0 || count == "완료") {
+      Alert.alert('다 채웠습니다!');
+
+      setLoveCnt("완료");
+    }
   }
 
+  // job 버튼
+  const job_clickBtn = (count) => {
 
-  const array_love= [
-    {
-      id: 0,
-      mytegory: "Blur_love",
-      src: require("../../assets/img/main/love.png"),
-      text: "블러",
-    },
-    {
-      id: 1,
-      mytegory: "Blur_love",
-      src: require("../../assets/img/main/love.png"),
-      text: "블러",
-    },
-    {
-      id: 2,
-      mytegory: "Blur_love",
-      src: require("../../assets/img/main/love.png"),
-      text: "블러",
+    if (count > 0) {
+      setJobCnt(count - 1);
+
+      Alert.alert('검색 횟수를 채워주세요');
+      navigation.navigate('search');
+
     }
-  ];
+    else if (count != 0 && count > 0) {
+      setJobCnt(count - 1);
+
+      Alert.alert('검색 횟수를 다 못채웠습니다.');
+      navigation.navigate('search');
+    }
+
+    else if (count == 0 || count == "완료") {
+      Alert.alert('다 채웠습니다!');
+
+      setJobCnt("완료");
+    }
+  }
+
+    // money 버튼
+    const money_clickBtn = (count) => {
+
+      if (count > 0) {
+        setMoneyCnt(count - 1);
+  
+        Alert.alert('검색 횟수를 채워주세요');
+        navigation.navigate('search');
+  
+      }
+      else if (count != 0 && count > 0) {
+        setMoneyCnt(count - 1);
+  
+        Alert.alert('검색 횟수를 다 못채웠습니다.');
+        navigation.navigate('search');
+      }
+  
+      else if (count == 0 || count == "완료") {
+        Alert.alert('다 채웠습니다!');
+  
+        setMoneyCnt("완료");
+      }
+    }
+
+
+  ///// 조건에 따라 이미지 변경 함수
+  const changeImg = (index, id) => {
+
+    if (index > 0) {
+      return (
+        imgData[id].img
+      )
+    }
+    else if (index != 0 && index > 0) {
+      return (
+        imgData[id].img
+      )
+    }
+    else if (index == 0 || index == "완료") {
+      return (
+        imgData[id].complete_img
+      );
+    }
+  }
+
+  
 
   return (
-
     <Background
       source={require("../../assets/img/main_background.png")} >
       <Container>
@@ -189,10 +264,12 @@ const MainScreen = ({ navigation }) => {
           />
         </LogOutButton>
 
+        {/* 사용자 가입내역 수정 팝업 추가 예정 */}
         <Ellipse source={require("../../assets/img/main/magic_ellipse.png")} />
         <User>김재정 1997.10.23</User>
         <Script>오늘도 환경실천을 한 당신,{"\n"}상쾌한 숲속의 구슬로{"\n"}오늘의 운세를 점쳐보세요</Script>
 
+        {/* 조건 달성시 내용 바뀌게 추가할 예정 */}
         <Luckbox>
           <Title>오늘의 운세</Title>
           <Mtitle>전반적으로 숲속의 기운이 가득한날</Mtitle>
@@ -205,29 +282,26 @@ const MainScreen = ({ navigation }) => {
 
         <Script_2>열람을 위해선{"\n"} 선행 분리수거를 진행해 주세요</Script_2>
 
-        {/* Love, Job, Money : 컨테이너로 가운데 정렬  */}
         <Buttombox>
-
           <ImgButton
-            onPress={() => { clickBtn();}}>
-            <BottomImg source={array_love[num].src} />
-            {/* 횟수에 따라 이미지가 달라져야함 0은 블러 2는 안블러*/}
+            onPress={() => { love_clickBtn(loveCnt) }}>
+            <BottomImg source={changeImg(loveCnt, 0)} />
             <ImgContent>연애운</ImgContent>
-            <ImgContent>2회</ImgContent>
+            <ImgContent>{loveCnt}</ImgContent>
           </ImgButton>
 
           <ImgButton
-            onPress={() => navigation.navigate('search')} >
-            <BottomImg source={require("../../assets/img/main/Blur_work.png")} />
+            onPress={() => { job_clickBtn(jobCnt) }} >
+            <BottomImg source={changeImg(jobCnt, 1)} />
             <ImgContent>직장운</ImgContent>
-            <ImgContent>3회</ImgContent>
+            <ImgContent>{jobCnt}</ImgContent>
           </ImgButton>
 
           <ImgButton
-            onPress={() => navigation.navigate('search')} >
-            <BottomImg source={require("../../assets/img/main/Blur_money.png")} />
+            onPress={() => { money_clickBtn(moneyCnt) }} >
+            <BottomImg source={changeImg(moneyCnt, 2)} />
             <ImgContent>금전운</ImgContent>
-            <ImgContent>4회</ImgContent>
+            <ImgContent>{moneyCnt}</ImgContent>
           </ImgButton>
         </Buttombox>
 

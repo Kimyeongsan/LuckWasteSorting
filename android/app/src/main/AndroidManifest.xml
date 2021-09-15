@@ -2,6 +2,9 @@
   package="com.luckwastesoriting">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    
+    <!-- TensorFlow Camera -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
       android:name=".MainApplication"

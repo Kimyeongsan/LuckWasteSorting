@@ -27,6 +27,7 @@ const TextInputs = styled(TextInput)`
   flex: 1;
   fontSize: 14px;
   align-self: center;
+  font-family: JosefinSans-Medium;
   paddingTop: 10px;
   paddingRight: 10px;
   paddingBottom: 10px;

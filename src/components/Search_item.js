@@ -121,7 +121,7 @@ const renderItem = ({ item, index }) => {
         <View
             style={styles.item}>
             <Image
-                style={{ height: 100, width: 65 }}
+                style={{ height: 100, width: 60 }}
                 source={item.image}>
             </Image>
 
