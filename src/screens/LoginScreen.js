@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { ImageBackground } from 'react-native';
 import { TextInput } from 'react-native';
+import { Auth } from '../action/auth'
 
 const Container = styled.View`
   width: 100%;
@@ -102,6 +103,9 @@ const UserSignUpText = styled.Text`
 
 const LoginScreen = ({navigation}) => {
 
+  const [ email, setEmail ] = useState()
+  const [ password, setPassword ]= useState()
+
   return (
     <Background
       source={require("../../assets/img/login_background.png")} >
@@ -119,7 +123,8 @@ const LoginScreen = ({navigation}) => {
             <TextInput placeholderTextColor={"#727272"}
               style={{ marginLeft: 25, paddingTop: 0}}
               placeholder={'User ID'}
-              onChangeText={(userID) => setUserID(userID)}
+              value={email}
+              onChangeText={(e) => setEmail(e)}
             />
           </TextContainer>
           
@@ -128,8 +133,9 @@ const LoginScreen = ({navigation}) => {
             <TextInput placeholderTextColor={"#727272"}
               style={{ marginLeft: 25, paddingTop: 0 }}
               placeholder={'Pass Word'}
+              value={password}
               // secureTextEntry = { this.state.hidePassword }
-              // onChangeText={(userPW) => setUserPassword(userPW)}
+              onChangeText={(e) => setPassword(e)}
             />
           </TextContainer>
           
@@ -139,6 +145,7 @@ const LoginScreen = ({navigation}) => {
           <LoginButton
             onPress={() => navigation.navigate('main')}>
             <LoginText>Log in</LoginText>
+            {/* onPress={() => Auth.signUp(email, password)} */}
           </LoginButton>
 
           <UserSignUpButton

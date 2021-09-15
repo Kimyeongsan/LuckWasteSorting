@@ -114,7 +114,7 @@ const SignUpScreen = ({navigation}) => {
                 style={styled.textFormTop}
                 placeholder={'Enter password'}
                 value={password}
-                onChangeText={e => setPassword(e)}
+                // onChangeText={e => setPassword(e)}
               />
             </TextContainer>
 
@@ -134,14 +134,16 @@ const SignUpScreen = ({navigation}) => {
                 style={styled.textFormTop}
                 placeholder={'Enter name'}
                 value={name}
-                onChangeText={e => setUserName(e)}
+                // onChangeText={e => setUserName(e)}
               />
             </TextContainer>
           </ContentContainer>
 
           <SignUpButton
-            onPress={() => navigation.navigate('signUpComplete')}>
-            {/* // onPress={() => Auth.signUp(email, password)}> */}
+            onPress={() => {
+              Auth.signUp(name, email, password)
+              navigation.navigate('signUpComplete')
+            }}>
             <SignUpText>Sign Up</SignUpText>
           </SignUpButton>
         </Container>
