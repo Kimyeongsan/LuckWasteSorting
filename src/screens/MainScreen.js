@@ -17,8 +17,8 @@ const Background = styled(ImageBackground)`
 `;
 
 const Ellipse = styled(Image)`
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
   align-self: center;
   marginTop: 55px;
 `;
@@ -38,7 +38,7 @@ const Script = styled.Text`
   color: white;
   fontSize: 13px;
   font-family: JosefinSans-Medium;
-  width: 150px;
+  width: 200px;
   height: 60px;
 `;
 
@@ -55,7 +55,7 @@ const Script_2 = styled.Text`
 
 const Luckbox = styled.View`
   width: 88%;
-  height: 184px;
+  height: 175px;
   align-self: center;
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);

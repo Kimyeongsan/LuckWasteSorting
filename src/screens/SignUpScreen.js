@@ -34,7 +34,7 @@ const Title = styled.Text`
 
 const ContentContainer = styled.View`
   width: 100%;
-  height: 130px;
+  height: 100px;
   alignItems: center;
 `;
 

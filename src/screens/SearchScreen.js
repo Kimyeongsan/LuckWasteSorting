@@ -27,9 +27,9 @@ const GridContainer = styled.View`
 
 const CameraButton = styled.TouchableOpacity`
   width: 57px;
-  height: 60px;
+  height: 57px;
 	align-self: center;
-  marginTop: 30px;
+  marginTop: 15px;
   flexDirection: row;
   justify-Content: center;
 `;
