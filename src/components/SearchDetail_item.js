@@ -120,20 +120,24 @@ const SearchDetail_item = () => {
     useEffect(() => { setEntries(carouselItems); }, []);
 
     // Current page를 index에 저장
-    const [index, setIndex] = React.useState(0)
-
+    const [index, setIndex] = useState(0)
 
     // components에서 navigation 가져올 때 방법 : hook으로 가져온다.
     const navigation = useNavigation();
     const route = useRoute();
 
+    // Complete Count를 count에 저장
+    const [count, setCount] = useState()
 
     // 다음 item으로 이동하는 버튼 부분
     const goForward = () => {
         carouselRef.current.snapToNext();
 
         if (index == carouselItems.length - 1) {
-            navigation.navigate('main');
+
+            // count 추가 부분
+            setCount(count + 1);
+            navigation.navigate('main', {countValue: count});
         }
     };
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/native';
 import { RNCamera } from 'react-native-camera-tflite';
-import { Text, Dimensions, TouchableOpacity, Image, View } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 
 import outputs from '../../Output.json';
 import _ from 'lodash';
@@ -52,8 +52,8 @@ class CameraScreen extends Component {
   processOutput({ data }) {
     const probs = _.map(data, item => _.round(item / 255.0, 0.02));
     const orderedData = _.chain(data).zip(outputs).orderBy(0, 'desc').map(item => [_.round(item[0] / 255.0, 2), item[1]]).value();
-    const outputData = _.chain(orderedData).take(1).map(item => `${item[1]}: ${item[0]}`).join('\n').value();
-    const output = `Guesses:\n${outputData}`;
+    const outputData = _.chain(orderedData).take(1).map(item => `${item[1]}`).join('\n').value();
+    const output = `${outputData}`;
     this.setState(state => ({
       output
     }));
@@ -84,6 +84,7 @@ class CameraScreen extends Component {
         </Preview>
 
         {/* 값을 넘겨주는 버튼 임시 생성 */}
+        {/* 값이 없을 때 예외 처리 추가 */}
         <BottomImgContainer>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate('searchDetail', {textInputValue:this.state.output})}>
