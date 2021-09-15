@@ -100,7 +100,8 @@ const SignUpScreen = ({navigation}) => {
             <TextContainer>
             <BoldContent>User ID</BoldContent>
               <TextInput
-                style={styled.textFormTop}
+                style={{fontFamily: "JosefinSans-Medium"}}
+                color= 'white'
                 placeholder={'Enter ID'}
                 value={email}
                 onChangeText={e => setEmail(e)}

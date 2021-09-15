@@ -121,7 +121,7 @@ const LoginScreen = ({navigation}) => {
           <TextContainer>
             <Icon name="user" color="#727272" size={30}/>
             <TextInput placeholderTextColor={"#727272"}
-              style={{ marginLeft: 25, paddingTop: 0}}
+              style={{ width: 200, marginLeft: 25, paddingTop: 0, fontFamily: "JosefinSans-Medium"}}
               placeholder={'User ID'}
               value={email}
               onChangeText={(e) => setEmail(e)}
@@ -131,9 +131,9 @@ const LoginScreen = ({navigation}) => {
           <TextContainer>
             <Icon name="lock" color="#727272" size={35}/>
             <TextInput placeholderTextColor={"#727272"}
-              style={{ marginLeft: 25, paddingTop: 0 }}
-              placeholder={'Pass Word'}
               value={password}
+              style={{ width: 200, marginLeft: 25, paddingTop: 0, fontFamily: "JosefinSans-Medium" }}
+              placeholder={'PassWord'}
               // secureTextEntry = { this.state.hidePassword }
               onChangeText={(e) => setPassword(e)}
             />

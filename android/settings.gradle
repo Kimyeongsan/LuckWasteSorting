@@ -1,5 +1,12 @@
 rootProject.name = 'LuckWasteSoriting'
+
+// Camera Tensorflow
+include ':react-native-camera-tflite'
+project(':react-native-camera-tflite').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-camera-tflite/android')
+
+// Icon
 include ':react-native-vector-icons'
 project(':react-native-vector-icons').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vector-icons/android')
+
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 include ':app'
