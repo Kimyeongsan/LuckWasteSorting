@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { ImageBackground } from 'react-native';
 import { TextInput } from 'react-native';
-import { Auth } from '../action/auth'
+import { Auth } from '../action'
 
 const Container = styled.View`
   width: 100%;
@@ -131,10 +131,11 @@ const LoginScreen = ({navigation}) => {
           <TextContainer>
             <Icon name="lock" color="#727272" size={35}/>
             <TextInput placeholderTextColor={"#727272"}
+              type={password}
               value={password}
               style={{ width: 200, marginLeft: 25, paddingTop: 0, fontFamily: "JosefinSans-Medium" }}
               placeholder={'PassWord'}
-              // secureTextEntry = { this.state.hidePassword }
+              secureTextEntry = { true }
               onChangeText={(e) => setPassword(e)}
             />
           </TextContainer>
@@ -143,9 +144,12 @@ const LoginScreen = ({navigation}) => {
         </LoginContainer>
 
           <LoginButton
-            onPress={() => navigation.navigate('main')}>
+            onPress={() => {
+              navigation.navigate('main')
+              Auth.signIn(email, password)
+            }}>
             <LoginText>Log in</LoginText>
-            {/* onPress={() => Auth.signUp(email, password)} */}
+            
           </LoginButton>
 
           <UserSignUpButton
