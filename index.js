@@ -7,7 +7,7 @@ import App from './src/App';
 import {name as appName} from './app.json';
 
 // import navigators
-import { AuthNavigator } from './src/action/AuthNavigator';
+// import { AuthNavigator } from './src/action/AuthNavigator';
 
 AppRegistry.registerComponent(appName, () => App);
 

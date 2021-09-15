@@ -83,7 +83,7 @@ const SignUpScreen = ({navigation}) => {
     const [ name, setUserName ] = useState()
     const [ email, setEmail ] = useState()
     const [ password, setPassword ]= useState()
-    // const [ password2,  ]= useState()
+    const [ password2,  checkPassword]= useState()
 
   return (
   
@@ -117,7 +117,7 @@ const SignUpScreen = ({navigation}) => {
                 placeholder={'Enter password'}
                 secureTextEntry = { true }
                 value={password}
-                // onChangeText={e => setPassword(e)}
+                onChangeText={e => setPassword(e)}
               />
             </TextContainer>
 
@@ -128,6 +128,8 @@ const SignUpScreen = ({navigation}) => {
                 style={styled.textFormTop}
                 placeholder={'Re-enter password'}
                 secureTextEntry = { true }
+                value={password2}
+                onChangeText={e => checkPassword(e)}
               />
             </TextContainer>
 
@@ -138,14 +140,14 @@ const SignUpScreen = ({navigation}) => {
                 style={styled.textFormTop}
                 placeholder={'Enter name'}
                 value={name}
-                // onChangeText={e => setUserName(e)}
+                onChangeText={e => setUserName(e)}
               />
             </TextContainer>
           </ContentContainer>
 
           <SignUpButton
             onPress={() => {
-              Auth.signUp(name, email, password)
+              Auth.signUp(name, email, password, password2)
               navigation.navigate('signUpComplete')
             }}>
             <SignUpText>Sign Up</SignUpText>
