@@ -2,19 +2,21 @@
 
 흥미로운 운세를 통해 실천되는 하루 재활용 독려 어플리케이션
 
-## App Version : Prerequisites
+
+
+### App Version : Prerequisites
 - React native :
 - JDK :
 - Node :
 
 
-## Skill to Use :
+### Skill to Use :
 * StyledComponet : UI 구축
 * FireBase : Data insert, select
 * Tensorflow Camera Library : Object Detection
 
 
-## How to run the app :  Installation Process
+### How to run the app :  Installation Process
 * npm isntall
 * npm run androud
 
