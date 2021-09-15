@@ -7,9 +7,10 @@ const signUp = (name, email, password, password2) => {
   // 만약 빈 칸이 있으면 Error message 출력
   if(!name || !email || !password || !password2){
     Alert.alert('Error', 'please enter all fields')
+    navigation.navigate('signUpComplete')
   }
   // 만약 비밀번호 확인 과정에서 오류가 발생하면 Error message 출력
-  if(password != password2){
+  if(password !== password2){
     Alert.alert('Error', '비밀번호가 같지 않습니다')
   }
   // 그리고 회원가입이 안 되게 해야함
@@ -23,7 +24,7 @@ const signUp = (name, email, password, password2) => {
     auth().currentUser.updateProfile({
       displayName: name
     })
-
+    navigation.navigate('signUpComplete')
     return uid
   })
   .catch(
@@ -40,7 +41,9 @@ const signIn = (email, password) => {
 
 
   return auth().signInWithEmailAndPassword(email, password)
-  .then(() => {})
+  .then(() => {
+    navigation.navigate('main')
+  })
   .catch(
     err => Alert.alert(err.code, err.message)
   )

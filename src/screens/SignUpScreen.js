@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import { ImageBackground } from 'react-native';
 import { TextInput } from 'react-native';
 
-import {Auth} from '../action/auth'
+import {Auth} from '../action'
 
 const Container = styled.View`
   width: 100%;
@@ -83,6 +83,7 @@ const SignUpScreen = ({navigation}) => {
     const [ name, setUserName ] = useState()
     const [ email, setEmail ] = useState()
     const [ password, setPassword ]= useState()
+    // const [ password2,  ]= useState()
 
   return (
   
@@ -114,6 +115,7 @@ const SignUpScreen = ({navigation}) => {
               <TextInput
                 style={styled.textFormTop}
                 placeholder={'Enter password'}
+                secureTextEntry = { true }
                 value={password}
                 // onChangeText={e => setPassword(e)}
               />
@@ -125,6 +127,7 @@ const SignUpScreen = ({navigation}) => {
               <TextInput
                 style={styled.textFormTop}
                 placeholder={'Re-enter password'}
+                secureTextEntry = { true }
               />
             </TextContainer>
 
