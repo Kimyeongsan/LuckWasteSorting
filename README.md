@@ -1,5 +1,7 @@
 # LuckWasteSorting
 
+흥미로운 운세를 통해 실천되는 하루 재활용 독려 어플리케이션
+
 ## App Version : Prerequisites
 - React native :
 - JDK :
