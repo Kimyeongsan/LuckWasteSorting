@@ -197,7 +197,9 @@ const SearchDetail_item = () => {
                     onSnapToItem={(index) => setIndex(index)} />
             </CarouselContainer>
 
+            {/* 임시 출력 데이터들 */}
             <Text>{route.params.searchValue}</Text>
+            <Text>{route.params.textInputValue}</Text>
 
             {/* Pagination 부분 */}
             <Pagination
