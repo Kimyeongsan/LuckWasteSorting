@@ -37,7 +37,7 @@ const CameraButton = styled.TouchableOpacity`
 {/* 가이드 Text */ }
 const ContentContainer = styled.View`
   width: 100%;
-  height: 150px;
+  height: 100px;
   marginTop: 25px;
 `;
 
@@ -68,6 +68,7 @@ const SearchScreen = ({ navigation }) => {
         <CameraButton
           onPress={() => navigation.navigate('camera')}>
           <Image
+            style={{height: 80, width: 80}}
             resizeMode='contain'
             source={require('../../assets/img/search/camera_icon.png')}
           />
