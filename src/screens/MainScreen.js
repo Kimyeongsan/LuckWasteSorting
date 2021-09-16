@@ -254,7 +254,7 @@ const MainScreen = ({ navigation }) => {
     .signOut()
     .then(() => console.log('User signed out!'));
 
-    navigation.navigate('login')
+    navigation.navigate('loginBefore')
   }
 
   return (

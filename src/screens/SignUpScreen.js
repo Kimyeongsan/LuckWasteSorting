@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 
-import { ImageBackground } from 'react-native';
+import { Alert, ImageBackground } from 'react-native';
 import { TextInput } from 'react-native';
 
 import auth from '@react-native-firebase/auth'
@@ -89,9 +89,20 @@ const SignUpScreen = ({ navigation }) => {
 
   const onRegisterPress = () => {
     if (password !== password2) {
-      alert("Passwords don't match.")
+      Alert.alert("Passwords don't match.")
       return
     }
+
+    else if (name == '') {
+      Alert.alert("Input(Name) doen't Enough")
+      return
+    }
+
+    else if (email == '') {
+      Alert.alert("Input(email) doen't Enough")
+      return
+    }
+
     auth().createUserWithEmailAndPassword(email, password)
       .then((response) => {
         const uid = response.user.uid

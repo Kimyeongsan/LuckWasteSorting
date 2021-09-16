@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import SplashScreen from 'react-native-splash-screen';
 import StackNavigator from './StackNavigator';
 
-import auth from '@react-native-firebase/auth'
+import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore'
+import MainScreen from './screens/MainScreen';
 
 function App() {
 
@@ -18,12 +19,10 @@ function App() {
 
   // Set an initializing state whilst Firebase connects
   const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState(null);
-
+  const [user, setUser] = useState();
 
   useEffect(() => {
     const usersRef = firestore().collection('users');
-
     auth().onAuthStateChanged(user => {
       if (user) {
         usersRef
@@ -50,9 +49,11 @@ function App() {
       <StackNavigator />
     );
   }
+
   return (
-    <StackNavigator />
+    <MainScreen />
   );
+
 }
 
 export default App;

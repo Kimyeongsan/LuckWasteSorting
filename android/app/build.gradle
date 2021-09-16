@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'  // 임시
+apply plugin: 'com.google.gms.google-services'  // Firebase 연동
 
 import com.android.build.OutputFile
 

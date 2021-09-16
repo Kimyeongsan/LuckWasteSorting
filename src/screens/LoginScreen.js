@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { ImageBackground } from 'react-native';
-import { TextInput } from 'react-native';
+import { Alert, ImageBackground } from 'react-native';
+import { KeyboardAvoidingView, TextInput } from 'react-native';
 
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 
-const Container = styled.View`
+const Container = styled.KeyboardAvoidingView`
   width: 100%;
   height: 100%;
   backgroundColor: rgba(0,0,0,0.4);
@@ -87,15 +87,6 @@ const UserSignUpText = styled.Text`
   font-family: serif;
 `;
 
-// constructor(){
-//   super();
-//   this.state = { hidePassword: true }
-
-// const InputUserID = styled.input`
-//   width: 267px;
-//   height: 48px;
-// `;
-
 
 // Login을 위한 화면
 
@@ -103,43 +94,49 @@ const UserSignUpText = styled.Text`
 // User Id , User Password 입력 받을 창 제작 예정
 // Login Button 클릭 시 Main 화면으로 전환
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({ navigation }) => {
 
-  const [ email, setEmail ] = useState()
-  const [ password, setPassword ]= useState()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const onLoginPress = () => {
-        auth()
+    if (email == '' || password == '') {
+      Alert.alert('email 혹은 password가 비어있습니다.')
+    } else (
+
+      auth()
         .signInWithEmailAndPassword(email, password)
         .then((response) => {
-            const uid = response.user.uid
-            const usersRef = firestore().collection('users')
-            usersRef
-                .doc(uid)
-                .get()
-                .then(firestoreDocument => {
-                    if (!firestoreDocument.exists) {
-                        alert("User does not exist anymore.")
-                        return;
-                    }
-                    // const user = firestoreDocument.data()
-                    // navigation.navigate('Home', {user: user})
-                    navigation.navigate('main')
-                })
-                .catch(error => {
-                    alert(error)
-                });
+          const uid = response.user.uid
+          const usersRef = firestore().collection('users')
+          usersRef
+            .doc(uid)
+            .get()
+            .then(firestoreDocument => {
+              if (!firestoreDocument.exists) {
+                alert("User does not exist anymore.")
+                return;
+              }
+              // const user = firestoreDocument.data()
+              // navigation.navigate('Home', {user: user})
+              navigation.navigate('main')
+            })
+            .catch(error => {
+              alert(error)
+            });
         })
         .catch(error => {
-            alert(error)
+          alert(error)
         })
-}
+    )
+  }
 
   return (
     <Background
       source={require("../../assets/img/login_background.png")} >
 
-      <Container>
+      <Container
+        behavior={Platform.OS === "android" ? "padding" : "height"}>
         <TitleContainer>
           <Title>gather</Title>
           <Title>tomorrow</Title>
@@ -148,46 +145,48 @@ const LoginScreen = ({navigation}) => {
         <LoginContainer>
 
           <TextContainer>
-            <Icon name="user" color="#727272" size={30}/>
+            <Icon name="user" color="#727272" size={30} />
             <TextInput placeholderTextColor={"#727272"}
-              style={{ width: 200, marginLeft: 25, paddingTop: 0, fontFamily: "JosefinSans-Medium"}}
+              style={{ width: 200, marginLeft: 25, paddingTop: 0, fontFamily: "JosefinSans-Medium" }}
               placeholder={'User ID'}
               value={email}
+              focusable={true}
               onChangeText={(e) => setEmail(e)}
             />
           </TextContainer>
-          
+
           <TextContainer>
-            <Icon name="lock" color="#727272" size={35}/>
+            <Icon name="lock" color="#727272" size={35} />
             <TextInput placeholderTextColor={"#727272"}
               type={password}
               value={password}
               style={{ width: 200, marginLeft: 25, paddingTop: 0, fontFamily: "JosefinSans-Medium" }}
               placeholder={'PassWord'}
-              secureTextEntry = { true }
+              focusable={true}
+              secureTextEntry={true}
               onChangeText={(e) => setPassword(e)}
             />
           </TextContainer>
-          
+
 
         </LoginContainer>
 
-          <LoginButton
-            onPress={() => {
-              onLoginPress()
-            }}>
-            <LoginText>Log in</LoginText>
-            
-          </LoginButton>
+        <LoginButton
+          onPress={() => {
+            onLoginPress()
+          }}>
+          <LoginText>Log in</LoginText>
 
-          <UserSignUpButton
-            onPress={() => navigation.navigate('signUp')}>
-            <UserSignUpText>User Sign up</UserSignUpText>
-          </UserSignUpButton>
-        </Container>
+        </LoginButton>
+
+        <UserSignUpButton
+          onPress={() => navigation.navigate('signUp')}>
+          <UserSignUpText>User Sign up</UserSignUpText>
+        </UserSignUpButton>
+      </Container>
 
     </Background>
-    
+
   );
 
 }
