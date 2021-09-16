@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -71,4 +72,3 @@ function StackNavigator() {
 }
 
 export default StackNavigator;
-

@@ -4,7 +4,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { ImageBackground } from 'react-native';
 import { TextInput } from 'react-native';
-import { Auth } from '../action'
+
+import auth from '@react-native-firebase/auth'
+import firestore from '@react-native-firebase/firestore'
 
 const Container = styled.View`
   width: 100%;
@@ -106,6 +108,33 @@ const LoginScreen = ({navigation}) => {
   const [ email, setEmail ] = useState()
   const [ password, setPassword ]= useState()
 
+  const onLoginPress = () => {
+        auth()
+        .signInWithEmailAndPassword(email, password)
+        .then((response) => {
+            const uid = response.user.uid
+            const usersRef = firestore().collection('users')
+            usersRef
+                .doc(uid)
+                .get()
+                .then(firestoreDocument => {
+                    if (!firestoreDocument.exists) {
+                        alert("User does not exist anymore.")
+                        return;
+                    }
+                    // const user = firestoreDocument.data()
+                    // navigation.navigate('Home', {user: user})
+                    navigation.navigate('main')
+                })
+                .catch(error => {
+                    alert(error)
+                });
+        })
+        .catch(error => {
+            alert(error)
+        })
+}
+
   return (
     <Background
       source={require("../../assets/img/login_background.png")} >
@@ -145,8 +174,7 @@ const LoginScreen = ({navigation}) => {
 
           <LoginButton
             onPress={() => {
-              navigation.navigate('main')
-              Auth.signIn(email, password)
+              onLoginPress()
             }}>
             <LoginText>Log in</LoginText>
             

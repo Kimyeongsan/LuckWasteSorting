@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
 
 import { ImageBackground } from 'react-native';
 import { TextInput } from 'react-native';
 
-import {Auth} from '../action'
+import auth from '@react-native-firebase/auth'
+import firestore from '@react-native-firebase/firestore'
+
 
 const Container = styled.View`
   width: 100%;
@@ -78,79 +80,115 @@ const SignUpText = styled.Text`
 // User ID, PassWord 등등 -> 추후 추가될 수 있음
 // 입력 완료 버튼 클릭시 Complete화면으로 전환 (완료)
 
-const SignUpScreen = ({navigation}) => {
+const SignUpScreen = ({ navigation }) => {
 
-    const [ name, setUserName ] = useState()
-    const [ email, setEmail ] = useState()
-    const [ password, setPassword ]= useState()
-    // const [ password2,  ]= useState()
+  const [name, setUserName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [password2, setPassword2] = useState('')
+
+  const onRegisterPress = () => {
+    if (password !== password2) {
+      alert("Passwords don't match.")
+      return
+    }
+    auth().createUserWithEmailAndPassword(email, password)
+      .then((response) => {
+        const uid = response.user.uid
+        const data = {
+          id: uid,
+          email,
+          name,
+        };
+        const usersRef = firestore().collection('users')
+        usersRef
+          .doc(uid)
+          .set(data)
+          .then(() => {
+            navigation.navigate('signUpComplete')
+          })
+          .catch((error) => {
+            alert(error)
+          });
+      })
+      .catch((error) => {
+        alert(error)
+      });
+  }
 
   return (
-  
+
     <Background
       source={require("../../assets/img/login_background.png")} >
 
-        <Container>
-          <TitleContainer>
-            <Title>gather</Title>
-            <Title>tomorrow</Title>
-          </TitleContainer>
+      <Container>
+        <TitleContainer>
+          <Title>gather</Title>
+          <Title>tomorrow</Title>
+        </TitleContainer>
 
-          <ContentContainer>
-            
-            <TextContainer>
+        <ContentContainer>
+
+          <TextContainer>
             <BoldContent>User ID</BoldContent>
-              <TextInput
-                style={{fontFamily: "JosefinSans-Medium"}}
-                color= 'white'
-                placeholder={'Enter ID'}
-                value={email}
-                onChangeText={e => setEmail(e)}
-              />
-            </TextContainer>
-            
-            
-            <TextContainer>
+            <TextInput
+              style={{ color: 'white', fontFamily: "JosefinSans-Medium" }}
+              placeholder={'Enter ID'}
+              placeholderTextColor='white'
+              value={email}
+              autoFocus={true}
+              onChangeText={e => setEmail(e)}
+            />
+          </TextContainer>
+
+
+          <TextContainer>
             <BoldContent>PASSWORD</BoldContent>
-              <TextInput
-                style={styled.textFormTop}
-                placeholder={'Enter password'}
-                secureTextEntry = { true }
-                value={password}
-                // onChangeText={e => setPassword(e)}
-              />
-            </TextContainer>
+            <TextInput
+              style={{ color: 'white', fontFamily: "JosefinSans-Medium" }}
+              placeholder={'Enter password'}
+              placeholderTextColor='white'
+              secureTextEntry={true}
+              autoFocus={true}
+              value={password}
+            onChangeText={e => setPassword(e)}
+            />
+          </TextContainer>
 
-            
-            <TextContainer>
+
+          <TextContainer>
             <BoldContent>CONFIRM PASSWORD</BoldContent>
-              <TextInput
-                style={styled.textFormTop}
-                placeholder={'Re-enter password'}
-                secureTextEntry = { true }
-              />
-            </TextContainer>
+            <TextInput
+              style={{ color: 'white', fontFamily: "JosefinSans-Medium" }}
+              placeholder={'Re-enter password'}
+              placeholderTextColor='white'
+              autoFocus={true}
+              secureTextEntry={true}
+              onChangeText={e => setPassword2(e)}
+            />
+          </TextContainer>
 
-            
-            <TextContainer>
-              <BoldContent>Name</BoldContent>
-              <TextInput
-                style={styled.textFormTop}
-                placeholder={'Enter name'}
-                value={name}
-                // onChangeText={e => setUserName(e)}
-              />
-            </TextContainer>
-          </ContentContainer>
 
-          <SignUpButton
-            onPress={() => {
-              Auth.signUp(name, email, password)
-              navigation.navigate('signUpComplete')
-            }}>
-            <SignUpText>Sign Up</SignUpText>
-          </SignUpButton>
-        </Container>
+          <TextContainer>
+            <BoldContent>Name</BoldContent>
+            <TextInput
+              style={{ color: 'white', fontFamily: "JosefinSans-Medium" }}
+              placeholder={'Enter name'}
+              placeholderTextColor='white'
+              autoFocus={true}
+              value={name}
+            onChangeText={e => setUserName(e)}
+            />
+          </TextContainer>
+        </ContentContainer>
+
+        <SignUpButton
+          onPress={() => {
+            onRegisterPress()
+          }}>
+          <SignUpText>Sign Up</SignUpText>
+        </SignUpButton>
+      </Container>
 
     </Background>
   );

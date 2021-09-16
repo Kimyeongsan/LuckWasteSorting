@@ -3,6 +3,8 @@ import styled from 'styled-components/native';
 import { ImageBackground, View, Image, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import auth from '@react-native-firebase/auth';
+
 const Container = styled.View`
   width: 100%;
   height: 100%;
@@ -247,7 +249,13 @@ const MainScreen = ({ navigation }) => {
     }
   }
 
-  
+  const logOut = () => {
+    auth()
+    .signOut()
+    .then(() => console.log('User signed out!'));
+
+    navigation.navigate('login')
+  }
 
   return (
     <Background
@@ -260,7 +268,7 @@ const MainScreen = ({ navigation }) => {
             name="log-out"
             size={32}
             color="white"
-            onPress={() => navigation.navigate('login')}
+            onPress={() => logOut()}
           />
         </LogOutButton>
 
