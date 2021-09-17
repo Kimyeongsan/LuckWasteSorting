@@ -1,24 +1,26 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 
-import { Alert, ImageBackground } from 'react-native';
+import { Alert } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { TextInput } from 'react-native';
 
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 
 
-const Container = styled.View`
+const Container = styled(KeyboardAwareScrollView)`
   width: 100%;
   height: 100%;
   backgroundColor: rgba(0,0,0,0.4);
 `;
 
-const Background = styled(ImageBackground)`
+const Background = styled.ImageBackground`
   width: 100%;
   height: 100%;
-  resizeMode: cover;
+  top: 0;
   position: absolute;
+  resizeMode: center;
 `;
 
 const TitleContainer = styled.View`
@@ -84,22 +86,27 @@ const SignUpScreen = ({ navigation }) => {
 
   const [name, setUserName] = useState('')
   const [email, setEmail] = useState('')
+  const [birthday, setBirthday] = useState('')
   const [password, setPassword] = useState('')
-  const [password2, setPassword2] = useState('')
+
 
   const onRegisterPress = () => {
-    if (password !== password2) {
-      Alert.alert("Passwords don't match.")
-      return
-    }
 
-    else if (name == '') {
+    // 입력 예외처리
+    if (name == '') {
       Alert.alert("Input(Name) doen't Enough")
       return
     }
-
     else if (email == '') {
       Alert.alert("Input(email) doen't Enough")
+      return
+    }
+    else if (birthday == '') {
+      Alert.alert("Input(birthday) doen't Enough")
+      return
+    }
+    else if (password == '') {
+      Alert.alert("Input(password) doen't Enough")
       return
     }
 
@@ -110,6 +117,7 @@ const SignUpScreen = ({ navigation }) => {
           id: uid,
           email,
           name,
+          birthday
         };
         const usersRef = firestore().collection('users')
         usersRef
@@ -130,7 +138,7 @@ const SignUpScreen = ({ navigation }) => {
   return (
 
     <Background
-      source={require("../../assets/img/login_background.png")} >
+      source={require("../../assets/img/login_background.png")}>
 
       <Container>
         <TitleContainer>
@@ -141,14 +149,38 @@ const SignUpScreen = ({ navigation }) => {
         <ContentContainer>
 
           <TextContainer>
-            <BoldContent>User ID</BoldContent>
+            <BoldContent>User Email</BoldContent>
             <TextInput
               style={{ color: 'white', fontFamily: "JosefinSans-Medium" }}
-              placeholder={'Enter ID'}
+              placeholder={'Enter Eamil'}
               placeholderTextColor='white'
               value={email}
               autoFocus={true}
               onChangeText={e => setEmail(e)}
+            />
+          </TextContainer>
+
+          <TextContainer>
+            <BoldContent>Name</BoldContent>
+            <TextInput
+              style={{ color: 'white', fontFamily: "JosefinSans-Medium" }}
+              placeholder={'Enter name'}
+              placeholderTextColor='white'
+              autoFocus={true}
+              value={name}
+              onChangeText={e => setUserName(e)}
+            />
+          </TextContainer>
+
+          <TextContainer>
+            <BoldContent>Birthday</BoldContent>
+            <TextInput
+              style={{ color: 'white', fontFamily: "JosefinSans-Medium" }}
+              placeholder={'Enter Birthday'}
+              placeholderTextColor='white'
+              autoFocus={true}
+              value={birthday}
+              onChangeText={e => setBirthday(e)}
             />
           </TextContainer>
 
@@ -162,35 +194,10 @@ const SignUpScreen = ({ navigation }) => {
               secureTextEntry={true}
               autoFocus={true}
               value={password}
-            onChangeText={e => setPassword(e)}
+              onChangeText={e => setPassword(e)}
             />
           </TextContainer>
 
-
-          <TextContainer>
-            <BoldContent>CONFIRM PASSWORD</BoldContent>
-            <TextInput
-              style={{ color: 'white', fontFamily: "JosefinSans-Medium" }}
-              placeholder={'Re-enter password'}
-              placeholderTextColor='white'
-              autoFocus={true}
-              secureTextEntry={true}
-              onChangeText={e => setPassword2(e)}
-            />
-          </TextContainer>
-
-
-          <TextContainer>
-            <BoldContent>Name</BoldContent>
-            <TextInput
-              style={{ color: 'white', fontFamily: "JosefinSans-Medium" }}
-              placeholder={'Enter name'}
-              placeholderTextColor='white'
-              autoFocus={true}
-              value={name}
-            onChangeText={e => setUserName(e)}
-            />
-          </TextContainer>
         </ContentContainer>
 
         <SignUpButton

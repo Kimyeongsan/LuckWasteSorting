@@ -44,14 +44,17 @@ function App() {
 
   if (initializing) return null;
 
+  // user가 비어있을 경우
   if (!user) {
     return (
       <StackNavigator />
     );
   }
 
+  // user가 있을경우 수정예정
+  // user가 있을 경우
   return (
-    <MainScreen />
+    <StackNavigator />
   );
 
 }

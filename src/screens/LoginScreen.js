@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { Alert, ImageBackground } from 'react-native';
-import { KeyboardAvoidingView, TextInput } from 'react-native';
+import { TextInput } from 'react-native';
 
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 
-const Container = styled.KeyboardAvoidingView`
+const Container = styled(KeyboardAwareScrollView)`
   width: 100%;
   height: 100%;
   backgroundColor: rgba(0,0,0,0.4);
