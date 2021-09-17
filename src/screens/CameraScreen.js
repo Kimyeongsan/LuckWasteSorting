@@ -49,7 +49,7 @@ class CameraScreen extends Component {
     };
   }
 
-  constprocessOutput({ data }) {
+  processOutput({ data }) {
     const probs = _.map(data, item => _.round(item / 255.0, 0.02));
     const orderedData = _.chain(data).zip(outputs).orderBy(0, 'desc').map(item => [_.round(item[0] / 255.0, 2), item[1]]).value();
     const outputData = _.chain(orderedData).take(1).map(item => `${item[1]}`).join('\n').value();

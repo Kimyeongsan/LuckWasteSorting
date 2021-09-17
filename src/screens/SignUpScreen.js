@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 
-import { Alert } from 'react-native';
+import { ToastAndroid, Alert } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { TextInput } from 'react-native';
 
@@ -89,7 +89,6 @@ const SignUpScreen = ({ navigation }) => {
   const [birthday, setBirthday] = useState('')
   const [password, setPassword] = useState('')
 
-
   const onRegisterPress = () => {
 
     // 입력 예외처리
@@ -110,6 +109,7 @@ const SignUpScreen = ({ navigation }) => {
       return
     }
 
+    // firebase 등록
     auth().createUserWithEmailAndPassword(email, password)
       .then((response) => {
         const uid = response.user.uid
@@ -119,6 +119,7 @@ const SignUpScreen = ({ navigation }) => {
           name,
           birthday
         };
+        
         const usersRef = firestore().collection('users')
         usersRef
           .doc(uid)

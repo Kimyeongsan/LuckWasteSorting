@@ -1,11 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import SplashScreen from 'react-native-splash-screen';
 import StackNavigator from './StackNavigator';
-
-import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore'
-import MainScreen from './screens/MainScreen';
 
 function App() {
 
@@ -17,46 +13,9 @@ function App() {
     }, 100);
   });
 
-  // Set an initializing state whilst Firebase connects
-  const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState();
-
-  useEffect(() => {
-    const usersRef = firestore().collection('users');
-    auth().onAuthStateChanged(user => {
-      if (user) {
-        usersRef
-          .doc(user.uid)
-          .get()
-          .then((document) => {
-            const userData = document.data()
-            setInitializing(false)
-            setUser(userData)
-          })
-          .catch((error) => {
-            setInitializing(false)
-          });
-      } else {
-        setInitializing(false)
-      }
-    });
-  }, []);
-
-  if (initializing) return null;
-
-  // user가 비어있을 경우
-  if (!user) {
-    return (
-      <StackNavigator />
-    );
-  }
-
-  // user가 있을경우 수정예정
-  // user가 있을 경우
   return (
     <StackNavigator />
   );
-
 }
 
 export default App;
