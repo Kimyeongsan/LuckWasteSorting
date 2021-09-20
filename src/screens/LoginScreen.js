@@ -3,23 +3,13 @@ import styled from 'styled-components/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { Alert, ImageBackground } from 'react-native';
-import { TextInput } from 'react-native';
+import { Alert, ImageBackground, Dimensions } from 'react-native';
 
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 
 const Container = styled(KeyboardAwareScrollView)`
-  width: 100%;
-  height: 100%;
-  backgroundColor: rgba(0,0,0,0.4);
-`;
-
-const Background = styled(ImageBackground)`
-  width: 100%;
-  height: 100%;
-  resizeMode: cover;
-  position: absolute;
+  flex: 1;
 `;
 
 const TitleContainer = styled.View`
@@ -43,14 +33,31 @@ const LoginContainer = styled.View`
 `;
 
 const TextContainer = styled.View`
-  flexDirection: row;
-  width: 310px;
+  width: 80%;
   height: 48px;
+  flexDirection: row;
+  justify-Content: center;
+  align-self: center;
   backgroundColor: rgba(255, 255, 255, 0.7);
   marginBottom: 35px;
   paddingLeft: 12px;
   paddingTop: 6px;
   border-radius: 10px;
+`;
+
+const Icons = styled(Icon)`
+  padding: 5px;
+  marginRight: 10px;
+`;
+
+const TextInputs = styled.TextInput`
+  flex: 1;
+  align-self: center;
+  fontFamily: JosefinSans-Medium;
+  paddingTop: 0px;
+  paddingRight: 10px;
+  paddingBottom: 0px;
+  paddingLeft: 0px;
 `;
 
 const LoginButton = styled.TouchableOpacity`
@@ -88,7 +95,6 @@ const UserSignUpText = styled.Text`
   font-family: serif;
 `;
 
-
 // Login을 위한 화면
 
 // 구현 사항 : 
@@ -118,9 +124,8 @@ const LoginScreen = ({ navigation }) => {
                 alert("User does not exist anymore.")
                 return;
               }
-              // const user = firestoreDocument.data()
-              // navigation.navigate('Home', {user: user})
-              navigation.navigate('main')
+              const user = firestoreDocument.data()
+              navigation.navigate('main', { user: user })
             })
             .catch(error => {
               alert(error)
@@ -133,11 +138,18 @@ const LoginScreen = ({ navigation }) => {
   }
 
   return (
-    <Background
-      source={require("../../assets/img/login_background.png")} >
 
-      <Container
-        behavior={Platform.OS === "android" ? "padding" : "height"}>
+    <Container>
+      <ImageBackground
+        style={{
+          width: Dimensions.get('window').width,
+          height: Dimensions.get('window').height,
+          backgroundColor: 'black'
+        }}
+        imageStyle={{ opacity: 0.5 }} // 어둡게
+        resizeMode={'cover'}
+        source={require("../../assets/img/login_background.png")}>
+
         <TitleContainer>
           <Title>gather</Title>
           <Title>tomorrow</Title>
@@ -146,10 +158,10 @@ const LoginScreen = ({ navigation }) => {
         <LoginContainer>
 
           <TextContainer>
-            <Icon name="user" color="#727272" size={30} />
-            <TextInput placeholderTextColor={"#727272"}
-              style={{ width: 200, marginLeft: 25, paddingTop: 0, fontFamily: "JosefinSans-Medium" }}
+            <Icons name="user" color="#727272" size={25}  />
+            <TextInputs
               placeholder={'User ID'}
+              placeholderTextColor={"#727272"}
               value={email}
               focusable={true}
               onChangeText={(e) => setEmail(e)}
@@ -157,12 +169,12 @@ const LoginScreen = ({ navigation }) => {
           </TextContainer>
 
           <TextContainer>
-            <Icon name="lock" color="#727272" size={35} />
-            <TextInput placeholderTextColor={"#727272"}
+            <Icons name="lock" color="#727272" size={25} />
+            <TextInputs
               type={password}
               value={password}
-              style={{ width: 200, marginLeft: 25, paddingTop: 0, fontFamily: "JosefinSans-Medium" }}
               placeholder={'PassWord'}
+              placeholderTextColor={"#727272"}
               focusable={true}
               secureTextEntry={true}
               onChangeText={(e) => setPassword(e)}
@@ -184,10 +196,9 @@ const LoginScreen = ({ navigation }) => {
           onPress={() => navigation.navigate('signUp')}>
           <UserSignUpText>User Sign up</UserSignUpText>
         </UserSignUpButton>
-      </Container>
 
-    </Background>
-
+      </ImageBackground>
+    </Container>
   );
 
 }

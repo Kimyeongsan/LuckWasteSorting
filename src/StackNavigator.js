@@ -12,17 +12,19 @@ import CameraScreen from './screens/CameraScreen';
 import SearchScreen from './screens/SearchScreen';
 import SearchDetail from './screens/SearchDetail';
 
-import auth, { firebase } from '@react-native-firebase/auth';
+import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore'
 
 const Stack = createStackNavigator();
 
 // 화면 이동 Function
+
 function StackNavigator() {
 
   // Set an initializing state whilst Firebase connects
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
+
 
   useEffect(() => {
     const usersRef = firestore().collection('users');

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 
-import { ToastAndroid, Alert } from 'react-native';
+import { Alert, ImageBackground, Dimensions } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { TextInput } from 'react-native';
 
@@ -10,17 +10,7 @@ import firestore from '@react-native-firebase/firestore'
 
 
 const Container = styled(KeyboardAwareScrollView)`
-  width: 100%;
-  height: 100%;
-  backgroundColor: rgba(0,0,0,0.4);
-`;
-
-const Background = styled.ImageBackground`
-  width: 100%;
-  height: 100%;
-  top: 0;
-  position: absolute;
-  resizeMode: center;
+  flex: 1;
 `;
 
 const TitleContainer = styled.View`
@@ -48,6 +38,11 @@ const TextContainer = styled.View`
   marginBottom: 20px;
   borderColor: white;
   border-bottom-width: 2px;
+`;
+
+const TextInputs = styled.TextInput`
+  color: white;
+  fontFamily: JosefinSans-Medium;
 `;
 
 const BoldContent = styled.Text`
@@ -119,7 +114,7 @@ const SignUpScreen = ({ navigation }) => {
           name,
           birthday
         };
-        
+
         const usersRef = firestore().collection('users')
         usersRef
           .doc(uid)
@@ -138,10 +133,17 @@ const SignUpScreen = ({ navigation }) => {
 
   return (
 
-    <Background
-      source={require("../../assets/img/login_background.png")}>
+    <Container>
+      <ImageBackground
+        style={{
+          width: Dimensions.get('window').width,
+          height: Dimensions.get('window').height,
+          backgroundColor: 'black'
+        }}
+        imageStyle={{ opacity: 0.5 }} // 어둡게
+        resizeMode={'cover'}
+        source={require("../../assets/img/login_background.png")}>
 
-      <Container>
         <TitleContainer>
           <Title>gather</Title>
           <Title>tomorrow</Title>
@@ -151,8 +153,7 @@ const SignUpScreen = ({ navigation }) => {
 
           <TextContainer>
             <BoldContent>User Email</BoldContent>
-            <TextInput
-              style={{ color: 'white', fontFamily: "JosefinSans-Medium" }}
+            <TextInputs
               placeholder={'Enter Eamil'}
               placeholderTextColor='white'
               value={email}
@@ -163,8 +164,7 @@ const SignUpScreen = ({ navigation }) => {
 
           <TextContainer>
             <BoldContent>Name</BoldContent>
-            <TextInput
-              style={{ color: 'white', fontFamily: "JosefinSans-Medium" }}
+            <TextInputs
               placeholder={'Enter name'}
               placeholderTextColor='white'
               autoFocus={true}
@@ -175,8 +175,7 @@ const SignUpScreen = ({ navigation }) => {
 
           <TextContainer>
             <BoldContent>Birthday</BoldContent>
-            <TextInput
-              style={{ color: 'white', fontFamily: "JosefinSans-Medium" }}
+            <TextInputs
               placeholder={'Enter Birthday'}
               placeholderTextColor='white'
               autoFocus={true}
@@ -185,11 +184,9 @@ const SignUpScreen = ({ navigation }) => {
             />
           </TextContainer>
 
-
           <TextContainer>
             <BoldContent>PASSWORD</BoldContent>
-            <TextInput
-              style={{ color: 'white', fontFamily: "JosefinSans-Medium" }}
+            <TextInputs
               placeholder={'Enter password'}
               placeholderTextColor='white'
               secureTextEntry={true}
@@ -207,9 +204,9 @@ const SignUpScreen = ({ navigation }) => {
           }}>
           <SignUpText>Sign Up</SignUpText>
         </SignUpButton>
-      </Container>
 
-    </Background>
+      </ImageBackground>
+    </Container>
   );
 
 }

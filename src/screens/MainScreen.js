@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
-import { ImageBackground, View, Image, Alert } from 'react-native';
+import { ImageBackground, Image, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth'
+import { useRoute } from '@react-navigation/native';
 
 const Container = styled.View`
   width: 100%;
@@ -132,35 +132,6 @@ const Buttombox = styled.View`
 // 전반적인 운세 출력을 위한 화면
 const MainScreen = ({ navigation }) => {
 
-  let today = new Date();
-
-  //운세의 상태를 지정하는 스테이트(전역) 
-  // 0-초기화 화면 1-오늘의 운세 2-연애 3-직장 4-금전운
-  const [check, btnSt] = useState(0);
-
-
-
-
-
-  //사용자 생일 (월)
-  var month = 10;
-
-
-  //배열의 요소를 무작위로 섞기 (매일 자정12시에 실행되어야 함.)
-  //서버단에서 저장이 되어야하는 부분
-  //핸드폰이 껏다 켜지면 (어플이 컸다 켜지면)리로드가 되기 때문에 하드코딩 필요 (회의때 말할것)
-  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  const shuffle = (array) => {
-
-    array.sort(() => Math.random() - 0.5);
-
-  }
-
-  shuffle(numbers)
-
-
-
-
   // 연애운, 직장운, 금전운 count
   const [loveCnt, setLoveCnt] = useState(2);
   const [jobCnt, setJobCnt] = useState(3);
@@ -260,6 +231,27 @@ const MainScreen = ({ navigation }) => {
     }
   }
 
+  //////////////////////////////////////
+
+  let today = new Date();
+
+  //운세의 상태를 지정하는 스테이트(전역) 
+  // 0-초기화 화면 1-오늘의 운세 2-연애 3-직장 4-금전운
+  const [check, btnSt] = useState(0);
+
+  //사용자 생일 (월)
+  var month = 10;
+
+  //배열의 요소를 무작위로 섞기 (매일 자정12시에 실행되어야 함.)
+  //서버단에서 저장이 되어야하는 부분
+  //핸드폰이 껏다 켜지면 (어플이 컸다 켜지면)리로드가 되기 때문에 하드코딩 필요 (회의때 말할것)
+  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const shuffle = (array) => {
+    array.sort(() => Math.random() - 0.5);
+  }
+
+  shuffle(numbers)
+
   //month가 몇번째 배열에 있는지 찾아주는 함수
   const Random = () => {
     var i;
@@ -292,9 +284,8 @@ const MainScreen = ({ navigation }) => {
         var arr = ['오늘의 운세', '오늘은 숲속에 비가올 것 같아요', '오늘 당신의 운세는 나쁨 입니다.\n소나기는 금방 그친다는 믿음이 있기 때문에\n쉬어갈 수 있는 여유가 생기는 법 입니다.\n힘들게 뛰어온 당신!\n운세에 보이는 소나기를 피해\n잠시 쉬어가는건 어떨까요?']
         return arr;
       }
-
-
     }
+
     else if (check == 2) {
       //연애
 
@@ -315,6 +306,8 @@ const MainScreen = ({ navigation }) => {
         return arr;
       }
     }
+
+
     else if (check == 3) {
       //직장인
 
@@ -335,6 +328,7 @@ const MainScreen = ({ navigation }) => {
         return arr;
       }
     }
+
     else if (check == 4) {
       //금전운
 
@@ -355,6 +349,7 @@ const MainScreen = ({ navigation }) => {
         return arr;
       }
     }
+
     //한번도 분리수거를 하지 않았을 경우 어떤식으로 버튼을 이동할건지 고민 필요
     else {
       var arr = ['', '    환경을 위해 분리수거를 실천해보세요!', '             뭐시기 버튼을 누르면 당신의 분리수거를 돠드릴게요']
@@ -370,6 +365,10 @@ const MainScreen = ({ navigation }) => {
 
     navigation.navigate('login')
   }
+
+      // components에서 navigation 가져올 때 방법 : hook으로 가져온다.
+      const route = useRoute();
+  
 
   return (
 
@@ -389,7 +388,7 @@ const MainScreen = ({ navigation }) => {
 
         {/* 사용자 가입내역 수정 팝업 추가 예정 */}
         <Ellipse source={require("../../assets/img/main/magic_ellipse.png")} />
-        <User> '' </User>
+        <User>""</User>
         <Script>오늘도 환경실천을 한 당신,{"\n"}상쾌한 숲속의 구슬로{"\n"}오늘의 운세를 점쳐보세요</Script>
 
         {/* 조건 달성시 내용 바뀌게 추가할 예정 */}
