@@ -112,6 +112,8 @@ const carouselItems = [
 ]
 
 
+
+
 const SearchDetail_item = () => {
 
     const [entries, setEntries] = useState([]);
@@ -140,6 +142,11 @@ const SearchDetail_item = () => {
             navigation.navigate('main', {countValue: count});
         }
     };
+
+    //////////////////////////////////
+    
+    const user = auth().currentUser;
+    const countValue = firestore().collection('users').doc(user.uid)
 
 
     // Item 부분

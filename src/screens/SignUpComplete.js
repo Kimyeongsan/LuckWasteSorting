@@ -98,7 +98,7 @@ const SignUpComplete = ({ navigation }) => {
         </ContentContainer>
 
         <StartButton
-          onPress={() => navigation.navigate('main')}>
+          onPress={() => navigation.navigate('login')}>
           <StartText>Let'gather tomorrow</StartText>
         </StartButton>
 

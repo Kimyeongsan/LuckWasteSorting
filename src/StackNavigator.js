@@ -81,9 +81,9 @@ function StackNavigator() {
             />
 
             <Stack.Screen
-              name="searchDetail"
-              component={SearchDetail}
-            />
+              name="searchDetail">
+              {props => <SearchDetail {...props} extraData={user} />}
+            </Stack.Screen>
 
             <Stack.Screen
               name="login"

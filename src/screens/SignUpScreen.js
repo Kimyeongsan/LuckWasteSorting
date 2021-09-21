@@ -3,7 +3,6 @@ import styled from 'styled-components/native';
 
 import { Alert, ImageBackground, Dimensions } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { TextInput } from 'react-native';
 
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
@@ -112,7 +111,10 @@ const SignUpScreen = ({ navigation }) => {
           id: uid,
           email,
           name,
-          birthday
+          birthday,
+          loveCount: 2,
+          jobCount: 3,
+          moneyCount: 4
         };
 
         const usersRef = firestore().collection('users')

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/native';
 import { ImageBackground, Image, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -26,6 +26,10 @@ const Ellipse = styled(Image)`
   height: 130px;
   align-self: center;
   marginTop: 55px;
+`;
+
+const TodayBtn = styled.TouchableOpacity`
+  align-self: center;
 `;
 
 const User = styled.Text`
@@ -156,10 +160,40 @@ const MainScreen = (props) => {
   const userName = props.extraData.name
   const userBirthDay = props.extraData.birthday
 
+  const userLoveCount = props.extraData.loveCount
+  const userJobCount= props.extraData.jobCount
+  const userMoneyCount = props.extraData.moneyCount
+
   // 연애운, 직장운, 금전운 count
-  const [loveCnt, setLoveCnt] = useState(2);
-  const [jobCnt, setJobCnt] = useState(3);
-  const [moneyCnt, setMoneyCnt] = useState(4);
+  const [loveCnt, setLoveCnt] = useState(userLoveCount);
+  const [jobCnt, setJobCnt] = useState(userJobCount);
+  const [moneyCnt, setMoneyCnt] = useState(userMoneyCount);
+
+  //운세의 상태를 지정하는 스테이트(전역) 
+  // 0-초기화 화면 1-오늘의 운세 2-연애 3-직장 4-금전운
+  const [check, btnSt] = useState(0);
+
+  const user = auth().currentUser;
+  const countValue = firestore().collection('users').doc(user.uid)
+
+    //month가 몇번째 배열에 있는지 찾아주는 함수
+    const Random = () => {
+      const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+   
+      const shuffle = (array) => {
+        array.sort(() => Math.random() - 0.5);       
+      }
+  
+      shuffle(numbers)
+  
+      for (var i = 0; i <= 11; i++) {
+        if (userBirthDay == numbers[i]) { 
+          break; 
+        }
+      }
+      return i;
+    }
+  
 
   // love 버튼
   const love_clickBtn = (count) => {
@@ -167,11 +201,21 @@ const MainScreen = (props) => {
     if (count != 0 && count > 0) {
       setLoveCnt(count - 1);
 
+      countValue
+      .update({
+        loveCount : loveCnt
+      })
+
       Alert.alert('검색 횟수를 다 못채웠습니다.');
       navigation.navigate('search');
     }
 
     else if (count == 0 || count == "완료") {
+      countValue
+      .update({
+        loveCount : loveCnt
+      })
+
       setLoveCnt("완료");
       btnSt(2);
     }
@@ -183,11 +227,21 @@ const MainScreen = (props) => {
     if (count != 0 && count > 0) {
       setJobCnt(count - 1);
 
+      countValue
+      .update({
+        jobCount : jobCnt
+      })
+
       Alert.alert('검색 횟수를 다 못채웠습니다.');
       navigation.navigate('search');
     }
 
     else if (count == 0 || count == "완료") {
+      countValue
+      .update({
+        jobCount : jobCnt
+      })
+
       setJobCnt("완료");
       btnSt(3);
     }
@@ -199,11 +253,21 @@ const MainScreen = (props) => {
     if (count != 0 && count > 0) {
       setMoneyCnt(count - 1);
 
+      countValue
+      .update({
+        moneyCount : moneyCnt
+      })
+
       Alert.alert('검색 횟수를 다 못채웠습니다.');
       navigation.navigate('search');
     }
 
     else if (count == 0 || count == "완료") {
+      countValue
+      .update({
+        moneyCount : moneyCnt
+      })
+
       setMoneyCnt("완료");
       btnSt(4);
     }
@@ -211,41 +275,15 @@ const MainScreen = (props) => {
 
   ///// 조건에 따라 이미지 변경 함수
   const changeImg = (index, id) => {
-    if (index > 0) { return ( imgData[id].img ) }
-    else if (index != 0 && index > 0) { return ( imgData[id].img )}
-    else if (index == 0 || index == "완료") { return ( imgData[id].complete_img )}
-  }
-
-  ////////////////////////////////////////////////////////
-
-  let today = new Date();
-
-  //운세의 상태를 지정하는 스테이트(전역) 
-  // 0-초기화 화면 1-오늘의 운세 2-연애 3-직장 4-금전운
-  const [check, btnSt] = useState(0);
-
-  //사용자 생일 (월)
-  var month = 10;
-
-  //배열의 요소를 무작위로 섞기 (매일 자정12시에 실행되어야 함.)
-  //서버단에서 저장이 되어야하는 부분
-  //핸드폰이 껏다 켜지면 (어플이 컸다 켜지면)리로드가 되기 때문에 하드코딩 필요 (회의때 말할것)
-  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  const shuffle = (array) => {
-    array.sort(() => Math.random() - 0.5);
-  }
-
-  shuffle(numbers)
-
-  //month가 몇번째 배열에 있는지 찾아주는 함수
-  const Random = () => {
-    var i;
-    for (i = 0; i <= 11; i++) {
-      if (month == numbers[i]) {
-        break;
-      }
+    if (index > 0) { 
+      return (imgData[id].img) 
     }
-    return i;
+    else if (index != 0 && index > 0) { 
+      return (imgData[id].img) 
+    }
+    else if (index == 0 || index == "완료") { 
+      return (imgData[id].complete_img) 
+    }
   }
 
   const [luckTitle, setLuckTitle] = useState([]);
@@ -254,54 +292,54 @@ const MainScreen = (props) => {
   const luckTitleRef = firestore().collection('LuckTitle');
   const luckConentRef = firestore().collection('LuckContent');
 
-  const LuckFunction = ( num ) => {
-  // Title 호출
-  luckTitleRef
-    .onSnapshot(querySnapshot => {
-      const title = [];
+  const LuckFunction = (num) => {
+    // Title 호출
+    luckTitleRef
+      .onSnapshot(querySnapshot => {
+        const title = [];
 
-      querySnapshot.forEach(documentSnapshot => {
-        title.push({
-          ...documentSnapshot.data(),
+        querySnapshot.forEach(documentSnapshot => {
+          title.push({
+            ...documentSnapshot.data(),
+          });
         });
+
+        if (num == 0) {
+          setLuckTitle(title[num].title1);
+        } else if (num == 1) {
+          setLuckTitle(title[num].title2);
+        } else if (num == 2) {
+          setLuckTitle(title[num].title3);
+        } else if (num == 3) {
+          setLuckTitle(title[num].title4);
+        }
+
+        // console.log(luckTitle);
       });
 
-      if(num == 0) {
-        setLuckTitle(title[num].title1);
-      } else if(num == 1) {
-        setLuckTitle(title[num].title2);
-      } else if(num == 2) {
-        setLuckTitle(title[num].title3);
-      } else if(num == 3) {
-        setLuckTitle(title[num].title4);
-      }
+    // Conent 호출
+    luckConentRef
+      .onSnapshot(querySnapshot => {
+        const content = [];
 
-      // console.log(luckTitle);
-    });
-
-  // Conent 호출
-  luckConentRef
-    .onSnapshot(querySnapshot => {
-      const content = [];
-
-      querySnapshot.forEach(documentSnapshot => {
-        content.push({
-          ...documentSnapshot.data(),
+        querySnapshot.forEach(documentSnapshot => {
+          content.push({
+            ...documentSnapshot.data(),
+          });
         });
+
+        if (num == 0) {
+          setLuckContent(content[num].content1);
+        } else if (num == 1) {
+          setLuckContent(content[num].content2);
+        } else if (num == 2) {
+          setLuckContent(content[num].content3);
+        } else if (num == 3) {
+          setLuckContent(content[num].content4);
+        }
+
+        // console.log(luckContent);
       });
-
-      if(num == 0) {
-        setLuckContent(content[num].content1);
-      } else if(num == 1) {
-        setLuckContent(content[num].content2);
-      } else if(num == 2) {
-        setLuckContent(content[num].content3);
-      } else if(num == 3) {
-        setLuckContent(content[num].content4);
-      }
-
-      // console.log(luckContent);
-    });
   }
 
 
@@ -310,8 +348,8 @@ const MainScreen = (props) => {
 
     var title = ['오늘의 운세', '오늘의 연애운세', '오늘의 직장운세', '오늘의 금전운세']
 
+    //오늘의 운세
     if (check == 1) {
-      //오늘의 운세
       LuckFunction(3)
 
       if (Random() <= 2) {
@@ -332,8 +370,8 @@ const MainScreen = (props) => {
       }
     }
 
+    //연애
     else if (check == 2) {
-      //연애
       LuckFunction(1)
 
       if (Random() <= 2) {
@@ -354,8 +392,8 @@ const MainScreen = (props) => {
       }
     }
 
+    //직장인
     else if (check == 3) {
-      //직장인
       LuckFunction(0)
 
       if (Random() <= 2) {
@@ -376,9 +414,9 @@ const MainScreen = (props) => {
       }
     }
 
+    //금전운
     else if (check == 4) {
-      //금전운
-      LuckFunction(1)
+      LuckFunction(2)
 
       if (Random() <= 2) {
         var arr = [title[3], luckTitle, luckContent]
@@ -429,8 +467,13 @@ const MainScreen = (props) => {
         </LogOutButton>
 
         {/* 사용자 내역 출력 */}
-        <Ellipse source={require("../../assets/img/main/magic_ellipse.png")} />
-        <User>{userName}, {userBirthDay}</User>
+        <TodayBtn
+         onPress={() => { btnSt(1) }}>
+        <Ellipse source={require("../../assets/img/main/magic_ellipse.png")}/>
+        </TodayBtn>
+
+
+        <User>{userName}, {userBirthDay}월생</User>
         <Script>오늘도 환경실천을 한 당신,{"\n"}상쾌한 숲속의 구슬로{"\n"}오늘의 운세를 점쳐보세요</Script>
 
         {/* 조건 달성시 내용 바뀌게 */}
