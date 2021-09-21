@@ -1277,6 +1277,11 @@
   "resolved" "https://registry.npmjs.org/@react-native-firebase/firestore/-/firestore-12.8.0.tgz"
   "version" "12.8.0"
 
+"@react-native-firebase/storage@^12.8.0":
+  "integrity" "sha512-P2ygmVrCzF3mxkNyG1VcpwTNc16PLGOsy6Svc2TIpXkEqtuDFXrvMX5uFigPcMBAPa0THRACGQaUPKYpEEfGgQ=="
+  "resolved" "https://registry.npmjs.org/@react-native-firebase/storage/-/storage-12.8.0.tgz"
+  "version" "12.8.0"
+
 "@react-native/assets@1.0.0":
   "integrity" "sha512-KrwSpS1tKI70wuKl68DwJZYEvXktDHdZMG0k2AXD/rJVSlB23/X2CB2cutVR0HwNMJIal9HOUOBB2rVfa6UGtQ=="
   "resolved" "https://registry.npmjs.org/@react-native/assets/-/assets-1.0.0.tgz"

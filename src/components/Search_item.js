@@ -92,7 +92,7 @@ const data_S = [
         key: 'D',
         image: require("../../assets/img/search/grid1.png"),
         mark: require("../../assets/img/search/mark/mark_pet.png")
-    }
+    }, 
 ];
 
 

@@ -4,7 +4,7 @@ import { ImageBackground, Image, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import auth from '@react-native-firebase/auth'
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const Container = styled.View`
   width: 100%;
@@ -128,30 +128,36 @@ const Buttombox = styled.View`
   width: 100%; 
 `;
 
+// 하단 Image Data
+const imgData = [
+  {
+    img: require("../../assets/img/main/Blur_love.png"),
+    complete_img: require("../../assets/img/main/love.png")
+  },
+  {
+    img: require("../../assets/img/main/Blur_work.png"),
+    complete_img: require("../../assets/img/main/work.png")
+  },
+  {
+    img: require("../../assets/img/main/Blur_money.png"),
+    complete_img: require("../../assets/img/main/money.png")
+  },
+]
+
 
 // 전반적인 운세 출력을 위한 화면
-const MainScreen = ({ navigation }) => {
+const MainScreen = (props) => {
+
+  const navigation = useNavigation();
+
+  // firebase User Name, Birthday 출력
+  const userName = props.extraData.name
+  const userBirthDay = props.extraData.birthday
 
   // 연애운, 직장운, 금전운 count
   const [loveCnt, setLoveCnt] = useState(2);
   const [jobCnt, setJobCnt] = useState(3);
   const [moneyCnt, setMoneyCnt] = useState(4);
-
-  const imgData = [
-    {
-      img: require("../../assets/img/main/Blur_love.png"),
-      complete_img: require("../../assets/img/main/love.png")
-    },
-    {
-      img: require("../../assets/img/main/Blur_work.png"),
-      complete_img: require("../../assets/img/main/work.png")
-    },
-    {
-      img: require("../../assets/img/main/Blur_money.png"),
-      complete_img: require("../../assets/img/main/money.png")
-    },
-  ]
-
 
   //사용자의 검색 횟수를 채우지 못하면 얼럿버튼
   //횟수가 충족되면 버튼 액션에 맞게 검색 결과가 달라져야함
@@ -258,7 +264,6 @@ const MainScreen = ({ navigation }) => {
     for (i = 0; i <= 11; i++) {
       if (month == numbers[i]) {
         break;
-
       }
     }
     return i;
@@ -366,12 +371,7 @@ const MainScreen = ({ navigation }) => {
     navigation.navigate('login')
   }
 
-      // components에서 navigation 가져올 때 방법 : hook으로 가져온다.
-      const route = useRoute();
-  
-
   return (
-
     <Background
       source={require("../../assets/img/main_background.png")} >
       <Container>
@@ -386,12 +386,12 @@ const MainScreen = ({ navigation }) => {
           />
         </LogOutButton>
 
-        {/* 사용자 가입내역 수정 팝업 추가 예정 */}
+        {/* 사용자 내역 출력 */}
         <Ellipse source={require("../../assets/img/main/magic_ellipse.png")} />
-        <User>""</User>
+        <User>{userName}, {userBirthDay}</User>
         <Script>오늘도 환경실천을 한 당신,{"\n"}상쾌한 숲속의 구슬로{"\n"}오늘의 운세를 점쳐보세요</Script>
 
-        {/* 조건 달성시 내용 바뀌게 추가할 예정 */}
+        {/* 조건 달성시 내용 바뀌게 */}
         <Luckbox>
           <Title>{change_content(check)[0]}</Title>
           <Mtitle>{change_content(check)[1]}</Mtitle>

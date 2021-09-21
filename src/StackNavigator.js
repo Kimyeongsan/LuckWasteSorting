@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import LoginBeforeScreen from './screens/LoginBeforeScreen';
@@ -18,16 +18,15 @@ import firestore from '@react-native-firebase/firestore'
 const Stack = createStackNavigator();
 
 // 화면 이동 Function
-
 function StackNavigator() {
 
   // Set an initializing state whilst Firebase connects
   const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState();
-
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const usersRef = firestore().collection('users');
+
     auth().onAuthStateChanged(user => {
       if (user) {
         usersRef
@@ -35,6 +34,7 @@ function StackNavigator() {
           .get()
           .then((document) => {
             const userData = document.data()
+
             setInitializing(false)
             setUser(userData)
           })
@@ -42,11 +42,8 @@ function StackNavigator() {
             setInitializing(false)
           });
 
-          // setName(user.displayName);
-          // setBirth(user.);
-
-          // login log print
-          console.log('login user : ' + user.email);
+        // login log print
+        console.log('login user : ' + user.email);
       } else {
         setInitializing(false)
 
@@ -67,16 +64,11 @@ function StackNavigator() {
         }}>
 
         {user ? (
-          // <Stack.Screen name="Home">
-          //   {props => <HomeScreen {...props} extraData={user} />}
-          // </Stack.Screen>
           <>
             <Stack.Screen
-              name="main"
-              component={MainScreen}
-            />
-              {/* {navigation.navigate('searchDetail', { searchValue: user.email })} */}
-           
+              name="main">
+              {props => <MainScreen {...props} extraData={user} />}
+            </Stack.Screen>
 
             <Stack.Screen
               name="camera"

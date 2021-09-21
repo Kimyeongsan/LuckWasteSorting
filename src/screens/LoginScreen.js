@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { Alert, ImageBackground, Dimensions } from 'react-native';
+import { ToastAndroid, Alert, ImageBackground, Dimensions } from 'react-native';
 
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
@@ -144,7 +144,7 @@ const LoginScreen = ({ navigation }) => {
         style={{
           width: Dimensions.get('window').width,
           height: Dimensions.get('window').height,
-          backgroundColor: 'black'
+          backgroundColor: 'black',
         }}
         imageStyle={{ opacity: 0.5 }} // 어둡게
         resizeMode={'cover'}
