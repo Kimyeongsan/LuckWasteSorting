@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, userDate } from 'react';
 import styled from 'styled-components/native';
 import { ImageBackground, Image, Alert, BackHandler } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -160,6 +160,9 @@ const MainScreen = (props) => {
   const userName = props.extraData.name
   const userBirthDay = props.extraData.birthday
 
+  // User 실행 시간 
+  const userDate = props.extraData.date
+
   const userLoveCount = props.extraData.loveCount
   const userJobCount = props.extraData.jobCount
   const userMoneyCount = props.extraData.moneyCount
@@ -188,89 +191,65 @@ const MainScreen = (props) => {
     }, []),
   );
 
-  // 00시가 되면 Reset
+  // 00시가 되면 firebase Count 리셋 & 운세 suffle 추가
   useEffect(() => {
-    // var date = new Date().getDate() + 1;
-    var time = new Date().getHours();
-    // var min = new Date().getMinutes();
+    var time = new Date().getDate();
+    LuckFunction() //운세 내역 호출
 
-    if (time == 0) {
+    if (time != userDate) {
       countValue
         .update({
           loveCount: 2,
           jobCount: 3,
           moneyCount: 4
         })
-
-        // 운세 Reset
-        shuffle(numbers)
+        shuffle(month); // 운세 초기화 될 때 리셋
     }
-
-    // console.log(date + '-' + time + '-' + min)
   });
 
-  const shuffle = (array) => {
-    array.sort(() => Math.random() - 0.5);       
-  }
+  ////////////// 리셋 함수
+  const [month, setMonth] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+
+  const shuffle = (array) => { array.sort(() => Math.random() - 0.5); }
 
   const Random = () => {
-    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     for (var i = 0; i <= 11; i++) {
-      if (userBirthDay == numbers[i]) {
-        break;
+      if (userBirthDay == month[i]) {
+        return i;
       }
     }
-    return i;
   }
-
 
   // love 버튼
   const love_clickBtn = (count) => {
-
     if (count != 0 && count > 0) {
       setLoveCnt(count - 1);
-
-      countValue
-        .update({
-          loveCount: loveCnt
-        })
+      countValue.update({ loveCount: loveCnt, date: new Date().getDate() })
 
       Alert.alert('검색 횟수를 다 못채웠습니다.');
-      navigation.navigate('search');
-    }
+      navigation.navigate('search');  // search 화면 이동
 
-    else if (count == 0 || count == "완료") {
-      countValue
-        .update({
-          loveCount: loveCnt
-        })
+    } else if (count == 0 || count == "완료") {
+      countValue.update({ loveCount: loveCnt, date: new Date().getDate() })
 
       setLoveCnt("완료");
       btnSt(2);
     }
   }
 
+  ////////// 하단 Button Function
+
   // job 버튼
   const job_clickBtn = (count) => {
-
     if (count != 0 && count > 0) {
       setJobCnt(count - 1);
-
-      countValue
-        .update({
-          jobCount: jobCnt
-        })
+      countValue.update({ jobCount: jobCnt, date: new Date().getDate() })
 
       Alert.alert('검색 횟수를 다 못채웠습니다.');
       navigation.navigate('search');
-    }
 
-    else if (count == 0 || count == "완료") {
-      countValue
-        .update({
-          jobCount: jobCnt
-        })
-
+    } else if (count == 0 || count == "완료") {
+      countValue.update({ jobCount: jobCnt, date: new Date().getDate() })
       setJobCnt("완료");
       btnSt(3);
     }
@@ -278,31 +257,22 @@ const MainScreen = (props) => {
 
   // money 버튼
   const money_clickBtn = (count) => {
-
     if (count != 0 && count > 0) {
       setMoneyCnt(count - 1);
-
-      countValue
-        .update({
-          moneyCount: moneyCnt
-        })
+      countValue.update({ moneyCount: moneyCnt, date: new Date().getDate() })
 
       Alert.alert('검색 횟수를 다 못채웠습니다.');
       navigation.navigate('search');
-    }
 
-    else if (count == 0 || count == "완료") {
-      countValue
-        .update({
-          moneyCount: moneyCnt
-        })
+    } else if (count == 0 || count == "완료") {
+      countValue.update({ moneyCount: moneyCnt, date: new Date().getDate() })
 
       setMoneyCnt("완료");
       btnSt(4);
     }
   }
 
-  ///// 조건에 따라 이미지 변경 함수
+  // 하단 버튼 이미지 변경 함수 
   const changeImg = (index, id) => {
     if (index > 0) {
       return (imgData[id].img)
@@ -315,13 +285,21 @@ const MainScreen = (props) => {
     }
   }
 
-  const [luckTitle, setLuckTitle] = useState([]);
-  const [luckContent, setLuckContent] = useState([]);
+
+  const [luckTitle1, setLuckTitle1] = useState([]);
+  const [luckTitle2, setLuckTitle2] = useState([]);
+  const [luckTitle3, setLuckTitle3] = useState([]);
+  const [luckTitle4, setLuckTitle4] = useState([]);
+
+  const [luckContent1, setLuckContent1] = useState([]);
+  const [luckContent2, setLuckContent2] = useState([]);
+  const [luckContent3, setLuckContent3] = useState([]);
+  const [luckContent4, setLuckContent4] = useState([]);
 
   const luckTitleRef = firestore().collection('LuckTitle');
   const luckConentRef = firestore().collection('LuckContent');
 
-  const LuckFunction = (num) => {
+  const LuckFunction = () => {
     // Title 호출
     luckTitleRef
       .onSnapshot(querySnapshot => {
@@ -333,17 +311,10 @@ const MainScreen = (props) => {
           });
         });
 
-        if (num == 0) {
-          setLuckTitle(title[num].title1);
-        } else if (num == 1) {
-          setLuckTitle(title[num].title2);
-        } else if (num == 2) {
-          setLuckTitle(title[num].title3);
-        } else if (num == 3) {
-          setLuckTitle(title[num].title4);
-        }
-
-        // console.log(luckTitle);
+        luckTitle1.push(title[0].title1, title[0].title2, title[0].title3, title[0].title4);
+        luckTitle2.push(title[1].title1, title[1].title2, title[1].title3, title[1].title4);
+        luckTitle3.push(title[2].title1, title[2].title2, title[2].title3, title[2].title4);
+        luckTitle4.push(title[3].title1, title[3].title2, title[3].title3, title[3].title4);
       });
 
     // Conent 호출
@@ -356,73 +327,52 @@ const MainScreen = (props) => {
             ...documentSnapshot.data(),
           });
         });
-
-        if (num == 0) {
-          setLuckContent(content[num].content1);
-        } else if (num == 1) {
-          setLuckContent(content[num].content2);
-        } else if (num == 2) {
-          setLuckContent(content[num].content3);
-        } else if (num == 3) {
-          setLuckContent(content[num].content4);
-        }
-
-        // console.log(luckContent);
+        luckContent1.push(content[0].content1, content[0].content2, content[0].content3, content[0].content4)
+        luckContent2.push(content[1].content1, content[1].content2, content[1].content3, content[1].content4)
+        luckContent3.push(content[2].content1, content[2].content2, content[2].content3, content[2].content4)
+        luckContent4.push(content[3].content1, content[3].content2, content[3].content3, content[3].content4)
       });
   }
 
+  // 운세 제목 출력
+  const luckTitlePrint = (check) => {
+    var title = ['', '오늘의 운세', '오늘의 연애운세', '오늘의 직장운세', '오늘의 금전운세']
+    return title[check];
+  }
+
+  // 운세 내용 출력(운세 이름, 내용)
   const changeFunction = (check) => {
 
-    var title = ['오늘의 운세', '오늘의 연애운세', '오늘의 직장운세', '오늘의 금전운세']
-
     if (Random() <= 2) {
-      var arr = [title[check], luckTitle, luckContent]
+      var arr = [luckTitle1[check], luckContent1[check]]
       return arr;
     }
     else if (2 < Random() && Random() < 6) {
-      var arr = [title[check], luckTitle, luckContent]
+      var arr = [luckTitle2[check], luckContent2[check]]
       return arr;
     }
     else if (5 < Random() && Random() < 8) {
-      var arr = [title[check], luckTitle, luckContent]
+      var arr = [luckTitle3[check], luckContent3[check]]
       return arr;
     }
     else {
-      var arr = [title[check], luckTitle, luckContent]
+      var arr = [luckTitle4[check], luckContent4[check]]
       return arr;
     }
   }
 
-
-  //함수화 다시할 예정
-  const change_content = (check) => {
-
+  const changeContent = (check) => {
     //오늘의 운세
-    if (check == 1) {
-      LuckFunction(3)
-      return changeFunction(0);
-    }
-
+    if (check == 1) { return changeFunction(0); }
     //연애
-    else if (check == 2) {
-      LuckFunction(1)
-      return changeFunction(1);
-    }
-
+    else if (check == 2) { return changeFunction(1); }
     //직장인
-    else if (check == 3) {
-      LuckFunction(0)
-      return changeFunction(2);
-    }
-
+    else if (check == 3) { return changeFunction(2); }
     //금전운
-    else if (check == 4) {
-      LuckFunction(2)
-      return changeFunction(3);
-    }
+    else if (check == 4) { return changeFunction(3); }
 
     else {
-      var arr = ['', '    환경을 위해 분리수거를 실천해보세요!', '             아래 버튼을 누르면 당신의 분리수거를 돠드릴게요']
+      var arr = [' 환경을 위해 분리수거를 실천해보세요!', '아래 버튼을 누르면 당신의 분리수거를 돠드릴게요']
       return arr;
     }
   }
@@ -457,15 +407,14 @@ const MainScreen = (props) => {
           <Ellipse source={require("../../assets/img/main/magic_ellipse.png")} />
         </TodayBtn>
 
-
         <User>{userName}, {userBirthDay}월생</User>
         <Script>오늘도 환경실천을 한 당신,{"\n"}상쾌한 숲속의 구슬로{"\n"}오늘의 운세를 점쳐보세요</Script>
 
         {/* 조건 달성시 내용 바뀌게 */}
         <Luckbox>
-          <Title>{change_content(check)[0]}</Title>
-          <Mtitle>{change_content(check)[1]}</Mtitle>
-          <Content>{change_content(check)[2]}</Content>
+          <Title>{luckTitlePrint(check)}</Title>
+          <Mtitle>{changeContent(check)[0]}</Mtitle>
+          <Content>{changeContent(check)[1]}</Content>
         </Luckbox>
 
         <Script_2>열람을 위해선{"\n"} 선행 분리수거를 진행해 주세요</Script_2>
@@ -495,9 +444,7 @@ const MainScreen = (props) => {
 
       </Container>
     </Background>
-
   );
-
 }
 
 export default MainScreen;

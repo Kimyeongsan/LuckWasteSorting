@@ -112,8 +112,6 @@ const carouselItems = [
 ]
 
 
-
-
 const SearchDetail_item = () => {
 
     const [entries, setEntries] = useState([]);

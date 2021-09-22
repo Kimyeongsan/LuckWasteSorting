@@ -51,7 +51,7 @@ function StackNavigator() {
         console.log('최초 login');
       }
     });
-  }, []);
+  }, [0]);
 
   if (initializing) return null;
 
