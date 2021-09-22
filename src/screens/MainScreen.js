@@ -371,98 +371,54 @@ const MainScreen = (props) => {
       });
   }
 
+  const changeFunction = (check) => {
+
+    var title = ['오늘의 운세', '오늘의 연애운세', '오늘의 직장운세', '오늘의 금전운세']
+
+    if (Random() <= 2) {
+      var arr = [title[check], luckTitle, luckContent]
+      return arr;
+    }
+    else if (2 < Random() && Random() < 6) {
+      var arr = [title[check], luckTitle, luckContent]
+      return arr;
+    }
+    else if (5 < Random() && Random() < 8) {
+      var arr = [title[check], luckTitle, luckContent]
+      return arr;
+    }
+    else {
+      var arr = [title[check], luckTitle, luckContent]
+      return arr;
+    }
+  }
+
 
   //함수화 다시할 예정
   const change_content = (check) => {
 
-    var title = ['오늘의 운세', '오늘의 연애운세', '오늘의 직장운세', '오늘의 금전운세']
-
     //오늘의 운세
     if (check == 1) {
       LuckFunction(3)
-
-      if (Random() <= 2) {
-        var arr = [title[0], luckTitle, luckContent]
-        return arr;
-      }
-      else if (2 < Random() && Random() < 6) {
-        var arr = [title[0], luckTitle, luckContent]
-        return arr;
-      }
-      else if (5 < Random() && Random() < 8) {
-        var arr = [title[0], luckTitle, luckContent]
-        return arr;
-      }
-      else {
-        var arr = [title[0], luckTitle, luckContent]
-        return arr;
-      }
+      return changeFunction(0);
     }
 
     //연애
     else if (check == 2) {
       LuckFunction(1)
-
-      if (Random() <= 2) {
-        var arr = [title[1], luckTitle, luckContent]
-        return arr;
-      }
-      else if (2 < Random() && Random() < 6) {
-        var arr = [title[1], luckTitle, luckContent]
-        return arr;
-      }
-      else if (5 < Random() && Random() < 8) {
-        var arr = [title[1], luckTitle, luckContent]
-        return arr;
-      }
-      else {
-        var arr = [title[1], luckTitle, luckContent]
-        return arr;
-      }
+      return changeFunction(1);
     }
 
     //직장인
     else if (check == 3) {
       LuckFunction(0)
-
-      if (Random() <= 2) {
-        var arr = [title[2], luckTitle, luckContent]
-        return arr;
-      }
-      else if (2 < Random() && Random() < 6) {
-        var arr = [title[2], luckTitle, luckContent]
-        return arr;
-      }
-      else if (5 < Random() && Random() < 8) {
-        var arr = [title[2], luckTitle, luckContent]
-        return arr;
-      }
-      else {
-        var arr = [title[2], luckTitle, luckContent]
-        return arr;
-      }
+      return changeFunction(2);
     }
 
     //금전운
     else if (check == 4) {
       LuckFunction(2)
-
-      if (Random() <= 2) {
-        var arr = [title[3], luckTitle, luckContent]
-        return arr;
-      }
-      else if (2 < Random() && Random() < 6) {
-        var arr = [title[3], luckTitle, luckContent]
-        return arr;
-      }
-      else if (5 < Random() && Random() < 8) {
-        var arr = [title[3], luckTitle, luckContent]
-        return arr;
-      }
-      else {
-        var arr = [title[3], luckTitle, luckContent]
-        return arr;
-      }
+      return changeFunction(3);
     }
 
     else {
