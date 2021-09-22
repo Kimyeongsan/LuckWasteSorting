@@ -1,3 +1,4 @@
+   
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 
@@ -176,12 +177,13 @@ const SignUpScreen = ({ navigation }) => {
           </TextContainer>
 
           <TextContainer>
-            <BoldContent>Birthday</BoldContent>
+            <BoldContent>Month(Birthday)</BoldContent>
             <TextInputs
-              placeholder={'Enter Birthday'}
+              placeholder={'Enter Month'}
               placeholderTextColor='white'
               autoFocus={true}
               value={birthday}
+              maxLength={2}  // 최대 2자리 입력
               onChangeText={e => setBirthday(e)}
             />
           </TextContainer>

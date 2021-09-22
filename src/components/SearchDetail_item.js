@@ -145,8 +145,8 @@ const SearchDetail_item = () => {
 
     //////////////////////////////////
     
-    const user = auth().currentUser;
-    const countValue = firestore().collection('users').doc(user.uid)
+    // const user = auth().currentUser;
+    // const countValue = firestore().collection('users').doc(user.uid)
 
 
     // Item 부분

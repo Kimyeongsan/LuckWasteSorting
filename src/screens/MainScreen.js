@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components/native';
-import { ImageBackground, Image, Alert } from 'react-native';
+import { ImageBackground, Image, Alert, BackHandler } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 const Container = styled.View`
   width: 100%;
@@ -161,7 +161,7 @@ const MainScreen = (props) => {
   const userBirthDay = props.extraData.birthday
 
   const userLoveCount = props.extraData.loveCount
-  const userJobCount= props.extraData.jobCount
+  const userJobCount = props.extraData.jobCount
   const userMoneyCount = props.extraData.moneyCount
 
   // 연애운, 직장운, 금전운 count
@@ -176,24 +176,53 @@ const MainScreen = (props) => {
   const user = auth().currentUser;
   const countValue = firestore().collection('users').doc(user.uid)
 
-    //month가 몇번째 배열에 있는지 찾아주는 함수
-    const Random = () => {
-      const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-   
-      const shuffle = (array) => {
-        array.sort(() => Math.random() - 0.5);       
-      }
-  
-      shuffle(numbers)
-  
-      for (var i = 0; i <= 11; i++) {
-        if (userBirthDay == numbers[i]) { 
-          break; 
-        }
-      }
-      return i;
+  // 뒤로 가기 막기
+  useFocusEffect(
+    useCallback(() => {
+      const onBackPress = () => {
+        return true;
+      };
+      BackHandler.addEventListener('hardwareBackPress', onBackPress);
+      return () =>
+        BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+    }, []),
+  );
+
+  // 00시가 되면 Reset
+  useEffect(() => {
+    // var date = new Date().getDate() + 1;
+    var time = new Date().getHours();
+    // var min = new Date().getMinutes();
+
+    if (time == 0) {
+      countValue
+        .update({
+          loveCount: 2,
+          jobCount: 3,
+          moneyCount: 4
+        })
+
+        // 운세 Reset
+        shuffle(numbers)
     }
-  
+
+    // console.log(date + '-' + time + '-' + min)
+  });
+
+  const shuffle = (array) => {
+    array.sort(() => Math.random() - 0.5);       
+  }
+
+  const Random = () => {
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    for (var i = 0; i <= 11; i++) {
+      if (userBirthDay == numbers[i]) {
+        break;
+      }
+    }
+    return i;
+  }
+
 
   // love 버튼
   const love_clickBtn = (count) => {
@@ -202,9 +231,9 @@ const MainScreen = (props) => {
       setLoveCnt(count - 1);
 
       countValue
-      .update({
-        loveCount : loveCnt
-      })
+        .update({
+          loveCount: loveCnt
+        })
 
       Alert.alert('검색 횟수를 다 못채웠습니다.');
       navigation.navigate('search');
@@ -212,9 +241,9 @@ const MainScreen = (props) => {
 
     else if (count == 0 || count == "완료") {
       countValue
-      .update({
-        loveCount : loveCnt
-      })
+        .update({
+          loveCount: loveCnt
+        })
 
       setLoveCnt("완료");
       btnSt(2);
@@ -228,9 +257,9 @@ const MainScreen = (props) => {
       setJobCnt(count - 1);
 
       countValue
-      .update({
-        jobCount : jobCnt
-      })
+        .update({
+          jobCount: jobCnt
+        })
 
       Alert.alert('검색 횟수를 다 못채웠습니다.');
       navigation.navigate('search');
@@ -238,9 +267,9 @@ const MainScreen = (props) => {
 
     else if (count == 0 || count == "완료") {
       countValue
-      .update({
-        jobCount : jobCnt
-      })
+        .update({
+          jobCount: jobCnt
+        })
 
       setJobCnt("완료");
       btnSt(3);
@@ -254,9 +283,9 @@ const MainScreen = (props) => {
       setMoneyCnt(count - 1);
 
       countValue
-      .update({
-        moneyCount : moneyCnt
-      })
+        .update({
+          moneyCount: moneyCnt
+        })
 
       Alert.alert('검색 횟수를 다 못채웠습니다.');
       navigation.navigate('search');
@@ -264,9 +293,9 @@ const MainScreen = (props) => {
 
     else if (count == 0 || count == "완료") {
       countValue
-      .update({
-        moneyCount : moneyCnt
-      })
+        .update({
+          moneyCount: moneyCnt
+        })
 
       setMoneyCnt("완료");
       btnSt(4);
@@ -275,14 +304,14 @@ const MainScreen = (props) => {
 
   ///// 조건에 따라 이미지 변경 함수
   const changeImg = (index, id) => {
-    if (index > 0) { 
-      return (imgData[id].img) 
+    if (index > 0) {
+      return (imgData[id].img)
     }
-    else if (index != 0 && index > 0) { 
-      return (imgData[id].img) 
+    else if (index != 0 && index > 0) {
+      return (imgData[id].img)
     }
-    else if (index == 0 || index == "완료") { 
-      return (imgData[id].complete_img) 
+    else if (index == 0 || index == "완료") {
+      return (imgData[id].complete_img)
     }
   }
 
@@ -468,8 +497,8 @@ const MainScreen = (props) => {
 
         {/* 사용자 내역 출력 */}
         <TodayBtn
-         onPress={() => { btnSt(1) }}>
-        <Ellipse source={require("../../assets/img/main/magic_ellipse.png")}/>
+          onPress={() => { btnSt(1) }}>
+          <Ellipse source={require("../../assets/img/main/magic_ellipse.png")} />
         </TodayBtn>
 
 

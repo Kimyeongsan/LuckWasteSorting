@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components/native';
 
-import { ImageBackground, Image } from 'react-native';
+import { ImageBackground, Image, BackHandler } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 
 import Search_Input from '../components/Search_Input'
 import Search_item from '../components/Search_item';
@@ -50,6 +51,18 @@ const NomalContent = styled.Text`
 
 const SearchScreen = ({ navigation }) => {
 
+  // 뒤로 가기 막기
+  useFocusEffect(
+    useCallback(() => {
+      const onBackPress = () => {
+        return true;
+      };
+      BackHandler.addEventListener('hardwareBackPress', onBackPress);
+      return () =>
+        BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+    }, []),
+  );
+
   return (
     <Background
       source={require("../../assets/img/search_background.png")}>
@@ -68,7 +81,7 @@ const SearchScreen = ({ navigation }) => {
         <CameraButton
           onPress={() => navigation.navigate('camera')}>
           <Image
-            style={{height: 80, width: 80 }}
+            style={{ height: 80, width: 80 }}
             resizeMode='contain'
             source={require('../../assets/img/search/camera_icon.png')}
           />
