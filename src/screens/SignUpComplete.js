@@ -73,7 +73,6 @@ const StartText = styled.Text`
 `;
 
 // 회원가입 성공 화면
-
 const SignUpComplete = ({ navigation }) => {
 
   return (

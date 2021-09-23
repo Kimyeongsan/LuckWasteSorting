@@ -95,11 +95,9 @@ const data_S = [
     }, 
 ];
 
-
 const numColumns = 2;
 
 // Grid View 가로 출력 함수
-
 const formatData = (data, numColumns) => {
     const numberOfFullRows = Math.floor(data.length / numColumns);
 

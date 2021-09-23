@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Text, Dimensions, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
+import { Text, Dimensions, TouchableOpacity, Image } from 'react-native';
 
 import styled from 'styled-components/native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
