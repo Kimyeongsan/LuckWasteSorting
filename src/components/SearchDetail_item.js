@@ -1,10 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Text, Dimensions, TouchableOpacity, Image, View } from 'react-native';
+import { Text, Dimensions, TouchableOpacity, Image } from 'react-native';
 
 import styled from 'styled-components/native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
+import firestore from '@react-native-firebase/firestore'
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -26,9 +28,7 @@ const CarouselContainer = styled.View`
     justifyContent: center;
 `;
 
-
 // Complete button 부분
-
 const IconContainer1 = styled.View`
 marginBottom: 15px;
   flexDirection: row;
@@ -79,7 +79,10 @@ const StartText = styled.Text`
 `;
 
 
-// 임시 데이터
+
+const SearchDetail_item = () => {
+
+    // 임시 데이터
 const carouselItems = [
     {
         title: "Item 1",
@@ -106,18 +109,16 @@ const carouselItems = [
         text: "Text 5",
         image: require("../../assets/img/search/1.png")
     },
-    {
-
-    },
+    { },
 ]
-
-
-const SearchDetail_item = () => {
 
     const [entries, setEntries] = useState([]);
     const carouselRef = useRef("null");
 
-    useEffect(() => { setEntries(carouselItems); }, []);
+    useEffect(() => { 
+        setEntries(carouselItems); 
+    }, []);
+
 
     // Current page를 index에 저장
     const [index, setIndex] = useState(0)
@@ -132,20 +133,34 @@ const SearchDetail_item = () => {
     // 다음 item으로 이동하는 버튼 부분
     const goForward = () => {
         carouselRef.current.snapToNext();
-
         if (index == carouselItems.length - 1) {
-
-            // count 추가 부분
-            setCount(count + 1);
+            setCount(count + 1); // count 추가 부분
             navigation.navigate('main', {countValue: count});
         }
     };
 
-    //////////////////////////////////
-    
-    // const user = auth().currentUser;
-    // const countValue = firestore().collection('users').doc(user.uid)
+    /////// 검색 데이터
+    // const [recycleContent, setRecycleContent] = useState([]);
 
+    // useEffect(() => {
+    //     const subscriber = firestore()
+    //       .collection('recycle')
+    //       .onSnapshot(documentSnapshot => {
+    //         const content = [];
+
+    //         documentSnapshot.forEach(i => {
+    //             users.push({
+    //               ...i.data(),
+    //               key: i.id,
+    //             });
+    //           });
+    //         content.push(documentSnapshot.data())
+
+    //         recycleContent.push(content[0].content1, content[0].content2, content[0].content3, content[0].content4, content[0].content5);
+    //         console.log('User data: ', recycleContent);
+    //       });
+    //     return () => subscriber();
+    //   }, ['snackbag']);
 
     // Item 부분
     const renderItem = ({ item }) => {

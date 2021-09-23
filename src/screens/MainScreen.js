@@ -285,7 +285,6 @@ const MainScreen = (props) => {
     }
   }
 
-
   const [luckTitle1, setLuckTitle1] = useState([]);
   const [luckTitle2, setLuckTitle2] = useState([]);
   const [luckTitle3, setLuckTitle3] = useState([]);
@@ -332,6 +331,8 @@ const MainScreen = (props) => {
         luckContent3.push(content[2].content1, content[2].content2, content[2].content3, content[2].content4)
         luckContent4.push(content[3].content1, content[3].content2, content[3].content3, content[3].content4)
       });
+
+      console.log('운세 데이터 업로드 성공!')
   }
 
   // 운세 제목 출력

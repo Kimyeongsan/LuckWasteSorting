@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/native';
 import { RNCamera } from 'react-native-camera-tflite';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Alert } from 'react-native';
 
 import outputs from '../../Output.json';
 import _ from 'lodash';
@@ -58,8 +58,50 @@ class CameraScreen extends Component {
     this.setState(state => ({
       output
     }));
-    
+
     _currentInstant = Date.now();
+  }
+
+  changeFunction() {
+    var itemList = [
+      'water bottle', 'pop bottle',
+      'pill bottle', 'beer bottle', 'beer glass', 'beaker',
+      'pillow', 'plasticbag', 'packet', 'prezel',
+      'coffee mug', 'bottle cap',
+      'carton'
+    ]
+
+    for (var i = 0; i < itemList.length; i++) {
+      if (this.state.output == itemList[i]) {
+
+        var change = [];
+
+        if (this.state.output == 'water bottle' || this.state.output == 'pop bottle') {
+          change.push('pet')
+        }
+        else if (this.state.output == 'pill bottle' || this.state.output == 'beer bottle' || this.state.output == 'beer glass' || this.state.output == 'beaker') {
+          change.push('glass')
+        }
+        else if (this.state.output == 'pillow' || this.state.output == 'plasticbag' || this.state.output == 'packet' || this.state.output == 'prezel') {
+          change.push('snackbag')
+        }
+        else if (this.state.output == 'coffee mug' || this.state.output == 'bottle cap') {
+          change.push('can')
+        }
+        else if (this.state.output == 'carton') {
+          change.push('carton')
+        }
+
+        this.props.navigation.navigate('searchDetail', { textInputValue: change })
+
+        console.log('Search OutPut : ' + change)
+      }
+    }
+    if (!itemList.includes(this.state.output)) {
+      Alert.alert("검색어가 없습니다..");
+    }
+
+    
   }
 
   render() {
@@ -89,7 +131,7 @@ class CameraScreen extends Component {
         {/* 값이 없을 때 예외 처리 추가 */}
         <BottomImgContainer>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('searchDetail', {textInputValue:this.state.output})}>
+            onPress={() => this.changeFunction()}>
             <BottomImg source={require("../../assets/img/main/magic_ellipse.png")} />
           </TouchableOpacity>
         </BottomImgContainer>

@@ -37,17 +37,56 @@ const TextInputs = styled(TextInput)`
 const Search_Input = () => {
     const navigation = useNavigation();
     const [Xm, handleX] = useState();
+    const [change, setChange] = useState('');
+
+    // 플라스틱통 = water bottle & pop bottle
+    // 스파게티 소스 유리병 : pill bottle & beer bottle & beer glass & beaker
+    // 과자봉투 pillow & plasticbag &  packet & prezel
+    // 캔 : pop bottle & coffee mug & bottle cap
+    // 우유팩 : packet & carton
 
     const Submit = () => {
-        // Test값 출력
-        console.log( 'Search OutPut : ' + Xm )
-
+        var itemList = [
+            'water bottle', 'pop bottle',
+            'pill bottle', 'beer bottle', 'beer glass', 'beaker',
+            'pillow', 'plasticbag', 'packet', 'prezel',
+            'coffee mug', 'bottle cap',
+            'carton'
+        ]
+        
         if (Xm == null) {
             Alert.alert("검색어를 입력해주세요.");
+        } 
+        else {
+            for (var i = 0; i < itemList.length; i++) {
+                if (Xm == itemList[i]) {
 
-        } else{
-            // 결과값 넘겨주기
-            navigation.navigate('searchDetail', { searchValue: Xm });
+                    var change = [];
+
+                    if(Xm == 'water bottle' || Xm == 'pop bottle') {
+                        change.push('pet')
+                    }
+                    else if(Xm == 'pill bottle' || Xm =='beer bottle' || Xm == 'beer glass' || Xm == 'beaker'){
+                        change.push('glass')
+                    }
+                    else if(Xm == 'pillow' || Xm == 'plasticbag' || Xm == 'packet' || Xm == 'prezel') {
+                        change.push('snackbag')
+                    }
+                    else if(Xm == 'coffee mug' || Xm == 'bottle cap') {
+                        change.push('can')
+                    }
+                    else if(Xm == 'carton') {
+                        change.push('carton')
+                    }
+
+                    navigation.navigate('searchDetail', { searchValue: change });
+
+                    console.log('Search OutPut : ' + change)
+                }
+            }
+            if(!itemList.includes(Xm))  {
+                Alert.alert("검색어가 없습니다..");
+            }
         }
     }
 
@@ -65,13 +104,13 @@ const Search_Input = () => {
                 //Hint
                 placeholder={"검색"}
                 // 검색어 길이 11개로 고정
-                maxLength = {11}
+                maxLength={15}
                 //검색어 두줄 불가
                 multiline={false}
                 // Enter 누르면 Keypad 닫힘
                 blurOnSubmit={true}
                 //Enter 기능 추가
-                onSubmitEditing={() => Submit()} /> 
+                onSubmitEditing={() => Submit()} />
         </SearchView>
     );
 }
