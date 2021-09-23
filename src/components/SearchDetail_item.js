@@ -5,6 +5,7 @@ import styled from 'styled-components/native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Icos from 'react-native-vector-icons/Ionicons';
 
 import firestore from '@react-native-firebase/firestore'
 
@@ -47,6 +48,8 @@ const CompleteContainer = styled.View`
     padding: 40px;
 `;
 
+
+// 이동 화면 Style
 const ContentContainer = styled.View`
     width: 100%;
     height: 130px;
@@ -102,10 +105,8 @@ const SearchDetail_item = () => {
         }
     };
 
-    const userJobCount = route.params.searchValue
-
-    const [loading, setLoading] = useState(true); // Set loading to true on component mount
     const [searchItem, setSearchItem] = useState([]); // Initial empty array of users
+    const userJobCount = route.params.searchValue;
 
     // firebase 호출
     useEffect(() => {
@@ -133,16 +134,20 @@ const SearchDetail_item = () => {
         if (index < searchItem.length - 1) {
             return (
                 <ItemContainer>
-                    <Text style={{ fontSize: 30 }}>{item.title}</Text>
+                    <TouchableOpacity 
+                    onPress={goForward}
+                    style={{position: 'absolute', alignSelf:'flex-end', padding: 10}}>
+                        <Icos
+                            name='arrow-forward' 
+                            size={35}
+                        /> 
+                    </TouchableOpacity>
+                    <Text style={{ fontFamily: 'JosefinSans-Bold', fontSize: 20 }}>{item.title}</Text>
                     <Image
-                        style={{ height: 230, width: 230 }}
+                        style={{ height: 230, width: 230, margin: 10 }}
                         source={{ uri: item.img }}
                     />
-                    <Text>{item.content}</Text>
-
-                    <TouchableOpacity onPress={goForward}>
-                        <Text style={{ color: 'blue', fontSize: 20, marginBottom: 20 }}>go to next slide</Text>
-                    </TouchableOpacity>
+                    <Text style={{ fontFamily: 'JosefinSans-Regular', fontSize: 14, margin: 3 }}>{item.content}</Text>
                 </ItemContainer>
             )
         }
