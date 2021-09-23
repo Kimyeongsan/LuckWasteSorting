@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Text, Dimensions, TouchableOpacity, Image } from 'react-native';
+import { Text, Dimensions, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 
 import styled from 'styled-components/native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
@@ -78,47 +78,9 @@ const StartText = styled.Text`
     borderColor: white;
 `;
 
-
-
 const SearchDetail_item = () => {
 
-    // 임시 데이터
-const carouselItems = [
-    {
-        title: "Item 1",
-        text: "Text 1",
-        image: require("../../assets/img/search/1.png")
-    },
-    {
-        title: "Item 2",
-        text: "Text 2",
-        image: require("../../assets/img/search/2.png")
-    },
-    {
-        title: "Item 3",
-        text: "Text 3",
-        image: require("../../assets/img/search/3.png")
-    },
-    {
-        title: "Item 4",
-        text: "Text 4",
-        image: require("../../assets/img/search/4.png")
-    },
-    {
-        title: "Item 5",
-        text: "Text 5",
-        image: require("../../assets/img/search/1.png")
-    },
-    { },
-]
-
-    const [entries, setEntries] = useState([]);
     const carouselRef = useRef("null");
-
-    useEffect(() => { 
-        setEntries(carouselItems); 
-    }, []);
-
 
     // Current page를 index에 저장
     const [index, setIndex] = useState(0)
@@ -133,48 +95,50 @@ const carouselItems = [
     // 다음 item으로 이동하는 버튼 부분
     const goForward = () => {
         carouselRef.current.snapToNext();
-        if (index == carouselItems.length - 1) {
+
+        if (index == searchItem.length - 1) {
             setCount(count + 1); // count 추가 부분
-            navigation.navigate('main', {countValue: count});
+            navigation.navigate('main', { countValue: count });
         }
     };
 
-    /////// 검색 데이터
-    // const [recycleContent, setRecycleContent] = useState([]);
+    const userJobCount = route.params.searchValue
 
-    // useEffect(() => {
-    //     const subscriber = firestore()
-    //       .collection('recycle')
-    //       .onSnapshot(documentSnapshot => {
-    //         const content = [];
+    const [loading, setLoading] = useState(true); // Set loading to true on component mount
+    const [searchItem, setSearchItem] = useState([]); // Initial empty array of users
 
-    //         documentSnapshot.forEach(i => {
-    //             users.push({
-    //               ...i.data(),
-    //               key: i.id,
-    //             });
-    //           });
-    //         content.push(documentSnapshot.data())
+    // firebase 호출
+    useEffect(() => {
+        const subscriber = firestore()
+            .collection(`${userJobCount}`)
+            .onSnapshot(querySnapshot => {
+                const recycle = [];
 
-    //         recycleContent.push(content[0].content1, content[0].content2, content[0].content3, content[0].content4, content[0].content5);
-    //         console.log('User data: ', recycleContent);
-    //       });
-    //     return () => subscriber();
-    //   }, ['snackbag']);
+                querySnapshot.forEach(documentSnapshot => {
+                    recycle.push({
+                        ...documentSnapshot.data(),
+                    });
+                });
+
+                console.log(recycle);
+                setSearchItem(recycle);
+            });
+        return () => subscriber();
+    }, []);
 
     // Item 부분
     const renderItem = ({ item }) => {
 
         // 검색어가 없을때의 페이지 조건문 생성 예정
-        if (index < carouselItems.length - 1) {
+        if (index < searchItem.length - 1) {
             return (
                 <ItemContainer>
-                    <Image
-                        style={{ height: 250, width: 250 }}
-                        source={item.image}
-                    />
                     <Text style={{ fontSize: 30 }}>{item.title}</Text>
-                    <Text>{item.text}</Text>
+                    <Image
+                        style={{ height: 230, width: 230 }}
+                        source={{ uri: item.img }}
+                    />
+                    <Text>{item.content}</Text>
 
                     <TouchableOpacity onPress={goForward}>
                         <Text style={{ color: 'blue', fontSize: 20, marginBottom: 20 }}>go to next slide</Text>
@@ -183,11 +147,11 @@ const carouselItems = [
             )
         }
 
-        else if (index == carouselItems.length - 1) {
+        else if (index == searchItem.length - 1) {
             return (
                 <CompleteContainer>
                     <ContentContainer>
-                    <IconContainer1><Icon name="quote-left" color="rgba(255, 255, 255, 0.5)" size={40} /></IconContainer1>
+                        <IconContainer1><Icon name="quote-left" color="rgba(255, 255, 255, 0.5)" size={40} /></IconContainer1>
                         <NomalContent>깨끗한 내일을 위한 “내일을 모으다”</NomalContent>
                         <NomalContent>오늘도 환경 운동에 힘써주셔서</NomalContent>
                         <NomalContent>감사합니다.{"\n"}</NomalContent>
@@ -213,7 +177,7 @@ const carouselItems = [
                 <Carousel
                     layout={"default"}
                     ref={carouselRef}
-                    data={entries}
+                    data={searchItem}
                     sliderWidth={screenWidth}
                     sliderHeight={screenWidth}
                     itemWidth={screenWidth - 60}
@@ -221,13 +185,9 @@ const carouselItems = [
                     onSnapToItem={(index) => setIndex(index)} />
             </CarouselContainer>
 
-            {/* 임시 출력 데이터들 */}
-            <Text>{route.params.searchValue}</Text>
-            <Text>{route.params.textInputValue}</Text>
-
             {/* Pagination 부분 */}
             <Pagination
-                dotsLength={entries.length}
+                dotsLength={searchItem.length}
                 activeDotIndex={index}
                 containerStyle={{ flexDirection: 'row', justifyContent: 'center', }}
                 dotStyle={{

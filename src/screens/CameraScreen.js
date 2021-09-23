@@ -91,17 +91,13 @@ class CameraScreen extends Component {
         else if (this.state.output == 'carton') {
           change.push('carton')
         }
-
-        this.props.navigation.navigate('searchDetail', { textInputValue: change })
-
+        this.props.navigation.navigate('searchDetail', { searchValue: change })
         console.log('Search OutPut : ' + change)
       }
     }
     if (!itemList.includes(this.state.output)) {
       Alert.alert("검색어가 없습니다..");
     }
-
-    
   }
 
   render() {

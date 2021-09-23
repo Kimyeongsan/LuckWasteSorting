@@ -37,7 +37,6 @@ const TextInputs = styled(TextInput)`
 const Search_Input = () => {
     const navigation = useNavigation();
     const [Xm, handleX] = useState();
-    const [change, setChange] = useState('');
 
     // 플라스틱통 = water bottle & pop bottle
     // 스파게티 소스 유리병 : pill bottle & beer bottle & beer glass & beaker
