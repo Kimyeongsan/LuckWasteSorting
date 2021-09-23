@@ -373,7 +373,7 @@ const MainScreen = (props) => {
     else if (check == 4) { return changeFunction(3); }
 
     else {
-      var arr = [' 환경을 위해 분리수거를 실천해보세요!', '아래 버튼을 누르면 당신의 분리수거를 돠드릴게요']
+      var arr = ['    환경을 위해 분리수거를 실천해보세요!', '           아래 버튼을 누르면 당신의 분리수거를 도와드릴게요! \n\n                           1회 이상 검색을 진행하셨다면 \n\n          마법의 구슬을 클릭하셔서 오늘의 운세를 점쳐보세요']
       return arr;
     }
   }
@@ -408,7 +408,7 @@ const MainScreen = (props) => {
           <Ellipse source={require("../../assets/img/main/magic_ellipse.png")} />
         </TodayBtn>
 
-        <User>{userName}, {userBirthDay}월생</User>
+        <User>{userName}님, {userBirthDay}월생</User>
         <Script>오늘도 환경실천을 한 당신,{"\n"}상쾌한 숲속의 구슬로{"\n"}오늘의 운세를 점쳐보세요</Script>
 
         {/* 조건 달성시 내용 바뀌게 */}
