@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useCallback, userDate } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components/native';
 import { ImageBackground, Image, Alert, BackHandler } from 'react-native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 const Container = styled.View`
   width: 100%;

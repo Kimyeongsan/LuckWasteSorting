@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { ToastAndroid, Alert, ImageBackground, Dimensions } from 'react-native';
+import { Alert, ImageBackground, Dimensions } from 'react-native';
 
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
@@ -96,11 +96,6 @@ const UserSignUpText = styled.Text`
 `;
 
 // Login을 위한 화면
-
-// 구현 사항 : 
-// User Id , User Password 입력 받을 창 제작 예정
-// Login Button 클릭 시 Main 화면으로 전환
-
 const LoginScreen = ({ navigation }) => {
 
   const [email, setEmail] = useState('')
@@ -180,7 +175,6 @@ const LoginScreen = ({ navigation }) => {
               onChangeText={(e) => setPassword(e)}
             />
           </TextContainer>
-
 
         </LoginContainer>
 

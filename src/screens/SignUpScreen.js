@@ -72,11 +72,6 @@ const SignUpText = styled.Text`
 `;
 
 // 회원가입을 위한 화면
-
-// 구현사항 :
-// User ID, PassWord 등등 -> 추후 추가될 수 있음
-// 입력 완료 버튼 클릭시 Complete화면으로 전환 (완료)
-
 const SignUpScreen = ({ navigation }) => {
 
   const [name, setUserName] = useState('')
