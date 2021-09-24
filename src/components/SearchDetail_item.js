@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Icos from 'react-native-vector-icons/Ionicons';
 
 import firestore from '@react-native-firebase/firestore'
+import FlipGuid from '../components/FlipGuid';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -134,20 +135,18 @@ const SearchDetail_item = () => {
         if (index < searchItem.length - 1) {
             return (
                 <ItemContainer>
-                    <TouchableOpacity 
-                    onPress={goForward}
-                    style={{position: 'absolute', alignSelf:'flex-end', padding: 10}}>
-                        <Icos
-                            name='arrow-forward' 
-                            size={35}
-                        /> 
-                    </TouchableOpacity>
-                    <Text style={{ fontFamily: 'JosefinSans-Bold', fontSize: 20 }}>{item.title}</Text>
+
+                    <Text style={{ fontFamily: 'JosefinSans-Bold', fontSize: 20, margin: 15 }}>{item.title}</Text>
                     <Image
-                        style={{ height: 230, width: 230, margin: 10 }}
+                        style={{ height: 230, width: 230, margin: 30 }}
                         source={{ uri: item.img }}
                     />
                     <Text style={{ fontFamily: 'JosefinSans-Regular', fontSize: 14, margin: 3 }}>{item.content}</Text>
+                    <TouchableOpacity
+                        onPress={goForward}
+                        style={{position: 'absolute', flexDirection: 'row', alignSelf: 'flex-end'}}>
+                        <FlipGuid />
+                    </TouchableOpacity>
                 </ItemContainer>
             )
         }

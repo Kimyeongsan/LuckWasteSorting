@@ -37,20 +37,22 @@ const TextInputs = styled(TextInput)`
 const Search_Input = () => {
     const navigation = useNavigation();
     const [Xm, handleX] = useState();
+    const [change, handleChange] = useState();
 
     // 플라스틱통 = water bottle & pop bottle
     // 스파게티 소스 유리병 : pill bottle & beer bottle & beer glass & beaker
     // 과자봉투 pillow & plasticbag &  packet & prezel
     // 캔 : pop bottle & coffee mug & bottle cap
     // 우유팩 : packet & carton
-
     const Submit = () => {
+
+
         var itemList = [
-            'water bottle', 'pop bottle',
-            'pill bottle', 'beer bottle', 'beer glass', 'beaker',
-            'pillow', 'plasticbag', 'packet', 'prezel',
-            'coffee mug', 'bottle cap',
-            'carton'
+            '패트병', 'water bottle', 'pop bottle',
+            '유리병', 'pill bottle', 'beer bottle', 'beer glass', 'beaker',
+            '과자봉지', 'pillow', 'plasticbag', 'packet', 'prezel',
+            '캔', 'coffee mug', 'bottle cap',
+            '우유팩', 'carton'
         ]
         
         if (Xm == null) {
@@ -62,19 +64,19 @@ const Search_Input = () => {
 
                     var change = [];
 
-                    if(Xm == 'water bottle' || Xm == 'pop bottle') {
+                    if(Xm == '패트병' || Xm == 'water bottle' || Xm == 'pop bottle') {
                         change.push('pet')
                     }
-                    else if(Xm == 'pill bottle' || Xm =='beer bottle' || Xm == 'beer glass' || Xm == 'beaker'){
+                    else if(Xm == '유리병' || Xm == 'pill bottle' || Xm =='beer bottle' || Xm == 'beer glass' || Xm == 'beaker'){
                         change.push('glass')
                     }
-                    else if(Xm == 'pillow' || Xm == 'plasticbag' || Xm == 'packet' || Xm == 'prezel') {
+                    else if(Xm == '과자봉지' || Xm == 'pillow' || Xm == 'plasticbag' || Xm == 'packet' || Xm == 'prezel') {
                         change.push('snackbag')
                     }
-                    else if(Xm == 'coffee mug' || Xm == 'bottle cap') {
+                    else if(Xm == '캔' || Xm == 'coffee mug' || Xm == 'bottle cap') {
                         change.push('can')
                     }
-                    else if(Xm == 'carton') {
+                    else if(Xm == '우유팩' || Xm == 'carton') {
                         change.push('carton')
                     }
 
