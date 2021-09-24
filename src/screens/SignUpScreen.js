@@ -108,6 +108,7 @@ const SignUpScreen = ({ navigation }) => {
           email,
           name,
           birthday,
+          todayCount: 0,
           loveCount: 2,
           jobCount: 3,
           moneyCount: 4

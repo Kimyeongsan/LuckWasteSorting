@@ -163,11 +163,15 @@ const MainScreen = (props) => {
   // User 실행 시간 
   const userDate = props.extraData.date
 
+  const userTodayCount = props.extraData.todayCount
   const userLoveCount = props.extraData.loveCount
   const userJobCount = props.extraData.jobCount
   const userMoneyCount = props.extraData.moneyCount
 
+  console.log(userTodayCount)
+
   // 연애운, 직장운, 금전운 count
+  const [todayCnt, setTodayCnt] = useState(userTodayCount);
   const [loveCnt, setLoveCnt] = useState(userLoveCount);
   const [jobCnt, setJobCnt] = useState(userJobCount);
   const [moneyCnt, setMoneyCnt] = useState(userMoneyCount);
@@ -199,6 +203,7 @@ const MainScreen = (props) => {
     if (time != userDate) {
       countValue
         .update({
+          todayCount: 0,
           loveCount: 2,
           jobCount: 3,
           moneyCount: 4
@@ -219,6 +224,23 @@ const MainScreen = (props) => {
       }
     }
   }
+
+    // today 버튼
+    const today_clickBtn = (count) => {
+      if (count == 0) {
+        setTodayCnt(count + 1);
+        countValue.update({ todayCount: todayCnt, date: new Date().getDate() })
+  
+        Alert.alert('검색 횟수를 다 못채웠습니다.');
+        navigation.navigate('search');  // search 화면 이동
+  
+      } else if (count == 1 || count == "완료") {
+        countValue.update({ todayCount: todayCnt, date: new Date().getDate() })
+  
+        setTodayCnt("완료");
+        btnSt(1);
+      }
+    }
 
   // love 버튼
   const love_clickBtn = (count) => {
@@ -404,7 +426,7 @@ const MainScreen = (props) => {
 
         {/* 사용자 내역 출력 */}
         <TodayBtn
-          onPress={() => { btnSt(1) }}>
+          onPress={() => { today_clickBtn(todayCnt) }}>
           <Ellipse source={require("../../assets/img/main/magic_ellipse.png")} />
         </TodayBtn>
 
