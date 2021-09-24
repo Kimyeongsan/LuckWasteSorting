@@ -45,7 +45,6 @@ const Search_Input = () => {
     // 우유팩 : packet & carton
     const Submit = () => {
 
-
         var itemList = [
             '패트병', 'water bottle', 'pop bottle',
             '유리병', 'pill bottle', 'beer bottle', 'beer glass', 'beaker',

@@ -62,6 +62,7 @@ class CameraScreen extends Component {
     _currentInstant = Date.now();
   }
 
+  // 임시 데이터 5가지
   changeFunction() {
     var itemList = [
       'water bottle', 'pop bottle',

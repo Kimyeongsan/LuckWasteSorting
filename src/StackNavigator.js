@@ -21,7 +21,7 @@ const Stack = createStackNavigator();
 function StackNavigator() {
 
   // Set an initializing state whilst Firebase connects
-  const [initializing, setInitializing] = useState(true);
+  const [initializing, setInitializing] = useState(false);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -53,7 +53,11 @@ function StackNavigator() {
     });
   }, [0]);
 
-  if (initializing) return null;
+  if (initializing) {
+    return (
+      <></>
+    )
+  }
 
   return (
     <NavigationContainer>

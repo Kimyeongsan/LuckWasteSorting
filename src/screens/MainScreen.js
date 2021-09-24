@@ -167,8 +167,7 @@ const MainScreen = (props) => {
   const userLoveCount = props.extraData.loveCount
   const userJobCount = props.extraData.jobCount
   const userMoneyCount = props.extraData.moneyCount
-
-  console.log(userTodayCount)
+  
 
   // 연애운, 직장운, 금전운 count
   const [todayCnt, setTodayCnt] = useState(userTodayCount);
