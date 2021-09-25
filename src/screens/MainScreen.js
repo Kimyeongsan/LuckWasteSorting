@@ -167,7 +167,7 @@ const MainScreen = (props) => {
   const userLoveCount = props.extraData.loveCount
   const userJobCount = props.extraData.jobCount
   const userMoneyCount = props.extraData.moneyCount
-  
+
 
   // 연애운, 직장운, 금전운 count
   const [todayCnt, setTodayCnt] = useState(userTodayCount);
@@ -207,7 +207,7 @@ const MainScreen = (props) => {
           jobCount: 3,
           moneyCount: 4
         })
-        shuffle(month); // 운세 초기화 될 때 리셋
+      shuffle(month); // 운세 초기화 될 때 리셋
     }
   });
 
@@ -224,31 +224,57 @@ const MainScreen = (props) => {
     }
   }
 
-    // today 버튼
-    const today_clickBtn = (count) => {
-      if (count == 0) {
-        setTodayCnt(count + 1);
-        countValue.update({ todayCount: todayCnt, date: new Date().getDate() })
-  
-        Alert.alert('검색 횟수를 다 못채웠습니다.');
-        navigation.navigate('search');  // search 화면 이동
-  
-      } else if (count == 1 || count == "완료") {
-        countValue.update({ todayCount: todayCnt, date: new Date().getDate() })
-  
-        setTodayCnt("완료");
-        btnSt(1);
-      }
+  // today 버튼
+  const today_clickBtn = (count) => {
+    if (count == 0) {
+      // setTodayCnt(count + 1);
+      // countValue.update({ todayCount: todayCnt, date: new Date().getDate() })
+
+      Alert.alert(
+        '분리수거를 해주세요!',
+        '분리수거 횟수가 부족합니다. 분리수거 화면에서는 뒤로가기 버튼이 동작하지 않습니다.',
+        [
+          {
+            text: '분리수거 하러가기!', onPress: () => {
+              navigation.navigate('search'),
+              setTodayCnt(count + 1),
+              countValue.update({ todayCount: todayCnt, date: new Date().getDate() })
+            }
+          },
+          { text: '닫기', onPress: () => console.log('닫기'), style: 'cancel' },
+        ],
+        { cancelable: false }
+      )
+
+    } else if (count == 1 || count == "완료") {
+      countValue.update({ todayCount: todayCnt, date: new Date().getDate() })
+
+      setTodayCnt("완료");
+      btnSt(1);
     }
+  }
 
   // love 버튼
   const love_clickBtn = (count) => {
     if (count != 0 && count > 0) {
-      setLoveCnt(count - 1);
-      countValue.update({ loveCount: loveCnt, date: new Date().getDate() })
+      // setLoveCnt(count - 1);
+      // countValue.update({ loveCount: loveCnt, date: new Date().getDate() })
 
-      Alert.alert('검색 횟수를 다 못채웠습니다.');
-      navigation.navigate('search');  // search 화면 이동
+      Alert.alert(
+        '분리수거를 해주세요!',
+        '분리수거 횟수가 부족합니다. 분리수거 화면에서는 뒤로가기 버튼이 동작하지 않습니다.',
+        [
+          {
+            text: '분리수거 하러가기!', onPress: () => {
+              navigation.navigate('search'),
+              setLoveCnt(count - 1),
+              countValue.update({ loveCount: loveCnt, date: new Date().getDate() })
+            }
+          },
+          { text: '닫기', onPress: () => console.log('닫기'), style: 'cancel' },
+        ],
+        { cancelable: false }
+      )
 
     } else if (count == 0 || count == "완료") {
       countValue.update({ loveCount: loveCnt, date: new Date().getDate() })
@@ -263,11 +289,22 @@ const MainScreen = (props) => {
   // job 버튼
   const job_clickBtn = (count) => {
     if (count != 0 && count > 0) {
-      setJobCnt(count - 1);
-      countValue.update({ jobCount: jobCnt, date: new Date().getDate() })
 
-      Alert.alert('검색 횟수를 다 못채웠습니다.');
-      navigation.navigate('search');
+      Alert.alert(
+        '분리수거를 해주세요!',
+        '분리수거 횟수가 부족합니다. 분리수거 화면에서는 뒤로가기 버튼이 동작하지 않습니다.',
+        [
+          {
+            text: '분리수거 하러가기!', onPress: () => {
+              navigation.navigate('search'),
+              setJobCnt(count - 1),
+              countValue.update({ jobCount: jobCnt, date: new Date().getDate() })
+            }
+          },
+          { text: '닫기', onPress: () => console.log('닫기'), style: 'cancel' },
+        ],
+        { cancelable: false }
+      )
 
     } else if (count == 0 || count == "완료") {
       countValue.update({ jobCount: jobCnt, date: new Date().getDate() })
@@ -279,11 +316,23 @@ const MainScreen = (props) => {
   // money 버튼
   const money_clickBtn = (count) => {
     if (count != 0 && count > 0) {
-      setMoneyCnt(count - 1);
-      countValue.update({ moneyCount: moneyCnt, date: new Date().getDate() })
 
-      Alert.alert('검색 횟수를 다 못채웠습니다.');
-      navigation.navigate('search');
+
+      Alert.alert(
+        '분리수거를 해주세요!',
+        '분리수거 횟수가 부족합니다. 분리수거 화면에서는 뒤로가기 버튼이 동작하지 않습니다.',
+        [
+          {
+            text: '분리수거 하러가기!', onPress: () => {
+              navigation.navigate('search'),
+              setMoneyCnt(count - 1),
+              countValue.update({ moneyCount: moneyCnt, date: new Date().getDate() })
+            }
+          },
+          { text: '닫기', onPress: () => console.log('닫기'), style: 'cancel' },
+        ],
+        { cancelable: false }
+      )
 
     } else if (count == 0 || count == "완료") {
       countValue.update({ moneyCount: moneyCnt, date: new Date().getDate() })
@@ -353,7 +402,7 @@ const MainScreen = (props) => {
         luckContent4.push(content[3].content1, content[3].content2, content[3].content3, content[3].content4)
       });
 
-      console.log('운세 데이터 업로드 성공!')
+    console.log('운세 데이터 업로드 성공!')
   }
 
   // 운세 제목 출력
