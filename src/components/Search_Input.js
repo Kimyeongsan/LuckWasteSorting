@@ -46,7 +46,7 @@ const Search_Input = () => {
     const Submit = () => {
 
         var itemList = [
-            '패트병', 'water bottle', 'pop bottle',
+            '페트병', 'water bottle', 'pop bottle',
             '유리병', 'pill bottle', 'beer bottle', 'beer glass', 'beaker',
             '과자봉지', 'pillow', 'plasticbag', 'packet', 'prezel',
             '캔', 'coffee mug', 'bottle cap',
@@ -62,7 +62,7 @@ const Search_Input = () => {
 
                     var change = [];
 
-                    if(Xm == '패트병' || Xm == 'water bottle' || Xm == 'pop bottle') {
+                    if(Xm == '페트병' || Xm == 'water bottle' || Xm == 'pop bottle') {
                         change.push('pet')
                     }
                     else if(Xm == '유리병' || Xm == 'pill bottle' || Xm =='beer bottle' || Xm == 'beer glass' || Xm == 'beaker'){

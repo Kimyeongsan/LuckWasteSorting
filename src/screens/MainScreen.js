@@ -218,7 +218,7 @@ const MainScreen = (props) => {
 
   const Random = () => {
     for (var i = 0; i <= 11; i++) {
-      if (userBirthDay == month[i]) {
+      if (parseInt(userBirthDay) == month[i]) {
         return i;
       }
     }
@@ -226,6 +226,7 @@ const MainScreen = (props) => {
 
   // today 버튼
   const today_clickBtn = (count) => {
+
     if (count == 0) {
       // setTodayCnt(count + 1);
       // countValue.update({ todayCount: todayCnt, date: new Date().getDate() })
@@ -478,7 +479,7 @@ const MainScreen = (props) => {
           <Ellipse source={require("../../assets/img/main/magic_ellipse.png")} />
         </TodayBtn>
 
-        <User>{userName}님, {userBirthDay}월생</User>
+        <User>{userName}님, {parseInt(userBirthDay)}월생</User>
         <Script>오늘도 환경실천을 한 당신,{"\n"}상쾌한 숲속의 구슬로{"\n"}오늘의 운세를 점쳐보세요</Script>
 
         {/* 조건 달성시 내용 바뀌게 */}
