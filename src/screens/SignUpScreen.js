@@ -1,4 +1,4 @@
-   
+
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 
@@ -80,6 +80,7 @@ const SignUpScreen = ({ navigation }) => {
   const [password, setPassword] = useState('')
 
   const onRegisterPress = () => {
+    var month = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '01', '02', '03', '04', '05', '06', '07', '08', '09'];
 
     // 입력 예외처리
     if (name == '') {
@@ -92,6 +93,14 @@ const SignUpScreen = ({ navigation }) => {
     }
     else if (birthday == '') {
       Alert.alert("Input(birthday) doen't Enough")
+      return
+    }
+
+    // 월 입력 예외처리 추가
+    else if (!month.includes(birthday)) {
+      Alert.alert(
+        '태어난 월을 다시 입력해주세요',
+        'ex) 12')
       return
     }
     else if (password == '') {
