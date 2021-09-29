@@ -46,7 +46,7 @@ const Search_Input = () => {
     const Submit = () => {
 
         var itemList = [
-            '페트병', 'water bottle', 'pop bottle',
+            '페트병', 'water bottle', 'pop bottle', 'water jug',
             '유리병', 'pill bottle', 'beer bottle', 'beer glass', 'beaker',
             '과자봉지', 'pillow', 'plasticbag', 'packet', 'prezel',
             '캔', 'coffee mug', 'bottle cap',
