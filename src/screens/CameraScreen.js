@@ -65,7 +65,7 @@ class CameraScreen extends Component {
   // 임시 데이터 5가지
   changeFunction() {
     var itemList = [
-      'water bottle', 'pop bottle',
+      'water bottle', 'pop bottle', 'water jug',
       'pill bottle', 'beer bottle', 'beer glass', 'beaker',
       'pillow', 'plasticbag', 'packet', 'prezel',
       'coffee mug', 'bottle cap',
@@ -77,7 +77,7 @@ class CameraScreen extends Component {
 
         var change = [];
 
-        if (this.state.output == 'water bottle' || this.state.output == 'pop bottle') {
+        if (this.state.output == 'water bottle' || this.state.output == 'pop bottle' || this.state.output == 'water jug') {
           change.push('pet')
         }
         else if (this.state.output == 'pill bottle' || this.state.output == 'beer bottle' || this.state.output == 'beer glass' || this.state.output == 'beaker') {
