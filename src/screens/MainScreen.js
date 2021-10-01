@@ -163,6 +163,7 @@ const MainScreen = (props) => {
   // User 실행 시간 
   const userDate = props.extraData.date
 
+  // 
   const userTodayCount = props.extraData.todayCount
   const userLoveCount = props.extraData.loveCount
   const userJobCount = props.extraData.jobCount
@@ -451,11 +452,24 @@ const MainScreen = (props) => {
 
   // logout
   const logOut = () => {
-    auth()
-      .signOut()
-      .then(() => console.log('User signed out!'));
+    Alert.alert(
+      '로그아웃',
+      '정말로 로그아웃 하시겠습니까?\n오늘 하루 재활용 횟수는 저장됩니다.',
+      [
+        {
+          text: '로그아웃', onPress: () => {
+            auth()
+            .signOut()
+            .then(() => console.log('User signed out!'));
+      
+             navigation.navigate('login')
+          }
+        },
+        { text: '닫기', onPress: () => console.log('닫기'), style: 'cancel' },
+      ],
+      { cancelable: false }
+    )
 
-    navigation.navigate('login')
   }
 
   return (
